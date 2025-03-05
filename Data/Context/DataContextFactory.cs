@@ -1,14 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace Data.Context;
 
-class DataContextFactory : IDesignTimeDbContextFactory<DataContext>
+public class DataContextFactory(IConfiguration configuration) : IDesignTimeDbContextFactory<DataContext>
 {
+    private readonly IConfiguration _configuration = configuration;
+
     public DataContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-        optionsBuilder.UseSqlServer(@"Server=localhost;Database=MyDatabase;User Id=sa;Password=yourStrong(!)Password");
+        var connectionString = _configuration.GetConnectionString("AlphaConnection");
+
+        optionsBuilder.UseSqlServer(connectionString);
 
         return new DataContext(optionsBuilder.Options);
     }
