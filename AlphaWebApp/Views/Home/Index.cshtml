@@ -1,39 +1,26 @@
 ﻿@{
-	ViewData["Title"] = "Register";
+	ViewData["Title"] = "Login";
 }
 
-
 <form class="form container">
-    <h1 class="create-account-title">Create Account</h1>
+    <h1 class="create-account-title">Log in</h1>
 
-    <div class="input-group">
-        <label class="form-label">First Name</label>
-        <input type="text" placeholder="e.g Homer" class="form-input body-regular">
-    </div>
-    <div class="input-group">
-        <label class="form-label">Last Name</label>
-        <input type="text" placeholder="e.g Simpsons" class="form-input body-regular">
-    </div>
     <div class="input-group">
         <label class="form-label">Email</label>
-        <input type="text" placeholder="e.g beerbelly@springfield.com" class="form-input body-regular">
+        <input type="text" placeholder="Enter email" class="form-input body-regular">
     </div>
     <div class="input-group">
         <label class="form-label">Password</label>
         <input type="password" placeholder="Enter password" class="form-input body-regular">
     </div>
-    <div class="input-group">
-        <label class="form-label">Confirm Password</label>
-        <input type="password" placeholder="Confirm password" class="form-input body-regular">
-    </div>
 
     <div class="terms">
-        <input type="checkbox"> <span>I accept</span> <a>Terms and Conditions</a>
+        <input type="checkbox"> <span>Remember me</span>
     </div>
 
-    <a class="btn-primary btn-register-login">Create Account</a>
+    <a class="btn-primary btn-register-login">Log in</a>
 
     <div class="flex account-already">
-        <p>Already have an account?</p><a asp-controller="Home" asp-action="Login">Login</a>
+        <p>Don't have an account?</p><a asp-controller="Home" asp-action="Register">Sign up</a>
     </div>
 </form>

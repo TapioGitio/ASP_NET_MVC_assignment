@@ -2,17 +2,10 @@
 
 namespace AlphaWebApp.Controllers;
 
-public class HomeController : Controller
+public class ProjectController : Controller
 {
     public IActionResult Index()
     {
         return View();
     }
-
-    [Route("Register")]
-    public IActionResult Register()
-    {
-        return View();
-    }
-
 }
