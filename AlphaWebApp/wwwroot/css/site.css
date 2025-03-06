@@ -120,6 +120,33 @@ li {
     padding-right: var(--container-padding);
     margin-left: auto;
     margin-right: auto;
+
+    @media (min-width: 576px) {
+        max-width: 540px;
+    }
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+    @media (min-width: 992px) {
+        max-width: 960px;
+    }
+    @media (min-width: 1200px) {
+        max-width: 1140px;
+    }
+    @media (min-width: 1400px) {
+        max-width: 1320px;
+    }
+    @media (min-width: 1600px) {
+        max-width: 1500px;
+    }
+    @media (min-width: 1800px) {
+        max-width: 1680px;
+    }
+}
+
+.background {
+    background-color: var(--clr-background);
+    padding-block: 2rem;
 }
 
 .flex {
@@ -140,7 +167,7 @@ li {
     gap: .5rem;
     border: none;
     cursor: pointer;
-    padding: 1rem 2rem;
+    padding: .8rem 2rem;
     &:hover
 
     {
@@ -164,8 +191,7 @@ li {
 }
 
 .create-account-title {
-    margin-top: 6rem;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .input-group {
@@ -183,7 +209,7 @@ li {
     border: 1px solid var(--clr-border100);
     border-radius: .6rem;
     color: var(--clr-bodyLight);
-    padding: 1rem;
+    padding: .8rem;
 }
 
 .terms {
@@ -192,7 +218,6 @@ li {
 }
 
 .account-already {
-    padding-top: 6rem;
-    padding-bottom: 2rem;
+    padding-block: 2rem;
 }
 /* FORM END */
