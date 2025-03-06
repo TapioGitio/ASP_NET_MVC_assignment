@@ -1,31 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+    --clr-Accent: #2D99FF;
+    --clr-gray100: #F5F7FA;
+    --clr-gray200: #F0F1F5;
+    --clr-gray300: #E8EAED;
+    --clr-gray400: #E3E5E8;
+    --clr-border100: #EBEEF2;
+    --clr-border200: #E3E5E8;
+    --clr-border300: #C6C8CC;
+    --clr-background: #F1F3F7;
+    --clr-success: #22C55E;
+    --clr-orange: #FF9640;
+    --clr-blue: #2CD9D9;
+    --clr-green: #31D482;
+    --clr-darkGreen: #24B26B;
+    --clr-Red: #FF6640;
+    --clr-darkRed: #E94D3F;
+    --clr-heading: #1A1926;
+    --clr-bodyLight: #637085;
+    --clr-bodyDark: #28263B;
+    --clr-white: #fff;
+    --container-padding: 1rem;
+    --transition-time: all 0.2s;
+}
+
 html {
-  font-size: 14px;
+    color-scheme: light;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.dark {
+    color-scheme: dark;
+    --clr-Accent: #2D99FF;
+    --clr-gray100: #F5F7FA;
+    --clr-gray200: #F0F1F5;
+    --clr-gray300: #E8EAED;
+    --clr-gray400: #E3E5E8;
+    --clr-border100: #EBEEF2;
+    --clr-border200: #E3E5E8;
+    --clr-border300: #C6C8CC;
+    --clr-success: #22C55E;
+    --clr-orange: #FF9640;
+    --clr-blue: #2CD9D9;
+    --clr-green: #31D482;
+    --clr-darkGreen: #24B26B;
+    --clr-Red: #FF6640;
+    --clr-darkRed: #E94D3F;
+    --clr-heading: #1A1926;
+    --clr-bodyLight: #637085;
+    --clr-bodyDark: #28263B;
+    --clr-white: #fff;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* TYPOGRAPHY START */
 body {
-  margin-bottom: 60px;
+    font-family: "nunito", "sans-serif";
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clr-bodyDark);
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+h1, h2, h3 {
+    color: var(--clr-heading);
+    font-weight: 700;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+h4, h5, h6 {
+    color: var(--clr-heading);
+    font-weight: 600;
 }
+
+h1 {
+    font-size: 2.25rem;
+}
+
+.body-regular {
+    color: var(--clr-bodyLight);
+    font-weight: 400;
+}
+
+input, button, label {
+    font: inherit;
+}
+
+label {
+    color: var(--clr-heading);
+    font-weight: 600;
+}
+
+span {
+    color: var(--clr-bodyDark);
+    font-weight: 400;
+}
+
+a {
+    color: var(--clr-Accent);
+    cursor: pointer;
+    &:hover
+
+    {
+        color: var(--clr-blue);
+    }
+
+}
+
+li {
+    list-style: none;
+}
+/* TYPOGRAPHY END*/
+.container {
+    width: 100%;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.btn-primary {
+    color: var(--clr-white);
+    font-size: 1rem;
+    border-radius: .8rem;
+    background-color: var(--clr-Accent);
+    border: none;
+    display: grid;
+    place-items: center;
+    gap: .5rem;
+    border: none;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    &:hover
+
+    {
+        color: var(--clr-bodyDark);
+    }
+}
+
+/* FORM START */
+.btn-register-login {
+    width: 70%;
+}
+
+.form {
+    background-color: var(--clr-white);
+    width: 40%;
+    display: grid;
+    place-items: center;
+    border-radius: 1rem;
+    border: 1px solid var(--clr-border100);
+    box-shadow: 0 0 10px #4b4a4a18;
+}
+
+.create-account-title {
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+}
+
+.form-label {
+    margin-bottom: .5rem;
+}
+
+.form-input {
+    border: 1px solid var(--clr-border100);
+    border-radius: .6rem;
+    color: var(--clr-bodyLight);
+    padding: 1rem;
+}
+
+.terms {
+    width: 70%;
+    padding-block: 1rem;
+}
+
+.account-already {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+}
+/* FORM END */
