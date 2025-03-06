@@ -3,6 +3,7 @@
 
 :root {
     --clr-Accent: #2D99FF;
+    --clr-Accent-dimmed: #DBE9F8;
     --clr-gray100: #F5F7FA;
     --clr-gray200: #F0F1F5;
     --clr-gray300: #E8EAED;
@@ -79,6 +80,21 @@ h4, h5, h6 {
 
 h1 {
     font-size: 2.25rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.75rem;
+}
+h4 {
+    font-size: 1.5rem;
+}
+h5 {
+    font-size: 1.25rem;
+}
+h6 {
+    font-size: 1.125rem;
 }
 
 .body-regular {
@@ -162,14 +178,18 @@ li {
     color: var(--clr-white);
     font-size: 1rem;
     border-radius: .8rem;
-    background-color: var(--clr-Accent);
+    background-color: transparent;
     border: none;
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: .5rem;
     border: none;
     cursor: pointer;
+
     padding: .8rem 2rem;
+    box-shadow: 0 0 10px #4b4a4a18;
+
     &:hover
 
     {
@@ -180,6 +200,7 @@ li {
 /* FORM START */
 .btn-register-login {
     width: 70%;
+    background-color: var(--clr-Accent);
 }
 
 .form {
