@@ -147,6 +147,7 @@ li {
 .background {
     background-color: var(--clr-background);
     padding-block: 2rem;
+    height: 100vh;
 }
 
 .flex {
