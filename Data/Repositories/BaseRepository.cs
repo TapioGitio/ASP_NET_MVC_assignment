@@ -17,7 +17,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         _dbSet = context.Set<TEntity>();
     }
 
-    public virtual async Task<bool> Create(TEntity entity)
+    public virtual async Task<bool> CreateAsync(TEntity entity)
     {
         if (entity == null)
         {
@@ -37,7 +37,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
             return false;
         }
     }
-    public virtual async Task<IEnumerable<TEntity>> GetAll()
+    public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
     {
         try
         {
@@ -51,7 +51,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         }
     }
 
-    public virtual async Task<TEntity?> GetOne(Expression<Func<TEntity, bool>> expression)
+    public virtual async Task<TEntity?> GetOneAsync(Expression<Func<TEntity, bool>> expression)
     {
         if (expression == null)
         {
@@ -70,7 +70,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         }
     }
 
-    public virtual async Task<bool> Update(Expression<Func<TEntity, bool>> expression, TEntity updatedEntity)
+    public virtual async Task<bool> UpdateAsync(Expression<Func<TEntity, bool>> expression, TEntity updatedEntity)
     {
         if (updatedEntity == null)
         {
@@ -99,7 +99,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         }
     }
 
-    public virtual async Task<bool> Delete(Expression<Func<TEntity, bool>> expression)
+    public virtual async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> expression)
     {
         if (expression == null)
         {
