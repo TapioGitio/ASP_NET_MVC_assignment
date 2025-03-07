@@ -14,7 +14,6 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 
 
-
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -31,7 +30,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Auth}/{action=Login}/{id?}")
     .WithStaticAssets();
 
 
