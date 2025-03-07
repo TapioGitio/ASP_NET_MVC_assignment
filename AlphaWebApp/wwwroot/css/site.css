@@ -126,7 +126,7 @@ html, body {
     border-radius: 1rem;
     border: 1px solid var(--clr-border100);
     box-shadow: 0 0 10px #4b4a4a18;
-    padding: 2rem;
+    padding: 1rem;
 }
 .portal {
     display: grid;
@@ -197,11 +197,14 @@ label {
     font-weight: 600;
 }
 span {
-    color: var(--clr-bodyDark);
-    font-weight: 400;
+    font-weight: var(--font-regular);
+}
+p {
+    font-weight: var(--font-semibold);
 }
 a {
     color: var(--accent);
+    font-weight: var(--font-semibold);
     cursor: pointer;
     text-decoration: none;
     &:hover
@@ -292,7 +295,7 @@ li {
 
 .form-input {
     border: 1px solid var(--border100);
-    border-radius: .6rem;
+    border-radius: .8rem !important;
     color: var(--bodyLight);
     padding: .5rem;
 }
@@ -303,7 +306,7 @@ li {
 }
 
 .account-already {
-    padding-block: 2rem;
+    margin-top: 4rem;
 }
 /* FORM END */
 /* MAIN PAGE START */
