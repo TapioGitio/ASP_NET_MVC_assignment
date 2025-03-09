@@ -14,6 +14,7 @@
     --font-black: 900;
     /*SIZE*/
     --size-tablet: 768px;
+    --size-desktop-m: 1200px;
     --size-desktop: 1400px;
     /*BORDERS*/
     --border100: #EBEEF2;
@@ -370,22 +371,18 @@ li {
 {
     color: var(--accent);
 }
-
 }
 
 .main-content {
     padding-top: 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
 /* CARD */
 .main-content-item {
     padding: 1rem;
-    width: 350px;
-    height: 276px;
 }
 
 /* CARD HEADER */
