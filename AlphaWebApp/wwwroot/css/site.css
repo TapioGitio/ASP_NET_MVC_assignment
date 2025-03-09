@@ -124,8 +124,8 @@ html, body {
 .flex {
     display: flex;
     justify-content: center;
-    align-content: center;
-    gap: .5rem;
+    align-items: center;
+    gap: 1rem;
 }
 .surface {
     background-color: var(--surface-color);
@@ -143,6 +143,7 @@ html, body {
                          "sidebar main";
 
 }
+
 /* TYPOGRAPHY */
 h1 {
     font-size: 2.25rem;
@@ -272,7 +273,6 @@ li {
     background-color: var(--btn-accent-hover-light);
 }
 
-
 /* FORM START */
 .form {
     width: 30vw;
@@ -312,7 +312,6 @@ li {
 }
 /* FORM END */
 
-
 /* MAIN */
 .sidebar {
     grid-area: sidebar;
@@ -342,13 +341,10 @@ li {
     margin-left: .5rem;
     background-color: var(--background-color);
     &:focus
-
-{
-    outline-color: var(--border200);
+    {
+        outline-color: var(--border200);
+    }
 }
-
-}
-
 .topbar-avatar {
     margin-left: 2rem;
 }
@@ -442,12 +438,10 @@ li {
 .main-footer-image * {
     height: 30px;
     aspect-ratio: 1;
-    img
 
-{
-    max-width: 100%;
-}
-
+    img {
+        max-width: 100%;
+    }
 }
 
 /*MAIN END*/
