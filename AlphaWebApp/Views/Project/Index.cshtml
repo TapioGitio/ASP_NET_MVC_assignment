@@ -6,7 +6,7 @@
 <div class="main">
 
     <div class="flex main-title">
-        <h2>Projects</h2>
+        <h2>@ViewData["title"]</h2>
         <button class="btn btn-add"><i class="bi bi-plus-lg"></i>Add Project</button>
     </div>
 
@@ -18,72 +18,7 @@
 
     <div class="main-content">
 
-        <div class="surface main-content-item">
-
-            <div class="main-content-header">
-                <div class="main-content-image">
-                    <img src="images/alpha-icon-peach.svg" alt="">
-                </div>
-                <div class="main-content-title">
-                    <h6>Website Design</h6>
-                    <p>Gitlad industries</p>
-                </div>
-                <div class="main-content-icon">
-                    <i class="bi bi-three-dots"></i>
-                </div>
-            </div>
-
-            <div class="main-body">
-                <p>Lorem ipsum, dolor sit amet consectetdae laboriosam, quidem odio ipsa sit suscipit, nobis eaque magnam nemo iusto commodi</p>
-            </div>
-
-            <div class="main-footer">
-
-                <div class="main-footer-time">
-                    <i class="bi bi-clock"></i>
-                    <span>1 week left</span>
-                </div>
-
-                <div class="main-footer-image flex">
-                    <img src="images/avatar-orange.svg" alt="">
-                </div>
-
-            </div>
-        </div>
-
-        <div class="surface main-content-item">
-
-            <div class="main-content-header">
-                <div class="main-content-image">
-                    <img src="images/alpha-icon-peach.svg" alt="">
-                </div>
-                <div class="main-content-title">
-                    <h6>Website Design</h6>
-                    <p>Gitlad industries</p>
-                </div>
-                <div class="main-content-icon">
-                    <i class="bi bi-three-dots"></i>
-                </div>
-            </div>
-
-            <div class="main-body">
-                <p>Lorem ipsum, dolor sit amet consectetdae laboriosam, </p>
-            </div>
-
-            <div class="main-footer">
-
-                <div class="main-footer-time">
-                    <i class="bi bi-clock"></i>
-                    <span>1 week left</span>
-                </div>
-
-                <div class="main-footer-image flex">
-                    <img src="images/avatar-orange.svg" alt="">
-                </div>
-
-            </div>
-        </div>
-
+		@await Html.PartialAsync("Partials/_MainContent")
 
     </div>
 </div>

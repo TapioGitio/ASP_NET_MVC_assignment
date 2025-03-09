@@ -138,12 +138,17 @@ html, body {
 .portal {
     display: grid;
     height: 100dvh;
-    grid-template-columns: minmax(50px,270px) 1fr;
+    grid-template-columns: minmax(40px, 40px) 1fr;
     grid-template-rows: minmax(80px, auto) 1fr;
     grid-template-areas: "sidebar topbar"
                          "sidebar main";
-
 }
+
+@media(min-width: 768px) {
+    .portal {
+        grid-template-columns: minmax(50px,270px) 1fr;
+    }
+}  
 
 /* TYPOGRAPHY */
 h1 {
@@ -309,6 +314,10 @@ li {
 }
 
 .account-already {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: .5rem;
     margin-top: 4rem;
 }
 /* FORM END */
@@ -318,6 +327,13 @@ li {
     grid-area: sidebar;
     border-right: 1px solid var(--border200);
     padding: 1rem;
+    display: none;
+}
+
+@media(min-width: 768px) {
+    .sidebar {
+        display: block;
+    }
 }
 
 .topbar {
@@ -331,7 +347,7 @@ li {
 
 .main {
     grid-area: main;
-    padding: 1rem 2rem;
+    padding: 2rem;
 }
 
 /* TOPBAR CONTENT */
@@ -341,6 +357,7 @@ li {
     padding: .4rem;
     margin-left: .5rem;
     background-color: var(--background-color);
+
     &:focus
     {
         outline-color: var(--border200);
@@ -353,8 +370,16 @@ li {
 /* PROJECT TITLE */
 .main-title {
     justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 2rem;
 }
 
+@media(min-width: 768px) {
+    .main-title {
+        flex-direction: row;
+        margin-bottom: 0;
+    }
+}
 /* HORIZONTAL MENU */
 .main-nav {
     display: flex;
@@ -376,7 +401,7 @@ li {
 .main-content {
     padding-top: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
 }
 
@@ -415,6 +440,10 @@ li {
 /* CARD BODY */
 .main-body {
     flex-grow: 1;
+
+    p {
+        font-weight: var(--font-regular);
+    }
 }
 
 /* CARD FOOTER */
