@@ -19,14 +19,18 @@
 			@await Html.PartialAsync("Partials/Components/_Logotype")
         </div>
 
+        <header class="topbar">
+            @await Html.PartialAsync("Partials/Sections/_Topbar")
+        </header>
+
         <aside class="sidebar">
-           @await Html.PartialAsync("Partials/Sections/_Sidebar")
+            @await Html.PartialAsync("Partials/Components/_NavLinks")
         </aside>
 
-        <nav class="topbar">
-            @await Html.PartialAsync("Partials/Sections/_Topbar")
-        </nav>
-        @RenderBody()
+        <main class="main">
+            @RenderBody()
+        </main>
+
     </div>
 
 

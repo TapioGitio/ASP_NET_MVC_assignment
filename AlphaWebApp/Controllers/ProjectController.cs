@@ -2,10 +2,17 @@
 
 namespace AlphaWebApp.Controllers;
 
+[Route("projects")]
 public class ProjectController : Controller
 {
-    [Route("projects")]
-    public IActionResult Index()
+    [Route("")]
+    public IActionResult Projects()
+    {
+        return View();
+    }
+
+    [Route("add")]
+    public IActionResult AddProjects()
     {
         return View();
     }

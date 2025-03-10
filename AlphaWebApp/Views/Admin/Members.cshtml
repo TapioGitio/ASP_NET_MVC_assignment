@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "_PortalLayout";
+    ViewData["Title"] = "Team Members";
+}
+
+
+
+<div class="flex main-title">
+    <h2>@ViewData["title"]</h2>
+    <button class="btn btn-add"><i class="bi bi-plus-lg"></i>Add Project</button>
+</div>
+
+<div class="main-nav">
+    <a class="main-nav-item">All []</a>
+    <a class="main-nav-item">Started []</a>
+    <a class="main-nav-item">Completed []</a>
+</div>
+
+<div class="main-content">
+
+    @await Html.PartialAsync("Partials/Sections/_Main")
+
+</div>
