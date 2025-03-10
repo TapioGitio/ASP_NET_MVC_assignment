@@ -477,6 +477,8 @@ li {
 
 /* CARD */
 .main-content-item {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     padding: 1rem;
 }
 
@@ -509,8 +511,7 @@ li {
 
 /* CARD BODY */
 .main-body {
-    flex-grow: 1;
-
+    margin-bottom: 2rem;
     p {
         font-weight: var(--font-regular);
     }
