@@ -219,7 +219,7 @@ li {
 
 /* LINKS */
 .nav-links {
-    margin: 2rem 0;
+
 }
 
     .nav-links > .nav-link {
@@ -344,7 +344,7 @@ li {
 }
 /* FORM END */
 
-/* MAIN */
+/* MAIN LAYOUT */
 .logotype {
     grid-area: logo;
     padding: 1rem 2rem;
