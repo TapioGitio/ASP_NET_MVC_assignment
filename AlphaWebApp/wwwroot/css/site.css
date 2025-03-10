@@ -42,6 +42,7 @@
     --bodyDark: #28263B;
     --red-dimmed: #FFE2DB;
     --gray-dimmed: #F0F1F5;
+    --transparent: #ffffff00;
     /*MISC*/
     --container-padding: 1rem;
     --transition-time: all 0.2s;
@@ -64,6 +65,7 @@
     --time-bg-short: var(--red-dimmed);
     --time-text-long: var(--heading);
     --time-text-short: var(--Red);
+    --nav-link-bg: var(--bg-transparent);
 }
 [data-theme="dark"] {
     color-scheme: dark;
@@ -140,7 +142,7 @@ html, body {
     height: 100dvh;
     grid-template-columns: minmax(40px, 40px) 1fr;
     grid-template-rows: minmax(80px, auto) 1fr;
-    grid-template-areas: "sidebar topbar"
+    grid-template-areas: "logo topbar"
                          "sidebar main";
 }
 
@@ -216,6 +218,41 @@ li {
 }
 
 /* LINKS */
+.nav-links {
+    margin: 2rem 0;
+}
+
+    .nav-links > .nav-link {
+        font-size: 1em;
+        font-family: var(--font);
+        color: var(--text-color);
+        background-color: var(--navlink-bg);
+        border-radius: 1rem;
+        padding: 1rem 1.5rem;
+        margin-bottom: .5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        span
+{
+    color: var(--heading-color);
+    font-weight: var(--font-semibold);
+}
+
+}
+
+.nav-links > .nav-link:hover,
+.nav-links > .nav-link.active {
+    color: var(--btn-accent-text-light);
+    background-color: var(--btn-accent-hover-light);
+    span
+
+{
+    color: var(--btn-accent-text-light);
+}
+
+}
 
 /* BUTTONS */
 .btn {
@@ -263,21 +300,6 @@ li {
     background: var(--btn-gray-hover);
 }
 }
-.btn-project {
-    color: var(--heading-color);
-    width: 80%;
-    margin-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: start;
-    gap: .5rem;
-}
-.btn-project:hover,
-.btn-project:active,
-.btn-project i:hover {
-    color: var(--btn-accent-text-light);
-    background-color: var(--btn-accent-hover-light);
-}
 
 /* FORM START */
 .form {
@@ -323,6 +345,18 @@ li {
 /* FORM END */
 
 /* MAIN */
+.logotype {
+    grid-area: logo;
+    padding: 1rem 2rem;
+    border-right: 1px solid var(--border200);
+    display: none;
+}
+
+@media(min-width: 768px) {
+    .logotype {
+        display: block;
+    }
+}
 .sidebar {
     grid-area: sidebar;
     border-right: 1px solid var(--border200);
@@ -348,6 +382,20 @@ li {
 .main {
     grid-area: main;
     padding: 2rem;
+}
+
+/* SIDEBAR CONTENT */
+.sidebar-image {
+    font-size: 1.6rem;
+    font-family: var(--font-logo);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    span {
+        font-weight: var(--font-bold);
+    }
 }
 
 /* TOPBAR CONTENT */
