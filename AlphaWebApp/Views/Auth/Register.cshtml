@@ -5,8 +5,10 @@
 
 <div class="center-screen">
     <div class="surface">
+
+        <h1 class="create-account-title">Create Account</h1>
+
         <form class="form">
-            <h1 class="create-account-title">Create Account</h1>
 
             <div class="input-group">
                 <label class="form-label">First Name</label>
@@ -34,10 +36,10 @@
             </div>
 
             <a class="btn btn-register-login">Create Account</a>
-
-            <div class="account-already">
-                <p>Already have an account?</p><a asp-controller="Auth" asp-action="Login">Login</a>
-            </div>
         </form>
+
+        <div class="account-already">
+            <p>Already have an account?</p><a asp-controller="Auth" asp-action="Login">Login</a>
+        </div>
     </div>
 </div>

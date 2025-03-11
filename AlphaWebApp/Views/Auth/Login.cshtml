@@ -5,27 +5,31 @@
 
 <div class="center-screen">
     <div class="surface">
-        <form class="form">
-            <h1 class="create-account-title">Log in</h1>
 
-            <div class="input-group">
-                <label class="form-label">Email</label>
-                <input type="text" placeholder="Enter email" class="form-input body-regular">
-            </div>
-            <div class="input-group">
-                <label class="form-label">Password</label>
-                <input type="password" placeholder="Enter password" class="form-input body-regular">
-            </div>
+        <h1 class="create-account-title">Login</h1>
 
-            <div class="terms">
-                <input type="checkbox"> <span>Remember me</span>
-            </div>
+            <form class="form">
 
-            <a class="btn btn-register-login">Log in</a>
+                <div class="input-group">
+                    <label class="form-label">Email</label>
+                    <input type="text" placeholder="Enter email" class="form-input body-regular">
+                </div>
+                <div class="input-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" placeholder="Enter password" class="form-input body-regular">
+                </div>
 
-            <div class="account-already">
-                <p>Don't have an account?</p><a asp-controller="Auth" asp-action="Register">Sign up</a>
-            </div>
-        </form>
+                <div class="terms">
+                    <input type="checkbox"> <span>Remember me</span>
+                </div>
+
+                <a class="btn btn-register-login">Log in</a>
+
+            </form>
+
+        <div class="account-already">
+            <p>Don't have an account?</p> <a asp-controller="Auth" asp-action="Register">Sign up</a>
+        </div>
+
     </div>
 </div>
