@@ -195,10 +195,6 @@ h6 {
     color: var(--clr-heading);
     font-weight: var(--font-semibold)
 }
-.body-regular {
-    color: var(--clr-bodyLight);
-    font-weight: 400;
-}
 input, button, label {
     font: inherit;
 }
@@ -290,7 +286,7 @@ li {
 .btn-register-login {
     color: var(--btn-accent-text);
     background-color: var(--btn-accent-bg);
-
+    width: 100%;
     &:hover
 {
     color: var(--btn-accent-text);
@@ -307,7 +303,7 @@ li {
 }
 }
 
-/* FORM START */
+/* FORM */
 .form {
     padding: 1rem;
 }
@@ -324,6 +320,7 @@ li {
 }
 
 .input-group {
+    position: relative;
     margin-bottom: 1rem;
 }
 
@@ -336,16 +333,23 @@ li {
     width: 100%;
     border: 1px solid var(--border100);
     border-radius: .8rem !important;
-    color: var(--bodyLight);
+    color: var(--text-color);
     padding: .5rem 1rem;
+
     &:focus
-{
-    outline: none;
-    box-shadow: 0 0 5px var(--accent-dark);
+    {
+        outline: none;
+        box-shadow: 0 0 5px var(--accent-dark);
+    }
 }
+.form-input::placeholder {
+    color: var(--bodyLight);
+    font-style: italic;
+    font-size: .9rem;
 }
 
 .terms {
+    position: relative;
     margin-bottom: 2rem;
 }
 
@@ -355,7 +359,41 @@ li {
     gap: .5rem;
     margin-top: 4rem;
 }
-/* FORM END */
+
+ /* FORM VALIDATION */
+.input-validation-error {
+    border-color: var(--red-dimmed);
+}
+.terms .field-validation-error {
+    position: absolute;
+    top: 0;
+    right: .1rem;
+    border-radius: .8rem;
+    padding: .4rem 1rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-size: .8rem;
+    color: var(--darkRed);
+}
+.field-validation-error {
+    position: absolute;
+    top: 2rem;
+    right: .1rem;
+    border-radius: .8rem;
+    padding: .4rem 1rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-size: .8rem;
+    color: var(--darkRed);
+}
+.field-validation-error::before {
+    content: "\F33B";
+    font-family: 'bootstrap-icons';
+    font-size: 1rem;
+}
+
 
 /* MAIN LAYOUT */
 .logotype {
@@ -438,7 +476,7 @@ li {
     margin-left: 2rem;
 }
 
-/* PROJECT TITLE */
+/* MAIN CONTENT */
 .main-title {
     justify-content: space-between;
     flex-direction: column;

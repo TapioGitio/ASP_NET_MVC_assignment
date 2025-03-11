@@ -1,4 +1,5 @@
-﻿@{
+﻿@model RegisterViewModel;
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Register";
 }
@@ -8,34 +9,40 @@
 
         <h1 class="create-account-title">Create Account</h1>
 
-        <form class="form">
+        <form class="form" method="post" novalidate>
 
             <div class="input-group">
-                <label class="form-label">First Name</label>
-                <input type="text" placeholder="e.g Homer" class="form-input body-regular">
+                <label asp-for="Form.FirstName" class="form-label"></label>
+                <input asp-for="Form.FirstName" class="form-input" value="@Model?.Form?.FirstName">
+                <span asp-validation-for="Form.FirstName"></span>
             </div>
             <div class="input-group">
-                <label class="form-label">Last Name</label>
-                <input type="text" placeholder="e.g Simpsons" class="form-input body-regular">
+                <label asp-for="Form.LastName" class="form-label"></label>
+                <input asp-for="Form.LastName" class="form-input" value="@Model?.Form?.LastName">
+                <span asp-validation-for="Form.LastName"></span>
             </div>
             <div class="input-group">
-                <label class="form-label">Email</label>
-                <input type="text" placeholder="e.g beerbelly@springfield.com" class="form-input body-regular">
+                <label asp-for="Form.Email" class="form-label"></label>
+                <input asp-for="Form.Email" class="form-input" value="@Model?.Form?.Email">
+                <span asp-validation-for="Form.Email"></span>
             </div>
             <div class="input-group">
-                <label class="form-label">Password</label>
-                <input type="password" placeholder="Enter password" class="form-input body-regular">
+                <label asp-for="Form.Password" class="form-label"></label>
+                <input asp-for="Form.Password" class="form-input" value="@Model?.Form?.Password">
+                <span asp-validation-for="Form.Password"></span>
             </div>
             <div class="input-group">
-                <label class="form-label">Confirm Password</label>
-                <input type="password" placeholder="Confirm password" class="form-input body-regular">
+                <label asp-for="Form.ConfirmPassword" class="form-label"></label>
+                <input asp-for="Form.ConfirmPassword" class="form-input" value="@Model?.Form?.ConfirmPassword">
+                <span asp-validation-for="Form.ConfirmPassword"></span>
             </div>
 
             <div class="terms">
-                <input type="checkbox"> <span>I accept</span> <a >Terms and Conditions</a>
+                <input asp-for="Form.AcceptTerms" type="checkbox"> <span>I accept</span> <a asp-action="#">Terms and Conditions</a>
+				<span asp-validation-for="Form.AcceptTerms"></span>    
             </div>
 
-            <a class="btn btn-register-login">Create Account</a>
+            <button type="submit" class="btn btn-register-login">Create Account</button>
         </form>
 
         <div class="account-already">
@@ -43,3 +50,4 @@
         </div>
     </div>
 </div>
+@await Html.PartialAsync("_ValidationScripts")
