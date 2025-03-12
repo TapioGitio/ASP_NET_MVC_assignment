@@ -3,8 +3,66 @@
     <i class="bi bi-search"></i>
     <input class="searchbar" type="text" placeholder="Search anything...">
 </div>
+
 <div class="flex">
-    <i class="bi bi-bell"></i>
-    <i class="bi bi-gear"></i>
+    <div class="dropdown">
+        <button class="btn-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-bell"></i>
+        </button>
+        <ul class="dropdown-menu">
+
+            <li class="dropdown-header">
+                <p>Notifications</p>
+                <p class="dropdown-header-number">4</p>
+            </li>
+
+            <li class="dropdown-item">
+                <div class="dropdown-item-image">
+                    <img src="images/avatar-orange.svg" alt="">
+                </div>
+                <div class="dropdown-item-text">
+                    <p class="dropdown-item-header">Janne heikkinen updated</p>
+                    <p class="dropdown-item-footer">1 min ago</p>
+                </div>
+                <button class="btn-exit">
+                    <i class="bi bi-x"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="dropdown">
+        <button class="btn-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-gear"></i>
+        </button>
+        <ul class="dropdown-menu">
+
+            <li class="dropdown-header dropdown-item settings">
+                <div class="dropdown-item-image">
+                    <img src="images/avatar-orange.svg" alt="">
+                </div>
+                <p class="dropdown-item-header">Janne Heikkinen</p>
+            </li>
+
+
+            <li class="dropdown-item">
+                <div class="settings-text">
+                    <i class="bi bi-gear"></i>
+                    <p>Dark Mode</p>
+                </div>
+
+                <div class="btn-toggle-switch">
+                    <span class="label">Dark Mode</span>
+                    <label for="darkmode-switch" class="toggle-switch">
+                        <input id="darkmode-switch" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
     <img class="topbar-avatar" src="images/avatar-orange.svg" alt="">
+
 </div>
