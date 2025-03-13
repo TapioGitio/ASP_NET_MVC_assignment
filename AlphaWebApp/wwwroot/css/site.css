@@ -518,7 +518,7 @@ li {
 
 /* MODAL */
 .modal {
-    display: flex; /* NONE */
+    display: none;
     justify-content: center;
     align-items: center;
     background-color: var(--grayWithTransparency);
@@ -552,6 +552,12 @@ li {
 
 
 /* MAIN LAYOUT */
+/* modal section */
+
+#addProjectModal .modal-content {
+    width: 550px;
+}
+
 .logotype {
     grid-area: logo;
     padding: 1rem 2rem;
