@@ -45,6 +45,7 @@
     --darkGrey: #28263B;
     --red-dimmed: #FFE2DB;
     --gray-dimmed: #F0F1F5;
+    --grayWithTransparency: #1d1c1c7c;
     --transparent: #ffffff00;
     /*MISC*/
     --container-padding: 1rem;
@@ -80,6 +81,8 @@
     --time-text-long: var(--black);
     --time-text-short: var(--Red);
     --bg-transparent: var(--transparent);
+    --modal-bg: var(--grayWithTransparency);
+    --modal-surface: var(--white);
     --nav-link-bg: var(--transparent);
 }
 [data-theme="dark"] {
@@ -326,10 +329,12 @@ li {
 .btn-exit {
     border: none;
     background: none;
-    font-size: 1.2em;
-    &:hover{
+    font-size: 2em;
+    &:hover
+{
     color: var(--accent-dark);
 }
+
 }
 .btn-toggle-switch {
     display: flex;
@@ -411,7 +416,7 @@ li {
     width: 100%;
     border: 1px solid var(--border100);
     border-radius: .8rem !important;
-    color: var(--text-color);
+    color: var(--bodyDark);
     padding: .5rem 1rem;
     &:focus
     {
@@ -435,6 +440,48 @@ li {
     margin-top: 4rem;
 }
 
+/* Image Container */
+.image-previewer {
+    position: relative;
+    border: 2px dashed var(--border200);
+    height: 150px;
+    width: 150px;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+    .image-previewer::after {
+        content: "\F220";
+        font-family: var(--font-bootstrap);
+        font-weight: var(--font-bold);
+        background-color: var(--grayWithTransparency);
+        color: var(--gray200);
+        padding: 1rem;
+        border-radius: 50%;
+        position: relative;
+        bottom: 0;
+    }
+
+    .image-previewer.selected::after {
+        content: "\F4C9";
+        position: absolute;
+        bottom: 5px;
+    }
+
+    .image-previewer.circle {
+        border-radius: 50%;
+    }
+
+    .image-previewer.square {
+        border-radius: 1rem;
+    }
+
+.image-preview {
+}
  /* Form Validation */
 .input-validation-error {
     border-color: var(--red-dimmed);
@@ -467,6 +514,40 @@ li {
     content: "\F33B";
     font-family: var(--font-bootstrap);
     font-size: 1rem;
+}
+
+/* MODAL */
+.modal {
+    display: flex; /* NONE */
+    justify-content: center;
+    align-items: center;
+    background-color: var(--grayWithTransparency);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+    .modal .modal-content {
+        background-color: var(--modal-surface);
+        border-radius: 1rem;
+        box-shadow: 0 4px 10px #2c2b2b2f;
+        padding: 2rem;
+        border: none;
+    }
+
+        .modal .modal-content .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border: none;
+        }
+
+.hide {
+    display: none;
+    visibility: hidden;
 }
 
 
