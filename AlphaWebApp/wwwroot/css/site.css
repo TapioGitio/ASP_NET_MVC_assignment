@@ -6,13 +6,13 @@
     /*FONTS*/
     --font: "Nunito", "sans-serif";
     --font-logo: "Comfortaa", "sans-serif";
+    --font-bootstrap: 'bootstrap-icons';
     --font-regular: 400;
     --font-medium: 500;
     --font-semibold: 600;
     --font-bold: 700;
     --font-extrabold: 800;
     --font-black: 900;
-
     /*SIZE*/
     --size-tablet: 768px;
     --size-desktop-m: 1200px;
@@ -26,7 +26,6 @@
     --gray2: #F0F1F5;
     --gray3: #E8EAED;
     --gray4: #E3E5E8;
-
     /*COLORS*/
     --white: #fff;
     --softBlue: #F1F3F7;
@@ -47,39 +46,31 @@
     --red-dimmed: #FFE2DB;
     --gray-dimmed: #F0F1F5;
     --transparent: #ffffff00;
-
     /*MISC*/
     --container-padding: 1rem;
     --transition-time: all 0.2s;
-
     /*VARIABLES TO CHANGE*/
     --bodyLight: var(--lightGrey);
     --bodyDark: var(--darkGrey);
     --border100: var(--border1);
     --border200: var(--border2);
     --border300: var(--border3);
-
     --gray100: var(--gray1);
     --gray200: var(--gray2);
     --gray300: var(--gray3);
     --gray400: var(--gray4);
-
     --heading-color: var(--black);
     --surface: var(--white);
-
     --accent: var(--Blue);
     --accent-dark: var(--darkBlue);
     --accent-dimmed: var(--lightBlue);
-
     --background-color: var(--softBlue);
     --btn-border: var(--white);
-
     --btn-accent-text: var(--white);
     --btn-accent-hover: var(--darkerBlue);
     --btn-accent-hover-light: var(--lightBlue);
     --btn-accent-text-light: var(--Blue);
     --btn-accent-bg: var(--Blue);
-
     --btn-gray-text: var(--black);
     --btn-gray-hover: var(--gray300);
     --btn-gray-bg: var(--gray100);
@@ -474,7 +465,7 @@ li {
 }
 .field-validation-error::before {
     content: "\F33B";
-    font-family: 'bootstrap-icons';
+    font-family: var(--font-bootstrap);
     font-size: 1rem;
 }
 
