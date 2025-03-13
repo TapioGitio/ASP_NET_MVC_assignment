@@ -218,7 +218,7 @@ input, button, label {
     font: inherit;
 }
 i {
-    cursor: pointer;
+    background-color: var(--bg-transparent);
 }
 label {
     color: var(--heading-color);
@@ -279,6 +279,7 @@ li {
 }
 
 /* BUTTONS */
+/* For future self: no padding on .btn */
 .btn {
     font-size: 1em;
     border-radius: .8rem;
@@ -322,6 +323,7 @@ li {
 }
 }
 .btn-dropdown {
+    background-color: var(--bg-transparent);
     border: none;
     cursor: pointer;
     transition: var(--transition-time);
@@ -554,17 +556,21 @@ li {
     border-radius: .8rem;
     border: 1px solid var(--border100);
     box-shadow: 0 0 10px #2c2b2b28;
-    padding: .5rem;
+    padding: 1rem .5rem;
 }
 .dropdown-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 0;
+    margin-bottom: .5rem;
     font-size: 1.1rem;
     color: var(--bodyDark);
     font-weight: var(--font-semibold);
-    border-bottom: 1px solid var(--border200);
+
+    p {
+    margin-bottom: 0;
+}
 }
 .dropdown-header.settings {
         justify-content: start;
@@ -574,19 +580,17 @@ li {
 .settings-text {
     display: flex;
     align-items: center;
-    gap: .5rem;
-    color: var(--bodyLight);
-    p{
-    margin-bottom: 0;
-}
+    gap: .6rem;
+    color: var(--bodyDark);
 }
 .dropdown-header-number {
-    display: grid;
-    place-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 20px;
-    aspect-ratio: 1;
-    padding: .1rem;
-    font-size: .6rem;
+    height: 20px;
+
+    font-size: .7rem;
     font-weight: var(--font-bold);
     color: var(--white);
     background-color: var(--orange);
@@ -596,11 +600,12 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: .5rem;
-    padding: .5rem 1rem;
+    padding: .9rem;
     border-radius: .5rem;
+    border-top: 1px solid var(--border200);
     font-size: .9rem;
-    &:hover{
+    &:hover
+{
     background-color: var(--border100);
 }
 }
@@ -609,7 +614,7 @@ li {
     aspect-ratio: 1;
 }
 .dropdown-item-header {
-    color: var(--text-color);
+    color: var(--bodyDark);
     margin-right: 2rem;
     margin-bottom: 0;
 }
@@ -641,17 +646,39 @@ li {
     display: flex;
     align-items: center;
     gap: 2rem;
-    border-bottom: 1px solid var(--border200);
+    border-bottom: 2px solid var(--border200);
     font-weight: var(--font-bold);
+    margin: 1rem 0;
 }
 
 .main-nav-item {
+    position: relative;
     color: var(--bodyLight);
-    &:hover, &:active
+    margin-bottom: .5rem;
 
-{
-    color: var(--accent);
-}
+    &:hover, 
+    &:focus
+    {
+        color: var(--accent);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -9px;
+        width: 100%;
+        height: 3px;
+        background-color: var(--accent);
+        border-radius: 10px 10px 0 0;
+        transform: scaleX(0);
+        transition: var(--transition-time);
+    }
+
+    &:hover::after,
+    &:focus::after {
+        transform: scaleX(1);
+    }
 }
 
 .main-content {
