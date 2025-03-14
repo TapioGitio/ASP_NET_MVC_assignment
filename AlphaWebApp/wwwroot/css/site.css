@@ -302,6 +302,7 @@ textarea {
 .btn-register-login {
     color: var(--btn-accent-text);
     background-color: var(--btn-accent-bg);
+    margin-top: 2rem;
     width: 100%;
     &:hover
 {
