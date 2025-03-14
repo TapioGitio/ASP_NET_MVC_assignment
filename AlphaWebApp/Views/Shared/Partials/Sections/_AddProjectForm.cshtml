@@ -48,8 +48,19 @@
 
             </div>
 
+            <div class="input-group">
+                <label asp-for="FormData.MemberId" class="form-label"></label>
+                <input asp-for="FormData.MemberId" class="form-input" value="@Model?.FormData?.MemberId">
+                <span asp-validation-for="FormData.MemberId"></span>
+            </div>
 
+            <div class="input-group">
+                <label asp-for="FormData.Budget" class="form-label"></label>
+                <input asp-for="FormData.Budget" class="form-input" value="@Model?.FormData?.Budget">
+                <span asp-validation-for="FormData.Budget"></span>
+            </div>
 
+            <button type="submit" class="btn btn-register-login">Add Project</button>
 
         </form>
 
