@@ -21,12 +21,21 @@ public class AddProjectModel
     public string ProjectDescription { get; set; } = null!;
 
 
+    [Display(Name = "Start Date", Prompt = "Start date")]
+    [DataType(DataType.Date)]
+    [Required(ErrorMessage = "Required")]
     public DateTime StartDate { get; set; }
+
+    [Display(Name = "End Date", Prompt = "End date")]
+    [DataType(DataType.Date)]
+    [Required(ErrorMessage = "Required")]
     public DateTime EndDate { get; set; }
 
+    [Display(Name = "Members")]
     public int MemberId { get; set; }
 
     [Display(Name = "Budget")]
+    [Required(ErrorMessage = "Required")]
     public decimal Budget { get; set; }
 
 }

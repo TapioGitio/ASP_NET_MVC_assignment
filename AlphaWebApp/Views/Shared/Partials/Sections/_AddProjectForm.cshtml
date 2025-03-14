@@ -12,7 +12,7 @@
 
         <form asp-controller="ProjectCRUDController" asp-action="Add" method="post" novalidate>
 
-            <div class="image-previewer circle">
+            <div class="image-previewer square">
                 <img class="image-preview" src="">
                 <input asp-for="FormData.ProjectImage"  class="hide"  accept="image/*">
             </div>
@@ -29,9 +29,27 @@
             </div>
             <div class="input-group">
                 <label asp-for="FormData.ProjectDescription" class="form-label"></label>
-				<textarea asp-for="FormData.ProjectDescription" class="form-input input-large" value="@Model?.FormData?.ProjectDescription"></textarea>
+				<textarea asp-for="FormData.ProjectDescription" class="form-input input-large" contenteditable="true" value="@Model?.FormData?.ProjectDescription"></textarea>
                 <span asp-validation-for="FormData.ProjectDescription"></span>
             </div>
+
+            <div class="form-date">
+
+                <div class="input-group">
+                    <label asp-for="FormData.StartDate" class="form-label"></label>
+                    <input asp-for="FormData.StartDate" class="form-input" value="@Model?.FormData?.StartDate">
+                    <span asp-validation-for="FormData.StartDate"></span>
+                </div>
+                <div class="input-group">
+                    <label asp-for="FormData.EndDate" class="form-label"></label>
+                    <input asp-for="FormData.EndDate" class="form-input" value="@Model?.FormData?.EndDate">
+                    <span asp-validation-for="FormData.EndDate"></span>
+                </div>
+
+            </div>
+
+
+
 
         </form>
 
