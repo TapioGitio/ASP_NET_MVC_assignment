@@ -429,7 +429,7 @@ textarea {
 }
 
 .input-large {
-    height: 120px;
+    height: 100px;
 }
 .form-date {
     display: flex;
@@ -546,7 +546,7 @@ textarea {
     border: none;
 }
 .modal .modal-content .modal-header {
-    display: flex;
+    display: flex; 
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
