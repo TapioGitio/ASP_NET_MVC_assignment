@@ -28,7 +28,7 @@ public class AuthController(RegisterViewModel registerViewModel) : Controller
     {
         if (!ModelState.IsValid || !form.AcceptTerms)
         {
-            _registerViewModel.Form = form;
+            _registerViewModel.FormData = form;
             return View(_registerViewModel);
         }
 

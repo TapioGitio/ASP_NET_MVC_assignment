@@ -1,21 +1,37 @@
-﻿<div id="addProjectModal" class="modal">
+﻿@model ProjectViewModel
+
+<div id="addProjectModal" class="modal">
     <div class="modal-content">
 
         <div class="modal-header">
-
             <h3>Add Project</h3>
             <button class="btn-exit" data-close="true">
                 <i class="bi bi-x"></i>
             </button>
         </div>
 
-        <form novalidate method="post">
+        <form asp-controller="ProjectCRUDController" asp-action="Add" method="post" novalidate>
 
             <div class="image-previewer circle">
                 <img class="image-preview" src="">
-                <input class="hide"  accept="image/*">
+                <input asp-for="FormData.ProjectImage"  class="hide"  accept="image/*">
             </div>
 
+            <div class="input-group">
+                <label asp-for="FormData.ProjectName" class="form-label"></label>
+                <input asp-for="FormData.ProjectName" class="form-input" value="@Model?.FormData?.ProjectName">
+                <span asp-validation-for="FormData.ProjectName"></span>
+            </div>
+            <div class="input-group">
+                <label asp-for="FormData.ClientName" class="form-label"></label>
+                <input asp-for="FormData.ClientName" class="form-input" value="@Model?.FormData?.ClientName">
+                <span asp-validation-for="FormData.ClientName"></span>
+            </div>
+            <div class="input-group">
+                <label asp-for="FormData.ProjectDescription" class="form-label"></label>
+				<textarea asp-for="FormData.ProjectDescription" class="form-input input-large" value="@Model?.FormData?.ProjectDescription"></textarea>
+                <span asp-validation-for="FormData.ProjectDescription"></span>
+            </div>
 
         </form>
 

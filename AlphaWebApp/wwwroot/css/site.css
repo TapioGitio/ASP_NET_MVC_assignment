@@ -237,7 +237,9 @@ a {
 li {
     list-style: none;
 }
-
+textarea {
+    resize: none;
+}
 /* LINKS */
 .nav-links {
 
@@ -424,6 +426,10 @@ li {
         box-shadow: 0 0 5px var(--accent-dark);
     }
 }
+
+.input-large {
+    height: 170px;
+}
 .form-input::placeholder {
     color: var(--bodyLight);
     font-style: italic;
@@ -540,7 +546,7 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border: none;
 }
 .hide {

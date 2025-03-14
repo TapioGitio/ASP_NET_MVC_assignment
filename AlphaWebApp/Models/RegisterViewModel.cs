@@ -4,5 +4,5 @@ public class RegisterViewModel
 {
 
 
-    public RegisterModel Form { get; set; } = new();
+    public RegisterModel FormData { get; set; } = new();
 }

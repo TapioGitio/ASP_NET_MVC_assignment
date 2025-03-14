@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AlphaConnection")));
 builder.Services.AddScoped<RegisterViewModel>();
+builder.Services.AddScoped<ProjectViewModel>();
 
 
 
