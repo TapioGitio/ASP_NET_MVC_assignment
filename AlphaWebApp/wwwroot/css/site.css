@@ -482,6 +482,7 @@ li {
 
 .image-preview {
 }
+
  /* Form Validation */
 .input-validation-error {
     border-color: var(--red-dimmed);
@@ -528,28 +529,24 @@ li {
     right: 0;
     bottom: 0;
 }
-
-    .modal .modal-content {
-        background-color: var(--modal-surface);
-        border-radius: 1rem;
-        box-shadow: 0 4px 10px #2c2b2b2f;
-        padding: 2rem;
-        border: none;
-    }
-
-        .modal .modal-content .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            border: none;
-        }
-
+.modal .modal-content {
+    background-color: var(--modal-surface);
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px #2c2b2b2f;
+    padding: 2rem;
+    border: none;
+}
+.modal .modal-content .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border: none;
+}
 .hide {
     display: none;
     visibility: hidden;
 }
-
 
 /* MAIN LAYOUT */
 /* modal section */
