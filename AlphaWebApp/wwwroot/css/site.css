@@ -102,7 +102,7 @@ html, body {
     font-size: 1rem;
     font-family: var(--font);
     font-weight: var(--font-regular);
-    color: var(--text-color);
+    color: var(--bodyDark);
     background-color: var(--background-color);
 }
 
@@ -338,6 +338,15 @@ textarea {
     color: var(--accent-dark);
 }
 
+}
+.btn-search {
+    border: none;
+    background: none;
+    &:hover
+
+{
+    color: var(--accent-dark);
+}
 }
 .btn-toggle-switch {
     display: flex;
@@ -821,7 +830,7 @@ textarea {
 }
 }
 .main-content-icon .dropdown-item .edit {
-    
+    width: 100%;
     background-color: var(--bg-transparent);
     color: var(--bodyDark);
     i
@@ -830,6 +839,7 @@ textarea {
 }
 }
 .main-content-icon .dropdown-item .remove {
+    width: 100%;
     background-color: var(--bg-transparent);
     color: var(--Red);
     margin-bottom: 0;
