@@ -2,7 +2,7 @@
 
 namespace AlphaWebApp.Models;
 
-public class AddProjectModel
+public class EditProjectModel
 {
     public int ProjectId { get; set; }
     public IFormFile? ProjectImage { get; set; }
@@ -38,5 +38,4 @@ public class AddProjectModel
     [Display(Name = "Budget")]
     [Required(ErrorMessage = "Required")]
     public decimal Budget { get; set; }
-
 }

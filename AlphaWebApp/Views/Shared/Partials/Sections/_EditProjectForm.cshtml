@@ -1,0 +1,69 @@
+﻿@model ProjectViewModel
+
+<div id="editProjectModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h3>Edit Project</h3>
+            <button class="btn-exit" data-close="true">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+
+        <form asp-controller="ProjectCRUDController" asp-action="Edit" method="post" novalidate>
+
+            <input asp-for="UpdateFormData.ProjectId" hidden />
+
+            <div class="image-previewer square">
+                <img class="image-preview" src="">
+                <input asp-for="UpdateFormData.ProjectImage" class="hide" accept="image/*">
+            </div>
+
+            <div class="input-group">
+                <label asp-for="UpdateFormData.ProjectName" class="form-label"></label>
+                <input asp-for="UpdateFormData.ProjectName" class="form-input" value="@Model?.UpdateFormData?.ProjectName">
+                <span asp-validation-for="UpdateFormData.ProjectName"></span>
+            </div>
+            <div class="input-group">
+                <label asp-for="UpdateFormData.ClientName" class="form-label"></label>
+                <input asp-for="UpdateFormData.ClientName" class="form-input" value="@Model?.UpdateFormData?.ClientName">
+                <span asp-validation-for="UpdateFormData.ClientName"></span>
+            </div>
+            <div class="input-group">
+                <label asp-for="UpdateFormData.ProjectDescription" class="form-label"></label>
+                <textarea asp-for="UpdateFormData.ProjectDescription" class="form-input input-large" contenteditable="true" value="@Model?.UpdateFormData?.ProjectDescription"></textarea>
+                <span asp-validation-for="UpdateFormData.ProjectDescription"></span>
+            </div>
+
+            <div class="form-date">
+
+                <div class="input-group">
+                    <label asp-for="UpdateFormData.StartDate" class="form-label"></label>
+                    <input asp-for="UpdateFormData.StartDate" class="form-input" value="@Model?.UpdateFormData?.StartDate">
+                    <span asp-validation-for="UpdateFormData.StartDate"></span>
+                </div>
+                <div class="input-group">
+                    <label asp-for="UpdateFormData.EndDate" class="form-label"></label>
+                    <input asp-for="UpdateFormData.EndDate" class="form-input" value="@Model?.FormData?.EndDate">
+                    <span asp-validation-for="UpdateFormData.EndDate"></span>
+                </div>
+
+            </div>
+
+            <div class="input-group">
+                <label asp-for="UpdateFormData.MemberId" class="form-label"></label>
+                <input asp-for="UpdateFormData.MemberId" class="form-input" value="@Model?.FormData?.MemberId">
+                <span asp-validation-for="UpdateFormData.MemberId"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="UpdateFormData.Budget" class="form-label"></label>
+                <input asp-for="UpdateFormData.Budget" class="form-input" value="@Model?.FormData?.Budget">
+                <span asp-validation-for="UpdateFormData.Budget"></span>
+            </div>
+
+            <button type="submit" class="btn btn-register-login">Update</button>
+
+        </form>
+    </div>
+</div>

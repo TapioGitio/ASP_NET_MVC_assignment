@@ -12,6 +12,8 @@
 
         <form asp-controller="ProjectCRUDController" asp-action="Add" method="post" novalidate>
 
+            <input asp-for="FormData.ProjectId" hidden/>
+
             <div class="image-previewer square">
                 <img class="image-preview" src="">
                 <input asp-for="FormData.ProjectImage"  class="hide"  accept="image/*">
@@ -60,7 +62,7 @@
                 <span asp-validation-for="FormData.Budget"></span>
             </div>
 
-            <button type="submit" class="btn btn-register-login">Add Project</button>
+            <button type="submit" class="btn btn-register-login">Create</button>
 
         </form>
     </div>

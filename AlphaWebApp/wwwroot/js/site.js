@@ -1,5 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-    const previewSize = 150
+    const previewSize = 125
 
     // Open Modal
     const modalButtons = document.querySelectorAll('[data-modal="true"]')
@@ -157,7 +157,7 @@ function clearErrorMessage(form) {
 
 
 // Process image
-async function processImage(file, imagePreview, previewer, previewSize = 150) {
+async function processImage(file, imagePreview, previewer, previewSize = 125) {
     try {
         const img = await loadImage(file)
         const canvas = document.createElement('canvas')
