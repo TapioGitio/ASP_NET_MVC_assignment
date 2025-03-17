@@ -1,3 +1,4 @@
+using AlphaWebApp.Identity.Context;
 using AlphaWebApp.Models;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AlphaConnection")));
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
+
 builder.Services.AddScoped<RegisterViewModel>();
 builder.Services.AddScoped<ProjectViewModel>();
 

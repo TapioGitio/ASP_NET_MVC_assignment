@@ -13,7 +13,7 @@ public class AuthController(RegisterViewModel registerViewModel) : Controller
         return View();
     }
 
-
+    /*
     [Route("register")]
     public IActionResult Register()
     {
@@ -33,5 +33,5 @@ public class AuthController(RegisterViewModel registerViewModel) : Controller
         }
 
         return RedirectToAction("Login");
-    }
+    }*/
 }
