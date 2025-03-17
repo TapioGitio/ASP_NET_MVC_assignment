@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace AlphaWebApp.Models;
+namespace AlphaWebApp.Identity.Entity;
 
 public class AppUser : IdentityUser
 {

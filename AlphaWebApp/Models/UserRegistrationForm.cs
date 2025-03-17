@@ -2,7 +2,7 @@
 
 namespace AlphaWebApp.Models;
 
-public class RegisterModel
+public class UserRegistrationForm
 {
     [Display(Name = "First Name", Prompt = "Your first name")]
     [Required(ErrorMessage = "Required")]

@@ -1,4 +1,4 @@
-﻿@model RegisterViewModel;
+﻿@model UserRegistrationForm;
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Register";
@@ -9,37 +9,37 @@
 
         <h1 class="create-account-title">Create Account</h1>
 
-        <form class="form" method="post" novalidate>
+        <form asp-action="Register" asp-controller="Auth" class="form" method="post" novalidate>
 
             <div class="input-group">
-                <label asp-for="FormData.FirstName" class="form-label"></label>
-                <input asp-for="FormData.FirstName" class="form-input" value="@Model?.FormData?.FirstName">
-                <span asp-validation-for="FormData.FirstName"></span>
+                <label asp-for="FirstName" class="form-label"></label>
+                <input asp-for="FirstName" class="form-input" value="@Model?.FirstName">
+                <span asp-validation-for="FirstName"></span>
             </div>
             <div class="input-group">
-                <label asp-for="FormData.LastName" class="form-label"></label>
-                <input asp-for="FormData.LastName" class="form-input" value="@Model?.FormData?.LastName">
-                <span asp-validation-for="FormData.LastName"></span>
+                <label asp-for="LastName" class="form-label"></label>
+                <input asp-for="LastName" class="form-input" value="@Model?.LastName">
+                <span asp-validation-for="LastName"></span>
             </div>
             <div class="input-group">
-                <label asp-for="FormData.Email" class="form-label"></label>
-                <input asp-for="FormData.Email" class="form-input" value="@Model?.FormData?.Email">
-                <span asp-validation-for="FormData.Email"></span>
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-input" value="@Model?.Email">
+                <span asp-validation-for="Email"></span>
             </div>
             <div class="input-group">
-                <label asp-for="FormData.Password" class="form-label"></label>
-                <input asp-for="FormData.Password" class="form-input" value="@Model?.FormData?.Password">
-                <span asp-validation-for="FormData.Password"></span>
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-input" value="@Model?.Password">
+                <span asp-validation-for="Password"></span>
             </div>
             <div class="input-group">
-                <label asp-for="FormData.ConfirmPassword" class="form-label"></label>
-                <input asp-for="FormData.ConfirmPassword" class="form-input" value="@Model?.FormData?.ConfirmPassword">
-                <span asp-validation-for="FormData.ConfirmPassword"></span>
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" class="form-input" value="@Model?.ConfirmPassword">
+                <span asp-validation-for="ConfirmPassword"></span>
             </div>
 
             <div class="terms">
-                <input asp-for="FormData.AcceptTerms" type="checkbox"> <span>I accept</span> <a asp-action="#">Terms and Conditions</a>
-                <span asp-validation-for="FormData.AcceptTerms"></span>
+                <input asp-for="AcceptTerms" type="checkbox"> <span>I accept</span> <a asp-action="#">Terms and Conditions</a>
+                <span asp-validation-for="AcceptTerms"></span>
             </div>
 
             <button type="submit" class="btn btn-register-login">Create Account</button>
