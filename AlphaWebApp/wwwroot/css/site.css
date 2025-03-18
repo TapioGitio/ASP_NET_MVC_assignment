@@ -425,7 +425,7 @@ textarea {
 }
 .form-input {
     width: 100%;
-    font-size: 1em;
+    font-size: 1rem;
     border: 1px solid var(--border100);
     border-radius: .8rem !important;
     color: var(--bodyDark);
@@ -449,7 +449,7 @@ textarea {
     display: flex;
     gap: 1rem;
 
-    @media(min-width: 1200px) {
+    @media(width > 1440px) {
         gap: 2rem
     }
 }
@@ -574,7 +574,7 @@ textarea {
     grid-template-columns: auto auto;
     column-gap: 1rem;
 
-    @media(min-width: 1200px) {
+    @media(width > 1440px), (height > 1080) {
         grid-template-columns: auto;
         column-gap: 2rem;
     }
