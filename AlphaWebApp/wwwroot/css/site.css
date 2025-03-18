@@ -450,7 +450,7 @@ textarea {
     gap: 2rem;
 }
 .terms {
-    margin-top: 1rem;
+    margin-top: 1em;
     position: relative;
 }
 .account-already {
@@ -548,14 +548,14 @@ textarea {
     bottom: 0;
 }
 .modal .modal-content {
+    margin: auto;
     background-color: var(--modal-surface);
     border-radius: 1rem;
     box-shadow: 0 4px 10px #2c2b2b2f;
-    padding: 2rem;
+    padding: 2em;
     border: none;
 }
 .modal .modal-content .modal-header {
-    display: flex; 
     justify-content: space-between;
     align-items: center;
     padding: 0;
@@ -567,11 +567,13 @@ textarea {
 }
 
 /* MAIN LAYOUT */
-/* modal section */
 
+/* modal section */
 #addProjectModal .modal-content {
+
     width: 550px;
 }
+
 #editProjectModal .modal-content {
     width: 550px;
 }
