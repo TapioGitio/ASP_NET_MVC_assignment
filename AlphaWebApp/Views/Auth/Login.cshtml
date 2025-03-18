@@ -1,4 +1,5 @@
-﻿@{
+﻿@model UserLoginForm
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Login";
 }
@@ -8,23 +9,24 @@
 
         <h1 class="create-account-title">Login</h1>
 
-            <form class="form" method="post" novalidate>
+            <form asp-action="Login" asp-controller="Auth" class="form" method="post" novalidate>
 
+		        <div class="alert alert-danger @(string.IsNullOrEmpty(ViewData["ErrorMessage"] as string) ? "hide" : "")" role="alert">
+			        @ViewData["ErrorMessage"]
+		        </div>
                 <div class="input-group">
-                    <label class="form-label">Email</label>
-                    <input type="text" placeholder="Your email" class="form-input body-regular">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-input body-regular">
                 </div>
                 <div class="input-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" placeholder="Your password" class="form-input body-regular">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-input body-regular">
                 </div>
-
                 <div class="terms">
-                    <input type="checkbox"> <span>Remember me</span>
+                    <input asp-for="RememberMe" type="checkbox"> <span>Remember me</span>
                 </div>
 
                 <button type="submit" class="btn btn-register-login">Log in</button>
-
             </form>
 
         <div class="account-already">
@@ -33,3 +35,4 @@
 
     </div>
 </div>
+@await Html.PartialAsync("_ValidationScripts")

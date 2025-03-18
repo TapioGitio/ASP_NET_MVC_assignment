@@ -37,10 +37,6 @@ builder.Services.AddScoped<ProjectViewModel>();
 
 
 
-
-
-
-
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -57,7 +53,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Auth}/{action=Login}/{id?}")
+    pattern: "{controller=Auth}/{action=Register}/{id?}")
     .WithStaticAssets();
 
 

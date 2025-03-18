@@ -1,5 +1,6 @@
 ﻿const validateField = (field) => {
-    let errorSpan = document.querySelector(`span[data-valmsg-for="${field.name}"]`);
+    let errorSpan = field.closest('form').querySelector(`span[data-valmsg-for="${field.name}"]`);
+
     if (!errorSpan)
         return;
 
@@ -10,9 +11,12 @@
         errorMessage = field.getAttribute("data-val-required");
 
     if (field.hasAttribute("data-val-regex") && value !== "") {
-        let pattern = new RegExp(field.getAttribute("data-val-regex-pattern"));
-        if (!pattern.test(value))
-            errorMessage = field.getAttribute("data-val-regex");
+        let patternValue = field.getAttribute("data-val-regex-pattern");
+        if (patternValue) {
+            let pattern = new RegExp(patternValue);
+            if (!pattern.test(value))
+                errorMessage = field.getAttribute("data-val-regex");
+        }
     }
 
     if (errorMessage) {
@@ -37,8 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const fields = form.querySelectorAll('input[data-val="true"]');
 
     fields.forEach(field => {
-        field.addEventListener('input', function () {
-            validateField(field);
-        });
+        field.addEventListener('input', () => validateField(field));
     })
 });

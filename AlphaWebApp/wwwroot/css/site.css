@@ -240,6 +240,7 @@ li {
 textarea {
     resize: none;
 }
+
 /* LINKS */
 .nav-links {
 
@@ -449,6 +450,7 @@ textarea {
     gap: 2rem;
 }
 .terms {
+    margin-top: 1rem;
     position: relative;
 }
 .account-already {
@@ -508,7 +510,7 @@ textarea {
     top: 0;
     right: .1rem;
     border-radius: .8rem;
-    padding: .4rem 1rem;
+    padding: 0;
     display: flex;
     gap: .5rem;
     align-items: center;
