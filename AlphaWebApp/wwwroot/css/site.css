@@ -342,9 +342,7 @@ textarea {
 .btn-search {
     border: none;
     background: none;
-    &:hover
-
-{
+    &:hover{
     color: var(--accent-dark);
 }
 }

@@ -9,17 +9,13 @@ public class AuthController(IUserService userService) : Controller
     private readonly IUserService _userService = userService;
 
 
-    public IActionResult Login()
-    {
+    public IActionResult Login() => View();
 
-        return View();
-    }
 
 
     [Route("register")]
     public IActionResult Register()
     {
-
         return View();
     }
 
@@ -38,7 +34,7 @@ public class AuthController(IUserService userService) : Controller
         switch (result)
         {
             case 201:
-                return RedirectToAction("Login", "Auth");
+                return View("Login");
             case 400:
                 ModelState.AddModelError("400", "Bad Request: some fields are invalid.");
                 return View(form);
