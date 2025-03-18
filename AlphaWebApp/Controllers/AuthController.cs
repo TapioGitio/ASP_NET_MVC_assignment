@@ -8,6 +8,7 @@ public class AuthController(IUserService userService) : Controller
 {
     private readonly IUserService _userService = userService;
 
+
     public IActionResult Login()
     {
 
@@ -28,7 +29,6 @@ public class AuthController(IUserService userService) : Controller
     public async Task <IActionResult> Register(UserRegistrationForm form)
     {
         
-
         if (!ModelState.IsValid || !form.AcceptTerms)
         {
             return View(form);

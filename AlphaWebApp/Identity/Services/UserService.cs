@@ -26,10 +26,14 @@ public class UserService(UserManager<AppUser> userManager, SignInManager<AppUser
             FirstName = form.FirstName,
             LastName = form.LastName,
             Email = form.Email,
-            UserName = form.Email
+            UserName = form.Email,
+            PhoneNumber = form.Phone
         };
 
         var result = await _userManager.CreateAsync(user, form.Password);
-        return (result.Succeeded) ? 201 : 500;
+        if (result.Succeeded)
+            return 201;
+        else
+            return 500;
     }
 }

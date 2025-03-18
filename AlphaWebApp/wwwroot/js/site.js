@@ -102,7 +102,7 @@
         })
     })
 
-
+    /*
     // Handle darkmode
     const darkmodeSwitch = document.querySelector('#darkmode-switch')
     const hasDarkmode = localStorage.getItem('darkmode')
@@ -129,9 +129,11 @@
             localStorage.setItem('darkmode', 'off')
         }
     })
+    */
 
 })
 
+/*
 // Darkmode
 function enableDarkMode() {
     darkmodeSwitch.checked = true
@@ -142,6 +144,7 @@ function disableDarkMode() {
     document.documentElement.classList.remove('dark')
 
 }
+*/
 
 // Clear errors
 function clearErrorMessage(form) {
