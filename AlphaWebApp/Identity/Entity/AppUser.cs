@@ -15,10 +15,6 @@ public class AppUser : IdentityUser
     [Required(ErrorMessage = "Required")]
     public string LastName { get; set; } = null!;
 
-    [ProtectedPersonalData]
-    [Display(Name = "Phone", Prompt = "Your phone number")]
-    public string? Phone { get; set; }
-
     [Required(ErrorMessage = "Required")]
     [Range(typeof(bool), "true", "true", ErrorMessage = "You must accept the terms")]
     public bool AcceptTerms { get; set; }

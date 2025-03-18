@@ -36,11 +36,7 @@
                 <input asp-for="ConfirmPassword" class="form-input" value="@Model?.ConfirmPassword">
                 <span asp-validation-for="ConfirmPassword"></span>
             </div>
-			<div class="input-group" hidden>
-				<label asp-for="Phone" class="form-label"></label>
-                <input asp-for="Phone" class="form-input" value="@Model?.Phone">
-                <span asp-validation-for="Phone"></span>
-             </div>
+
             <div class="terms">
                 <input asp-for="AcceptTerms" type="checkbox"> <span>I accept</span> <a asp-action="#">Terms and Conditions</a>
                 <span asp-validation-for="AcceptTerms"></span>

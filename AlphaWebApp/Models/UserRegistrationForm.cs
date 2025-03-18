@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace AlphaWebApp.Models;
 
@@ -34,8 +35,6 @@ public class UserRegistrationForm
     [Compare(nameof(Password), ErrorMessage = "Passwords doesn't match!")]
     public string ConfirmPassword { get; set; } = null!;
 
-    [Display(Name = "Phone", Prompt = "Your phone number")]
-    public string? Phone { get; set; }
 
     [Required(ErrorMessage = "Required")]
     [Range(typeof(bool), "true", "true", ErrorMessage = "You must accept the terms")]

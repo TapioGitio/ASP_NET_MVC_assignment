@@ -26,8 +26,7 @@ public class UserService(UserManager<AppUser> userManager, SignInManager<AppUser
             FirstName = form.FirstName,
             LastName = form.LastName,
             Email = form.Email,
-            UserName = form.Email,
-            PhoneNumber = form.Phone
+            UserName = form.Email
         };
 
         var result = await _userManager.CreateAsync(user, form.Password);
