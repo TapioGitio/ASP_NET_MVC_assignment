@@ -19,16 +19,20 @@
                 <input asp-for="FormData.ProjectImage"  class="hide"  accept="image/*">
             </div>
 
-            <div class="input-group">
-                <label asp-for="FormData.ProjectName" class="form-label"></label>
-                <input asp-for="FormData.ProjectName" class="form-input" value="@Model?.FormData?.ProjectName">
-                <span asp-validation-for="FormData.ProjectName"></span>
+
+            <div class="shrink">
+                <div class="input-group">
+                    <label asp-for="FormData.ProjectName" class="form-label"></label>
+                    <input asp-for="FormData.ProjectName" class="form-input" value="@Model?.FormData?.ProjectName">
+                    <span asp-validation-for="FormData.ProjectName"></span>
+                </div>
+                <div class="input-group">
+                    <label asp-for="FormData.ClientName" class="form-label"></label>
+                    <input asp-for="FormData.ClientName" class="form-input" value="@Model?.FormData?.ClientName">
+                    <span asp-validation-for="FormData.ClientName"></span>
+                </div>
             </div>
-            <div class="input-group">
-                <label asp-for="FormData.ClientName" class="form-label"></label>
-                <input asp-for="FormData.ClientName" class="form-input" value="@Model?.FormData?.ClientName">
-                <span asp-validation-for="FormData.ClientName"></span>
-            </div>
+
             <div class="input-group">
                 <label asp-for="FormData.ProjectDescription" class="form-label"></label>
 				<textarea asp-for="FormData.ProjectDescription" class="form-input input-large" contenteditable="true" value="@Model?.FormData?.ProjectDescription"></textarea>

@@ -19,16 +19,20 @@
                 <input asp-for="UpdateFormData.ProjectImage" class="hide" accept="image/*">
             </div>
 
-            <div class="input-group">
-                <label asp-for="UpdateFormData.ProjectName" class="form-label"></label>
-                <input asp-for="UpdateFormData.ProjectName" class="form-input" value="@Model?.UpdateFormData?.ProjectName">
-                <span asp-validation-for="UpdateFormData.ProjectName"></span>
+
+            <div class="shrink">
+                <div class="input-group">
+                    <label asp-for="UpdateFormData.ProjectName" class="form-label"></label>
+                    <input asp-for="UpdateFormData.ProjectName" class="form-input" value="@Model?.UpdateFormData?.ProjectName">
+                    <span asp-validation-for="UpdateFormData.ProjectName"></span>
+                </div>
+                <div class="input-group">
+                    <label asp-for="UpdateFormData.ClientName" class="form-label"></label>
+                    <input asp-for="UpdateFormData.ClientName" class="form-input" value="@Model?.UpdateFormData?.ClientName">
+                    <span asp-validation-for="UpdateFormData.ClientName"></span>
+                </div>
             </div>
-            <div class="input-group">
-                <label asp-for="UpdateFormData.ClientName" class="form-label"></label>
-                <input asp-for="UpdateFormData.ClientName" class="form-input" value="@Model?.UpdateFormData?.ClientName">
-                <span asp-validation-for="UpdateFormData.ClientName"></span>
-            </div>
+
             <div class="input-group">
                 <label asp-for="UpdateFormData.ProjectDescription" class="form-label"></label>
                 <textarea asp-for="UpdateFormData.ProjectDescription" class="form-input input-large" contenteditable="true" value="@Model?.UpdateFormData?.ProjectDescription"></textarea>

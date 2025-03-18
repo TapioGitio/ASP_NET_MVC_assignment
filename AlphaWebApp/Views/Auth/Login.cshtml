@@ -14,14 +14,19 @@
 		        <div class="alert alert-danger @(string.IsNullOrEmpty(ViewData["ErrorMessage"] as string) ? "hide" : "")" role="alert">
 			        @ViewData["ErrorMessage"]
 		        </div>
-                <div class="input-group">
-                    <label asp-for="Email" class="form-label"></label>
-                    <input asp-for="Email" class="form-input body-regular">
+
+                <div class="shrink">
+                    <div class="input-group">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-input body-regular">
+                    </div>
+                    <div class="input-group">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-input body-regular">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label asp-for="Password" class="form-label"></label>
-                    <input asp-for="Password" class="form-input body-regular">
-                </div>
+
+
                 <div class="terms">
                     <input asp-for="RememberMe" type="checkbox"> <span>Remember me</span>
                 </div>
