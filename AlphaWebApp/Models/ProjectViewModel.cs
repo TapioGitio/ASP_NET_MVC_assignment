@@ -1,4 +1,7 @@
-﻿namespace AlphaWebApp.Models;
+﻿using Business.Models.RegForms;
+using Business.Models.UpdateForms;
+
+namespace AlphaWebApp.Models;
 
 public class ProjectViewModel
 {

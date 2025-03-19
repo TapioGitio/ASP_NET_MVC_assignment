@@ -10,9 +10,9 @@
             </button>
         </div>
 
-        <form asp-controller="ProjectCRUDController" asp-action="Add" method="post" novalidate>
+        <form asp-controller="ProjectCRUDController" asp-action="Add" enctype="multipart/form-data" method="post" novalidate>
 
-            <input asp-for="FormData.ProjectId" hidden/>
+            <input asp-for="FormData.Id" hidden/>
 
             <div class="image-previewer square">
                 <img class="image-preview" src="">
@@ -63,7 +63,8 @@
 
             <div class="input-group">
                 <label asp-for="FormData.Budget" class="form-label"></label>
-                <input asp-for="FormData.Budget" class="form-input" value="@Model?.FormData?.Budget">
+                <i class="bi bi-currency-dollar dollar-sign"></i>
+                <input asp-for="FormData.Budget" class="form-input dollar" value="@Model?.FormData?.Budget">
                 <span asp-validation-for="FormData.Budget"></span>
             </div>
 

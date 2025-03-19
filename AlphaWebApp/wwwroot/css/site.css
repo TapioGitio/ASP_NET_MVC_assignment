@@ -419,6 +419,21 @@ textarea {
     position: relative;
     margin-bottom: .5rem;
 }
+.input-group .btn-search {
+    position: absolute;
+    top: 2.2rem;
+    right: 1rem;
+}
+
+.input-group .dollar-sign {
+    position: absolute;
+    top: 2.2rem;
+    left: .5rem;
+}
+
+.input-group .dollar {
+    padding-left: 2rem;
+}
 .form-label {
     display: block;
     margin-bottom: .3rem;
@@ -430,8 +445,8 @@ textarea {
     border-radius: .8rem !important;
     color: var(--bodyDark);
     padding: .3rem 1rem;
-    &:focus
-    {
+
+    &:focus {
         outline: none;
         box-shadow: 0 0 5px var(--accent-dark);
     }
