@@ -42,7 +42,7 @@ public class AuthController(IUserService userService, SignInManager<AppUser> sig
         }
     }
 
-
+    [Route("login")]
     public IActionResult Login()
     {
 
@@ -50,6 +50,7 @@ public class AuthController(IUserService userService, SignInManager<AppUser> sig
     }
 
     [HttpPost]
+    [Route("login")]
     public async Task<IActionResult> Login(UserLoginForm form)
     {
 

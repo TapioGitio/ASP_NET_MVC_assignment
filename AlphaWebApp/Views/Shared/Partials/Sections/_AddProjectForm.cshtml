@@ -56,8 +56,15 @@
 
             <div class="input-group">
                 <label asp-for="FormData.MemberId" class="form-label"></label>
-                <input asp-for="FormData.MemberId" class="form-input" value="@Model?.FormData?.MemberId">
-                <button class="btn-search"><i class="bi bi-search"></i></button>
+
+
+                <div class="member-select">
+                    <select asp-for="FormData.MemberId" asp-items="@Model?.MemberOptions" class="form-input">
+					    <option value="0" disabled hidden selected>Select Member</option>
+			
+                    </select>
+                </div>
+
                 <span asp-validation-for="FormData.MemberId"></span>
             </div>
 

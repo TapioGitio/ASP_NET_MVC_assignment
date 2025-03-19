@@ -11,9 +11,4 @@ public class ProjectController : Controller
         return View();
     }
 
-    [Route("add")]
-    public IActionResult AddProjects()
-    {
-        return View();
-    }
 }

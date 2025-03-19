@@ -240,6 +240,25 @@ li {
 textarea {
     resize: none;
 }
+.member-select {
+    position: relative;
+    width: 100%;
+}
+.member-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.member-select::after {
+    content: "\F52A";
+    font-family: var(--font-bootstrap);
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--bodyDark);
+} 
 
 /* LINKS */
 .nav-links {
@@ -419,11 +438,6 @@ textarea {
     position: relative;
     margin-bottom: .5rem;
 }
-.input-group .btn-search {
-    position: absolute;
-    top: 2.2rem;
-    right: 1rem;
-}
 
 .input-group .dollar-sign {
     position: absolute;
@@ -437,6 +451,7 @@ textarea {
 .form-label {
     display: block;
     margin-bottom: .3rem;
+    width: 100%;
 }
 .form-input {
     width: 100%;
