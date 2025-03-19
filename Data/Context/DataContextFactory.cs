@@ -4,14 +4,18 @@ using Microsoft.Extensions.Configuration;
 
 namespace Data.Context;
 
-public class DataContextFactory(IConfiguration configuration) : IDesignTimeDbContextFactory<DataContext>
+public class DataContextFactory : IDesignTimeDbContextFactory<DataContext>
 {
-    private readonly IConfiguration _configuration = configuration;
-
     public DataContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-        var connectionString = _configuration.GetConnectionString("AlphaConnection");
+
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build();
+
+        var connectionString = configuration.GetConnectionString("AlphaConnection");
 
         optionsBuilder.UseSqlServer(connectionString);
 

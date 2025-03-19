@@ -1,12 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
     public class MemberEntity
     {
 
+        [Key]
         public int MemberId { get; set; }
 
+        [Column(TypeName = "nvarchar(50)")]
+        public string JobTitle { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(50)")]
         public string FirstName { get; set; } = null!;
@@ -20,8 +24,12 @@ namespace Data.Entities
         [Column(TypeName = "varchar(20)")]
         public string? PhoneNumber { get; set; }
 
-        public int AddressId { get; set; }
-        public AddressEntity Address { get; set; } = null!;
+
+
+
+        public int? AddressId { get; set; }
+        public AddressEntity? Address { get; set; }
+        public ICollection<ProjectEntity> Projects { get; set; } = null!;
 
     }
 }

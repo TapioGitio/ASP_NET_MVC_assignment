@@ -246,8 +246,6 @@ textarea {
 }
 .member-select select {
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
 }
 .member-select::after {
     content: "\F52A";

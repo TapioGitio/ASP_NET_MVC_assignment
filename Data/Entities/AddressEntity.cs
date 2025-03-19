@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
     public class AddressEntity
     {
-
+        [Key]
         public int AddressId { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
@@ -15,6 +17,8 @@ namespace Data.Entities
 
         [Column(TypeName = "nvarchar(100)")]
         public string? City { get; set; }
+
+
 
         public ICollection<MemberEntity> Members { get; set; } = null!;
 

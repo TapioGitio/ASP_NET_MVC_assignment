@@ -2,15 +2,16 @@
 using Business.Models.RegForms;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace AlphaWebApp.Controllers
 {
     public class ProjectCRUDController(ProjectViewModel projectViewModel) : Controller
     {
         private readonly ProjectViewModel _projectViewModel = projectViewModel;
-
+        
         public async Task<IActionResult> Add()
         {
-            await _projectViewModel.LoadMembersAsync();
+            /*await _projectViewModel.LoadMembersAsync();*/
             return View(_projectViewModel);
         }
 
@@ -31,5 +32,7 @@ namespace AlphaWebApp.Controllers
         {
             return View();
         }
+        
     }
 }
+
