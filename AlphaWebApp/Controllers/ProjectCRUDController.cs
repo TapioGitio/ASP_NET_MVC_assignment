@@ -11,7 +11,7 @@ namespace AlphaWebApp.Controllers
         
         public async Task<IActionResult> Add()
         {
-            /*await _projectViewModel.LoadMembersAsync();*/
+            await _projectViewModel.LoadMembersAsync();
             return View(_projectViewModel);
         }
 
