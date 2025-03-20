@@ -12,7 +12,8 @@
 
         <form asp-controller="ProjectCRUDController" asp-action="Add" enctype="multipart/form-data" method="post" novalidate>
 
-            <input asp-for="FormData.Id" hidden/>
+            <input asp-for="FormData.MemberId" hidden />
+            <input asp-for="FormData.StatusId" hidden />
 
             <div class="image-previewer square">
                 <img class="image-preview" src="">

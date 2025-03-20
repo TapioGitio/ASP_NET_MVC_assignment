@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="Identity\DB\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

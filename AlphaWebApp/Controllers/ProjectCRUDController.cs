@@ -8,7 +8,7 @@ namespace AlphaWebApp.Controllers
     public class ProjectCRUDController(ProjectViewModel projectViewModel) : Controller
     {
         private readonly ProjectViewModel _projectViewModel = projectViewModel;
-        
+
         public async Task<IActionResult> Add()
         {
             await _projectViewModel.LoadMembersAsync();
@@ -16,15 +16,20 @@ namespace AlphaWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(AddProjectModel formData)
+        public async Task <IActionResult> Add(ProjectRegForm formData)
         {
 
             if (!ModelState.IsValid)
             {
                 _projectViewModel.FormData = formData;
-                return View(_projectViewModel);   
+                return View(_projectViewModel);
             }
-    
+
+            formData.ProjectImagePath = await _projectViewModel.UploadImage();
+          
+            //await _projectService.CreateAsync(formData);
+            //upload image
+
             return RedirectToAction("Projects");
         }
 
@@ -32,7 +37,7 @@ namespace AlphaWebApp.Controllers
         {
             return View();
         }
-        
+
     }
 }
 

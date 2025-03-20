@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Business.Models.UpdateForms;
 
-public class EditProjectModel
+public class ProjectUpdForm
 {
     public int Id { get; set; }
     public IFormFile? ProjectImage { get; set; }

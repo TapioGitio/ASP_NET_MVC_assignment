@@ -3,10 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Business.Models.RegForms;
 
-public class AddProjectModel
+public class ProjectRegForm
 {
-    public int Id { get; set; }
+
     public IFormFile? ProjectImage { get; set; }
+    public string? ProjectImagePath { get; set; }
 
     [Display(Name = "Project Name", Prompt = "Project name")]
     [Required(ErrorMessage = "Required")]
@@ -33,11 +34,14 @@ public class AddProjectModel
     [Required(ErrorMessage = "Required")]
     public DateTime EndDate { get; set; }
 
-    [Display(Name = "Members")]
-    public int MemberId { get; set; }
-
     [Display(Name = "Budget")]
     [Required(ErrorMessage = "Required")]
     public decimal Budget { get; set; }
+
+    [Display(Name = "Members")]
+    public int MemberId { get; set; }
+
+    public int StatusId { get; set; }
+
 
 }

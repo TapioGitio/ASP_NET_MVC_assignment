@@ -8,6 +8,6 @@ public class StatusEntity
     [Key]
     public int StatusId { get; set; }
 
-    public bool Status { get; set; }
+    public bool StatusBool { get; set; }
     public ICollection<ProjectEntity> Projects { get; set; } = null!;
 }
