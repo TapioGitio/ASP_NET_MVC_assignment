@@ -28,6 +28,8 @@ public class ProjectEntity
     public decimal Budget { get; set; }
 
 
+    public int StatusId { get; set; }
+    public StatusEntity Status { get; set; } = null!;
 
     public int? MemberId { get; set; }
     public MemberEntity? Member { get; set; }
