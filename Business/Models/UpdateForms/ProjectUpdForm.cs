@@ -6,6 +6,8 @@ namespace Business.Models.UpdateForms;
 public class ProjectUpdForm
 {
     public int Id { get; set; }
+
+    public string? ProjectImagePath { get; set; }
     public IFormFile? ProjectImage { get; set; }
 
     [Display(Name = "Project Name", Prompt = "Project name")]
@@ -39,4 +41,6 @@ public class ProjectUpdForm
     [Display(Name = "Budget")]
     [Required(ErrorMessage = "Required")]
     public decimal Budget { get; set; }
+
+    public int StatusId { get; set; }
 }

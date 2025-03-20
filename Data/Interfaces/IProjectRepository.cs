@@ -4,5 +4,5 @@ namespace Data.Interfaces;
 
 public interface IProjectRepository : IBaseRepository<ProjectEntity>
 {
-    Task <ProjectEntity?> ReadOneIncludeAllAsync(int Id);
+    Task <ProjectEntity?> GetOneIncludeAllAsync(int Id);
 }

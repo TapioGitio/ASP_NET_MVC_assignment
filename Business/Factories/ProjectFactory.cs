@@ -1,5 +1,6 @@
 ﻿using Business.Models.DTO;
 using Business.Models.RegForms;
+using Business.Models.UpdateForms;
 using Data.Entities;
 
 namespace Business.Factories;
@@ -38,4 +39,23 @@ public static class ProjectFactory
             Budget = entity.Budget,
         };
     }
+
+    public static ProjectEntity Update(ProjectEntity entity, ProjectUpdForm formData)
+    {
+        return new ProjectEntity
+        {
+            Id = entity.Id,
+            ProjectImagePath = formData.ProjectImagePath,
+            ProjectName = formData.ProjectName,
+            ClientName = formData.ClientName,
+            ProjectDescription = formData.ProjectDescription,
+            StartDate = entity.StartDate,
+            EndDate = formData.EndDate,
+            Budget = formData.Budget,
+            MemberId = formData.MemberId,
+            StatusId = formData.StatusId
+
+        };
+    }
+
 }
