@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
-namespace AlphaWebApp.Models;
+namespace Domain.Models;
 
 public class UserRegistrationForm
 {
@@ -35,7 +36,35 @@ public class UserRegistrationForm
     public string ConfirmPassword { get; set; } = null!;
 
 
+
+    [Display(Name = "Phone Number", Prompt = "Your Phone Number")]
+    public string? PhoneNumber { get; set; }
+
+
+    [Display(Name = "Job Title", Prompt = "Job title")]
+    public string? JobTitle { get; set; }
+
+
+    public IFormFile? MemberImage { get; set; }
+    public string? ProfileImagePath { get; set; }
+
+
     [Required(ErrorMessage = "Required")]
     [Range(typeof(bool), "true", "true", ErrorMessage = "You must accept the terms")]
     public bool AcceptTerms { get; set; }
 }
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 

@@ -1,26 +1,24 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
     public class AddressEntity
     {
-        [Key]
-        public int AddressId { get; set; }
+        [Key, ForeignKey("Member")]
+        public string UserId { get; set; } = null!;
 
+   
         [Column(TypeName = "nvarchar(100)")]
-        public string? Street { get; set; }
+        public string Street { get; set; } = null!;
+
 
         [Column(TypeName = "varchar(20)")]
-        public string? ZipCode { get; set; }
+        public string PostalCode { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(100)")]
-        public string? City { get; set; }
+        public string City { get; set; } = null!;
 
-
-
-        public ICollection<MemberEntity> Members { get; set; } = null!;
-
+        public MemberEntity Member { get; set; } = null!;
     }
 }

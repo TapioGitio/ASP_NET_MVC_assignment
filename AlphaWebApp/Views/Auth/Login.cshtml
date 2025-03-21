@@ -9,30 +9,33 @@
 
         <h1 class="create-account-title">Login</h1>
 
-            <form asp-action="Login" asp-controller="Auth" class="form" method="post" novalidate>
+        <form asp-action="Login" asp-controller="Auth" class="form" method="post" novalidate>
 
-		        <div class="alert alert-danger @(string.IsNullOrEmpty(ViewData["ErrorMessage"] as string) ? "hide" : "")" role="alert">
-			        @ViewData["ErrorMessage"]
+            @if (!string.IsNullOrEmpty(ViewBag?.ErrorMessage))
+            {
+		        <div class="alert alert-danger" role="alert">
+			        @ViewBag?.ErrorMessage
 		        </div>
+            }
 
-                <div class="shrink">
-                    <div class="input-group">
-                        <label asp-for="Email" class="form-label"></label>
-                        <input asp-for="Email" class="form-input body-regular">
-                    </div>
-                    <div class="input-group">
-                        <label asp-for="Password" class="form-label"></label>
-                        <input asp-for="Password" class="form-input body-regular">
-                    </div>
+            <div class="shrink">
+                <div class="input-group">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-input body-regular">
                 </div>
-
-
-                <div class="terms">
-                    <input asp-for="RememberMe" type="checkbox"> <span>Remember me</span>
+                <div class="input-group">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-input body-regular">
                 </div>
+            </div>
 
-                <button type="submit" class="btn btn-register-login">Log in</button>
-            </form>
+
+            <div class="terms">
+                <input asp-for="RememberMe" type="checkbox"> <span>Remember me</span>
+            </div>
+
+            <button type="submit" class="btn btn-register-login">Log in</button>
+        </form>
 
         <div class="account-already">
             <p>Don't have an account?</p> <a asp-controller="Auth" asp-action="Register">Sign up</a>

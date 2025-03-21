@@ -1,8 +1,9 @@
 ﻿using Data.Entities;
 
-namespace Data.Interfaces;
-
-public interface IProjectRepository : IBaseRepository<ProjectEntity>
+namespace Data.Interfaces
 {
-    Task <ProjectEntity?> GetOneIncludeAllAsync(int Id);
+    public interface IProjectRepository
+    {
+        Task<ProjectEntity?> GetOneIncludeAllAsync(int Id);
+    }
 }

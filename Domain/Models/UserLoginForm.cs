@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AlphaWebApp.Models;
+namespace Domain.Models;
 
 public class UserLoginForm
 {

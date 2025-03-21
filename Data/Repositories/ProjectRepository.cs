@@ -11,7 +11,6 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
     {
         var result = await _dbSet
             .Include(x => x.Member)
-            .Include(x => x.Status)
             .FirstOrDefaultAsync(x => x.Id == Id);
 
         return result;

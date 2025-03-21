@@ -1,52 +1,57 @@
 ﻿using Business.Models.DTO;
-using Business.Models.RegForms;
 using Business.Models.UpdateForms;
 using Data.Entities;
+using Domain.Models;
 
 namespace Business.Factories;
 
 public static class MemberFactory
 {
-    public static MemberRegForm Create() => new();
-
-    public static MemberEntity Create(MemberRegForm formData) => new()
+    public static UserRegistrationForm Create() => new();
+    
+    public static MemberEntity Create(UserRegistrationForm form)
     {
-        ProfileImagePath = formData.ProfileImagePath,
-        JobTitle = formData.JobTitle,
-        FirstName = formData.FirstName,
-        LastName = formData.LastName,
-        Email = formData.Email,
-        PhoneNumber = formData.PhoneNumber,
-        AddressId = formData.AddressId,
-    };
+        return new MemberEntity
+        {
+            UserName = form.Email,
+            ProfileImagePath = form.ProfileImagePath,
+            JobTitle = form.JobTitle,
+            FirstName = form.FirstName,
+            LastName = form.LastName,
+            Email = form.Email,
+            PhoneNumber = form.PhoneNumber,
+
+            AcceptTerms = form.AcceptTerms
+        };
+    }
 
     public static Member Create(MemberEntity entity)
     {
         return new Member
         {
-            MemberId = entity.MemberId,
+            MemberId = entity.Id,
             ProfileImagePath = entity.ProfileImagePath,
             JobTitle = entity.JobTitle,
             FirstName = entity.FirstName,
             LastName = entity.LastName,
-            Email = entity.Email,
+            Email = entity.Email!,
             PhoneNumber = entity.PhoneNumber,
-            AddressId = entity.AddressId,
+       
         };
     }
 
-    public static MemberEntity Update(MemberEntity entity, MemberUpdForm formData)
+    public static MemberEntity Update(MemberEntity entity, MemberUpdForm form)
     {
         return new MemberEntity
         {
-            MemberId = entity.MemberId,
-            ProfileImagePath = formData.ProfileImagePath,
-            JobTitle = formData.JobTitle,
-            FirstName = formData.FirstName,
-            LastName = formData.LastName,
-            Email = formData.Email,
-            PhoneNumber = formData.PhoneNumber,
-            AddressId = formData.AddressId,
+            Id = entity.Id,
+            ProfileImagePath = form.ProfileImagePath,
+            JobTitle = form.JobTitle,
+            FirstName = form.FirstName,
+            LastName = form.LastName,
+            PhoneNumber = form.PhoneNumber,
+            AcceptTerms = entity.AcceptTerms
+
         };
     }
 }

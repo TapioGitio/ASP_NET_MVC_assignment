@@ -11,7 +11,7 @@ public class MemberUpdForm
 
     [Display(Name = "Job Title", Prompt = "Job title")]
     [Required(ErrorMessage = "Required")]
-    public string JobTitle { get; set; } = null!;
+    public string? JobTitle { get; set; }
 
     [Display(Name = "First Name", Prompt = "First name")]
     [Required(ErrorMessage = "Required")]
@@ -27,6 +27,7 @@ public class MemberUpdForm
 
     [Display(Name = "Phone Number", Prompt = "Your Phone Number")]
     public string? PhoneNumber { get; set; }
+    public bool AcceptTerms { get; set; }
 
 
 

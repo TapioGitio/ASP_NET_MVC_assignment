@@ -1,48 +1,15 @@
-﻿using AlphaWebApp.Identity.Entity;
-using AlphaWebApp.Identity.Interfaces;
-using AlphaWebApp.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Business.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaWebApp.Controllers;
 
-public class AuthController(IUserService userService, SignInManager<AppUser> signInManager) : Controller
+public class AuthController(IAuthService authService) : Controller
 {
-    private readonly IUserService _userService = userService;
-    private readonly SignInManager<AppUser> _signInManager = signInManager;
+    private readonly IAuthService _authService = authService;
 
 
-    public IActionResult Register()
-    {
-        return View();
-    }
 
-
-    [HttpPost]
-    public async Task<IActionResult> Register(UserRegistrationForm form)
-    {
-
-        if (!ModelState.IsValid)
-            return View(form);
-
-        var result = await _userService.CreateAsync(form);
-        switch (result)
-        {
-            case 201:
-                return RedirectToAction("Login", "Auth");
-            case 400:
-                ModelState.AddModelError("400", "Bad Request: some fields are invalid.");
-                return View(form);
-            case 409:
-                ModelState.AddModelError("409", "Conflict: user already exists");
-                return View(form);
-            default:
-                ModelState.AddModelError("500", "Internal Server Error");
-                return View(form);
-        }
-    }
-
-    [Route("login")]
     public IActionResult Login()
     {
 
@@ -50,21 +17,47 @@ public class AuthController(IUserService userService, SignInManager<AppUser> sig
     }
 
     [HttpPost]
-    [Route("login")]
     public async Task<IActionResult> Login(UserLoginForm form)
     {
+        ViewBag.ErrorMessage = "";
 
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            ViewData["ErrorMessage"] = "Invalid email or password";
-            return View(form);
+            var result = await _authService.LoginAsync(form);
+            if (result)
+                return RedirectToAction("Admin", "Index");
         }
 
-
-        var result = await _signInManager.PasswordSignInAsync(form.Email, form.Password, form.RememberMe, false);
-        if (result.Succeeded)
-            return RedirectToAction("Projects", "Project");
-        else
-            return View(form);
+        ViewBag.ErrorMessage = "Invalid email or password";
+        return View(form);
     }
+
+    [Route("Register")]
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [Route("Register")]
+    public async Task<IActionResult> Register(UserRegistrationForm form)
+    {
+
+
+        if (ModelState.IsValid)
+        {
+            var result = await _authService.RegisterAsync(form);
+            if (result)
+                return LocalRedirect("~/");
+            else
+            {
+                ViewBag.ErrorMessage = "User with same email already exists";
+                return View(form);
+            }
+        }
+       
+        return View(form);
+    }
+
+
 }

@@ -1,37 +1,31 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
-    public class MemberEntity
+    public class MemberEntity : IdentityUser
     {
-
-        [Key]
-        public int MemberId { get; set; }
 
         public string? ProfileImagePath { get; set; }
 
+        [ProtectedPersonalData]
         [Column(TypeName = "nvarchar(50)")]
-        public string JobTitle { get; set; } = null!;
+        public string? FirstName { get; set; }
 
+        [ProtectedPersonalData]
         [Column(TypeName = "nvarchar(50)")]
-        public string FirstName { get; set; } = null!;
+        public string? LastName { get; set; }
 
+        [ProtectedPersonalData]
         [Column(TypeName = "nvarchar(50)")]
-        public string LastName { get; set; } = null!;
+        public string? JobTitle { get; set; }
 
-        [Column(TypeName = "varchar(200)")]
-        public string Email { get; set; } = null!;
-
-        [Column(TypeName = "varchar(20)")]
-        public string? PhoneNumber { get; set; }
+        [Required]
+        public bool AcceptTerms { get; set; }
 
 
 
-
-        public int? AddressId { get; set; }
         public AddressEntity? Address { get; set; }
-        public ICollection<ProjectEntity> Projects { get; set; } = null!;
-
     }
 }

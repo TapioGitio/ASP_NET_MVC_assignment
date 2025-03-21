@@ -7,7 +7,6 @@ namespace AlphaWebApp.Models;
 
 public class ProjectViewModel
 {
-   
     private readonly IMemberService _memberService;
     private readonly IWebHostEnvironment _env;
     public ProjectViewModel(IMemberService memberService, IWebHostEnvironment env)
