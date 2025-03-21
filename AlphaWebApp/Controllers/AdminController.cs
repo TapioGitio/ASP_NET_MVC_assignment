@@ -1,10 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaWebApp.Controllers;
 
-[Route("admin")]
+[Authorize]
 public class AdminController : Controller
 {
+
+    [Route("dashboard")]
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [Route("projects")]
+    public IActionResult Projects()
+    {
+        return View();
+    }
+
+    [Authorize(Roles = "admin")]
     [Route("members")]
     public IActionResult Members()
     {

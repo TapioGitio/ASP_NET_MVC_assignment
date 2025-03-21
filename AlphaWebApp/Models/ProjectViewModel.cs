@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaWebApp.Models;
 
-
 public class ProjectViewModel
 {
    
@@ -28,8 +27,8 @@ public class ProjectViewModel
         var members = await _memberService.GetMembers();
         MemberOptions = members.Select(x => new SelectListItem
         {
-            Value = x.Id.ToString(),
-            Text = x.FullName
+            Value = x.MemberId.ToString(),
+            Text = x.FullName,
         }).ToList();
     }
 

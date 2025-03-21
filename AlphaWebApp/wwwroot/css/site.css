@@ -285,9 +285,7 @@ textarea {
 .nav-links > .nav-link.active {
     color: var(--btn-accent-text-light);
     background-color: var(--btn-accent-hover-light);
-    span
-
-{
+    span {
     color: var(--btn-accent-text-light);
 }
 }

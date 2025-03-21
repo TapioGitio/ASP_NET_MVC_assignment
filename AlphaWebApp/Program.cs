@@ -3,7 +3,11 @@ using AlphaWebApp.Identity.Entity;
 using AlphaWebApp.Identity.Interfaces;
 using AlphaWebApp.Identity.Services;
 using AlphaWebApp.Models;
+using Business.Interfaces;
+using Business.Services;
 using Data.Context;
+using Data.Interfaces;
+using Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,11 +31,16 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
 
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IMemberService, MemberService>();
+
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+
+
 
 
 builder.Services.AddScoped<ProjectViewModel>();
-
-
 
 
 
