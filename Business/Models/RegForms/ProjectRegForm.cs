@@ -38,9 +38,13 @@ public class ProjectRegForm
     [Required(ErrorMessage = "Required")]
     public decimal Budget { get; set; }
 
+
+
     [Display(Name = "Members")]
     public int MemberId { get; set; }
 
+
     public int StatusId { get; set; }
+    public bool StatusBool { get; set; }
 
 }

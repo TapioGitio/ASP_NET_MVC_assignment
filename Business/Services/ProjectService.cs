@@ -1,4 +1,5 @@
 ﻿using Business.Factories;
+using Business.Interfaces;
 using Business.Models.DTO;
 using Business.Models.RegForms;
 using Business.Models.UpdateForms;
@@ -7,11 +8,11 @@ using System.Diagnostics;
 
 namespace Business.Services;
 
-public class ProjectService(IProjectRepository projectRepository)
+public class ProjectService(IProjectRepository projectRepository) : IProjectService
 {
     private readonly IProjectRepository _projectRepository = projectRepository;
 
-    public async Task<bool> CreateAsync(ProjectRegForm formData)
+    public async Task<bool> CreateProjectAsync(ProjectRegForm formData)
     {
 
         try
@@ -19,6 +20,10 @@ public class ProjectService(IProjectRepository projectRepository)
             if (formData == null)
                 return false;
 
+            var duplicate = await _projectRepository.GetOneAsync(x => x.ProjectName == formData.ProjectName);
+
+            if (duplicate != null)
+                return false;
 
             var entity = ProjectFactory.Create(formData);
             var result = await _projectRepository.CreateAsync(entity);
@@ -33,7 +38,7 @@ public class ProjectService(IProjectRepository projectRepository)
 
     }
 
-    public async Task<Project> GetOneIncludeAllAsync(int Id)
+    public async Task<Project> GetOneProjectIncludeAllAsync(int Id)
     {
         try
         {
@@ -71,7 +76,7 @@ public class ProjectService(IProjectRepository projectRepository)
         }
     }
 
-    public async Task<bool> UpdateAsync(int id, ProjectUpdForm formData)
+    public async Task<bool> UpdateProjectAsync(int id, ProjectUpdForm formData)
     {
         try
         {
@@ -95,7 +100,7 @@ public class ProjectService(IProjectRepository projectRepository)
         }
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteProjectAsync(int id)
     {
         try
         {

@@ -43,4 +43,5 @@ public class ProjectUpdForm
     public decimal Budget { get; set; }
 
     public int StatusId { get; set; }
+    public bool StatusBool { get; set; }
 }

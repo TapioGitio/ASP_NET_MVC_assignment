@@ -9,6 +9,8 @@ namespace Data.Entities
         [Key]
         public int MemberId { get; set; }
 
+        public string? ProfileImagePath { get; set; }
+
         [Column(TypeName = "nvarchar(50)")]
         public string JobTitle { get; set; } = null!;
 
