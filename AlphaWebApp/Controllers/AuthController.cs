@@ -9,7 +9,6 @@ public class AuthController(IAuthService authService) : Controller
     private readonly IAuthService _authService = authService;
 
 
-
     public IActionResult Login()
     {
 
@@ -19,13 +18,12 @@ public class AuthController(IAuthService authService) : Controller
     [HttpPost]
     public async Task<IActionResult> Login(UserLoginForm form)
     {
-        ViewBag.ErrorMessage = "";
 
         if (ModelState.IsValid)
         {
             var result = await _authService.LoginAsync(form);
             if (result)
-                return RedirectToAction("Admin", "Index");
+                return RedirectToAction("Index", "Admin");
         }
 
         ViewBag.ErrorMessage = "Invalid email or password";
@@ -35,6 +33,7 @@ public class AuthController(IAuthService authService) : Controller
     [Route("Register")]
     public IActionResult Register()
     {
+
         return View();
     }
 
@@ -42,7 +41,6 @@ public class AuthController(IAuthService authService) : Controller
     [Route("Register")]
     public async Task<IActionResult> Register(UserRegistrationForm form)
     {
-
 
         if (ModelState.IsValid)
         {
