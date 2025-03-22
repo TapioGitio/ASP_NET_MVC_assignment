@@ -1,7 +1,7 @@
-﻿using Business.Models.DTO;
-using Business.Models.UpdateForms;
-using Data.Entities;
-using Domain.Models;
+﻿using Data.Entities;
+using Domain.Models.DTO;
+using Domain.Models.RegForms;
+using Domain.Models.UpdateForms;
 
 namespace Business.Factories;
 

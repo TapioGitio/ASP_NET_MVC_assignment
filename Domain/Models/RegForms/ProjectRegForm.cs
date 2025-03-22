@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Business.Models.RegForms;
+namespace Domain.Models.RegForms;
 
 public class ProjectRegForm
 {

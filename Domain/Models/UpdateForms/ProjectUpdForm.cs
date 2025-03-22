@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Business.Models.UpdateForms;
+namespace Domain.Models.UpdateForms;
 
 public class ProjectUpdForm
 {

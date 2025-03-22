@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Business.Models.DTO;
+namespace Domain.Models.DTO;
 
 public class Member
 {
@@ -14,5 +14,6 @@ public class Member
     public string? PhoneNumber { get; set; }
     public string? FullName => $"{FirstName} {LastName}";
 
+    public Address? Address { get; set; }
 
 }

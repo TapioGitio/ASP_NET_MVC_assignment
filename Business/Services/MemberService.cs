@@ -1,23 +1,27 @@
 ﻿using Business.Factories;
 using Business.Interfaces;
-using Business.Models.DTO;
-using Business.Models.UpdateForms;
-using Data.Interfaces;
+using Data.Entities;
+using Domain.Models.DTO;
+using Domain.Models.UpdateForms;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Business.Services;
 
-public class MemberService(IMemberRepository memberRepository) : IMemberService
+public class MemberService(UserManager<MemberEntity> userManager) : IMemberService
 {
-    private readonly IMemberRepository _memberRepository = memberRepository;
+    private readonly UserManager<MemberEntity> _userManager = userManager;
 
-    public async Task<Member> GetOneMemberAsync(string Id)
+    public async Task<Member> GetOneMemberAsync(ClaimsPrincipal user)
     {
         try
         {
-            var entity = await _memberRepository.GetOneAsync(x => x.Id == Id);
+            var entity = await _userManager.GetUserAsync(user);
             if (entity == null)
                 return null!;
+
             var member = MemberFactory.Create(entity);
             return member;
         }
@@ -32,7 +36,7 @@ public class MemberService(IMemberRepository memberRepository) : IMemberService
     {
         try
         {
-            var entities = await _memberRepository.GetAllAsync();
+            var entities = await _userManager.Users.ToListAsync();
             if (entities == null)
                 return null!;
 

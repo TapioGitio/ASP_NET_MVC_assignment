@@ -1,6 +1,6 @@
 ﻿using Business.Interfaces;
-using Business.Models.RegForms;
-using Business.Models.UpdateForms;
+using Domain.Models.RegForms;
+using Domain.Models.UpdateForms;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaWebApp.Models;

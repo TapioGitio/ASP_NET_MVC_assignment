@@ -1,4 +1,4 @@
-﻿namespace Business.Models.DTO;
+﻿namespace Domain.Models.DTO;
 
 public class Project
 {
@@ -15,4 +15,5 @@ public class Project
 
     public string? ProfileImagePath { get; set; }
 
+    public Member? Member { get; set; }
 }

@@ -1,6 +1,6 @@
-﻿using Business.Models.DTO;
-using Business.Models.RegForms;
-using Business.Models.UpdateForms;
+﻿using Domain.Models.DTO;
+using Domain.Models.RegForms;
+using Domain.Models.UpdateForms;
 
 namespace Business.Interfaces
 {

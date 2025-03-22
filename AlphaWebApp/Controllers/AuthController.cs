@@ -1,5 +1,5 @@
 ﻿using Business.Interfaces;
-using Domain.Models;
+using Domain.Models.RegForms;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaWebApp.Controllers;
@@ -55,6 +55,12 @@ public class AuthController(IAuthService authService) : Controller
         }
        
         return View(form);
+    }
+
+    public async Task<IActionResult> Logout()
+    {
+        await _authService.LogoutAsync();
+        return RedirectToAction("Login", "Auth");
     }
 
 
