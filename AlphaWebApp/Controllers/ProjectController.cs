@@ -5,15 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaWebApp.Controllers
 {
-    public class ProjectCRUDController(ProjectViewModel projectViewModel) : Controller
+    public class ProjectController(ProjectViewModel projectViewModel) : Controller
     {
         private readonly ProjectViewModel _projectViewModel = projectViewModel;
 
-        public async Task<IActionResult> Add()
+        [Route("projects")]
+        public async Task<IActionResult> Projects()
         {
             await _projectViewModel.LoadMembersAsync();
             return View(_projectViewModel);
         }
+
 
         [HttpPost]
         public async Task <IActionResult> Add(ProjectRegForm formData)

@@ -23,12 +23,12 @@ public class ProjectViewModel
 
     public async Task LoadMembersAsync()
     {
-        var members = await _memberService.GetMembers();
-        MemberOptions = members.Select(x => new SelectListItem
+        var members = await _memberService.GetMembersAsync();
+        MemberOptions = [.. members.Select(x => new SelectListItem
         {
             Value = x.MemberId.ToString(),
             Text = x.FullName,
-        }).ToList();
+        })];
     }
 
     public async Task<string?> UploadImage()

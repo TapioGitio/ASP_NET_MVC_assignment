@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_PortalLayout";
+    ViewData["Title"] = "Projects";
+}
+
+<partial name="Partials/Sections/_AddProjectForm" />
+<partial name="Partials/Sections/_EditProjectForm" />
+
+<div class="flex main-title">
+    <h2>Projects</h2>
+    <button type="button" data-modal="true" data-target="#addProjectModal" class="btn btn-add"><i class="bi bi-plus-lg"></i>Add Project</button>
+</div>
+
+<div class="main-nav">
+    <a class="main-nav-item">All []</a>
+    <a class="main-nav-item">Started []</a>
+    <a class="main-nav-item">Completed []</a>
+</div>
+
+<div class="main-content">
+
+    @await Html.PartialAsync("Partials/Sections/_Main")
+
+</div>

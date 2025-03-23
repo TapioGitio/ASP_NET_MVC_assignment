@@ -1,3 +1,4 @@
+using AlphaWebApp.Models;
 using Business.Interfaces;
 using Business.Services;
 using Data.Context;
@@ -13,12 +14,12 @@ builder.Services.AddDbContext<DataContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("AlphaConnection")));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
-
+builder.Services.AddScoped<IMemberService, MemberService>();
 
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<IMemberRepository, MemberRepository>();
 
+builder.Services.AddScoped<ProjectViewModel>();
 
 
 

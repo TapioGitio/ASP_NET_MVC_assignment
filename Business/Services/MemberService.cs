@@ -31,8 +31,8 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
             return null!;
         }
     }
-
-    public async Task<IEnumerable<Member>> GetMembers()
+    
+    public async Task<IEnumerable<Member>> GetMembersAsync()
     {
         try
         {
@@ -49,20 +49,20 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
             return [];
         }
     }
-    public async Task<bool> UpdateMemberAsync(string id, MemberUpdForm formData)
+    public async Task<bool> UpdateMemberAsync(ClaimsPrincipal user, MemberUpdForm formData)
     {
         try
         {
             if (formData == null)
                 return false;
 
-            var entity = await _memberRepository.GetOneAsync(x => x.Id == id);
+            var entity = await _userManager.GetUserAsync(user);
             if (entity == null)
                 return false;
 
             entity = MemberFactory.Update(entity, formData);
-            var result = await _memberRepository.UpdateAsync(x => x.Id == id, entity);
-            return result;
+            var result = await _userManager.UpdateAsync(entity);
+            return result.Succeeded;
         }
         catch (Exception ex)
         {
@@ -70,17 +70,17 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
             return false;
         }
     }
-    public async Task<bool> DeleteAsync(string Id)
+    public async Task<bool> DeleteAsync(ClaimsPrincipal user)
     {
         try
         {
-            var entity = await _memberRepository.GetOneAsync(x => x.Id == Id);
+            var entity = await _userManager.GetUserAsync(user);
             if (entity == null)
                 return false;
 
-            var result = await _memberRepository.DeleteAsync(x => x.Id == Id);
+            var result = await _userManager.DeleteAsync(entity);
 
-            return result;
+            return result.Succeeded;
         }
 
         catch (Exception ex)
@@ -92,3 +92,4 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
 
 
 }
+   

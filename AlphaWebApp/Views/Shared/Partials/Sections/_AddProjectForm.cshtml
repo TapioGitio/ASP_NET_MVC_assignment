@@ -10,7 +10,7 @@
             </button>
         </div>
 
-        <form asp-controller="ProjectCRUDController" asp-action="Add" enctype="multipart/form-data" method="post" novalidate>
+        <form asp-controller="Project" asp-action="Add" enctype="multipart/form-data" method="post" novalidate>
 
             <input asp-for="FormData.MemberId" hidden />
             <input asp-for="FormData.StatusId" hidden />
@@ -36,7 +36,7 @@
 
             <div class="input-group">
                 <label asp-for="FormData.ProjectDescription" class="form-label"></label>
-				<textarea asp-for="FormData.ProjectDescription" class="form-input input-large" contenteditable="true" value="@Model?.FormData?.ProjectDescription"></textarea>
+                <textarea asp-for="FormData.ProjectDescription" class="form-input input-large" contenteditable="true" value="@Model?.FormData?.ProjectDescription"></textarea>
                 <span asp-validation-for="FormData.ProjectDescription"></span>
             </div>
 
@@ -61,8 +61,7 @@
 
                 <div class="member-select">
                     <select asp-for="FormData.MemberId" asp-items="@Model?.MemberOptions" class="form-input">
-					    <option value="0" disabled hidden selected>Select Member</option>
-			
+                        <option value="0" disabled hidden selected>Select Member</option>
                     </select>
                 </div>
 
