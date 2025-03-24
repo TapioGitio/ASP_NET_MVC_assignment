@@ -99,7 +99,7 @@ namespace AlphaWebApp.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error uploading image: {ex.Message}");
+                Console.WriteLine($"Error uploading image || {ex.Message}");
                 return null;
             }
         }
