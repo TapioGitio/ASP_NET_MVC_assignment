@@ -87,7 +87,7 @@ namespace AlphaWebApp.Controllers
                     Directory.CreateDirectory(uploadFolder);
                 }
 
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(formData.ProjectImage.FileName);
+                var fileName = Guid.NewGuid().ToString();
                 var filePath = Path.Combine(uploadFolder, fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
