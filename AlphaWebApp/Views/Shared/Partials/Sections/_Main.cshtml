@@ -1,13 +1,14 @@
-﻿
+﻿@model ProjectViewModel
+
 <div class="surface main-content-item">
 
     <div class="main-content-header">
         <div class="main-content-image">
-            <img src="images/alpha-icon-peach.svg" alt="">
+            <img src="@Model.FormData.ProjectImage" alt="">
         </div>
         <div class="main-content-title">
-            <h6>Website Design</h6>
-            <p>Gitlad industries</p>
+            <h6>@Model?.FormData.ProjectName</h6>
+            <p>@Model?.FormData.ClientName</p>
         </div>
 
         <div class="main-content-icon dropdown">
@@ -41,7 +42,7 @@
     </div>
 
     <div class="main-body">
-        <p>Lorem ipsum, dolor sit amet consectetdae laboriosam, quidem odio ipsa sit suscipit, nobis eaque magnam nemo iusto commodi</p>
+        <p>@Model?.FormData.ProjectDescription</p>
     </div>
 
     <div class="main-footer">
@@ -52,8 +53,9 @@
         </div>
 
         <div class="main-footer-image flex">
-            <img src="images/avatar-orange.svg" alt="">
+            <img src="@Model?.FormData.MemberId." alt="">
         </div>
 
     </div>
 </div>
+

@@ -1,4 +1,4 @@
-﻿using Domain.Models.RegForms;
+﻿using Domain.Models;
 
 namespace Business.Interfaces
 {

@@ -10,7 +10,7 @@
             </button>
         </div>
 
-        <form asp-controller="ProjectCRUDController" asp-action="Edit" method="post" novalidate>
+        <form asp-controller="Project" asp-action="Edit" method="post" novalidate>
 
             <input asp-for="UpdateFormData.Id" hidden />
 
@@ -54,9 +54,16 @@
 
             </div>
 
+
             <div class="input-group">
                 <label asp-for="UpdateFormData.MemberId" class="form-label"></label>
-                <input asp-for="UpdateFormData.MemberId" class="form-input" value="@Model?.FormData?.MemberId">
+
+                <div class="member-select">
+                    <select asp-for="UpdateFormData.MemberId" asp-items="@Model?.MemberOptions" class="form-input">
+                        <option value="0" disabled hidden selected>Select Member</option>
+                    </select>
+                </div>
+
                 <span asp-validation-for="UpdateFormData.MemberId"></span>
             </div>
 

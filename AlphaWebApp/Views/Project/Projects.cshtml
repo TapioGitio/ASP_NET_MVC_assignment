@@ -1,10 +1,11 @@
-﻿@{
+﻿@model ProjectViewModel
+@{
     Layout = "_PortalLayout";
     ViewData["Title"] = "Projects";
 }
 
-<partial name="Partials/Sections/_AddProjectForm" />
-<partial name="Partials/Sections/_EditProjectForm" />
+<partial name="Partials/Sections/_AddProjectForm" model="Model.FormData" />
+<partial name="Partials/Sections/_EditProjectForm" model="Model.UpdateFormData" />
 
 <div class="flex main-title">
     <h2>Projects</h2>
@@ -18,7 +19,5 @@
 </div>
 
 <div class="main-content">
-
     @await Html.PartialAsync("Partials/Sections/_Main")
-
 </div>

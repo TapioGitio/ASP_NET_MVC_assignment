@@ -1,9 +1,7 @@
-﻿/*
+﻿using Business.Factories;
 using Business.Interfaces;
 using Data.Interfaces;
-using Domain.Models.DTO;
-using Domain.Models.RegForms;
-using Domain.Models.UpdateForms;
+using Domain.Models;
 using System.Diagnostics;
 
 namespace Business.Services;
@@ -43,7 +41,6 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
         try
         {
             var entity = await _projectRepository.GetOneIncludeAllAsync(Id);
-
             if (entity == null)
                 return null!;
 
@@ -64,7 +61,7 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
         {
             var entities = await _projectRepository.GetAllAsync();
             if (entities == null)
-                return null!;
+                return [];
 
             var projects = entities.Select(ProjectFactory.Create);
             return projects;
@@ -72,7 +69,7 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
         catch (Exception ex)
         {
             Debug.WriteLine($"Could not read the projects || {ex.Message}");
-            return null!;
+            return [];
         }
     }
 
@@ -118,4 +115,3 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
         }
     }
 }
-*/

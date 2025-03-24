@@ -1,5 +1,4 @@
-﻿using Domain.Models.DTO;
-using Domain.Models.UpdateForms;
+﻿using Domain.Models;
 using System.Security.Claims;
 
 namespace Business.Interfaces

@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Models.UpdateForms;
+namespace Domain.Models;
 
-public class ProjectUpdForm
+public class ProjectRegForm
 {
-    public int Id { get; set; }
 
-    public string? ProjectImagePath { get; set; }
     public IFormFile? ProjectImage { get; set; }
+    public string? ProjectImagePath { get; set; }
 
     [Display(Name = "Project Name", Prompt = "Project name")]
     [Required(ErrorMessage = "Required")]
@@ -35,13 +34,16 @@ public class ProjectUpdForm
     [Required(ErrorMessage = "Required")]
     public DateTime EndDate { get; set; }
 
-    [Display(Name = "Members")]
-    public int MemberId { get; set; }
-
     [Display(Name = "Budget")]
     [Required(ErrorMessage = "Required")]
     public decimal Budget { get; set; }
-
-    public int StatusId { get; set; }
     public bool StatusBool { get; set; }
+
+
+
+
+    [Display(Name = "Members")]
+    public int MemberId { get; set; }
+
+
 }

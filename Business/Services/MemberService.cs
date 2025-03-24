@@ -1,8 +1,7 @@
 ﻿using Business.Factories;
 using Business.Interfaces;
 using Data.Entities;
-using Domain.Models.DTO;
-using Domain.Models.UpdateForms;
+using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;

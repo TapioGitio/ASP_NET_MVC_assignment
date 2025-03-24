@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Domain.Models.DTO;
+namespace Domain.Models;
 
 public class Member
 {

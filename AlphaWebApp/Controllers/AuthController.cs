@@ -1,5 +1,5 @@
 ﻿using Business.Interfaces;
-using Domain.Models.RegForms;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaWebApp.Controllers;

@@ -2,7 +2,7 @@
 
 namespace Data.Interfaces
 {
-    public interface IProjectRepository
+    public interface IProjectRepository : IBaseRepository<ProjectEntity>
     {
         Task<ProjectEntity?> GetOneIncludeAllAsync(int Id);
     }

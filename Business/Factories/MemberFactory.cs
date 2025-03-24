@@ -1,7 +1,5 @@
 ﻿using Data.Entities;
-using Domain.Models.DTO;
-using Domain.Models.RegForms;
-using Domain.Models.UpdateForms;
+using Domain.Models;
 
 namespace Business.Factories;
 
@@ -21,7 +19,6 @@ public static class MemberFactory
             Email = form.Email,
             PhoneNumber = form.PhoneNumber,
 
-            AcceptTerms = form.AcceptTerms
         };
     }
 
@@ -50,7 +47,7 @@ public static class MemberFactory
             FirstName = form.FirstName,
             LastName = form.LastName,
             PhoneNumber = form.PhoneNumber,
-            AcceptTerms = entity.AcceptTerms
+
 
         };
     }

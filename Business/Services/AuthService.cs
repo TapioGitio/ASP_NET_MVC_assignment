@@ -1,7 +1,7 @@
 ﻿using Business.Factories;
 using Business.Interfaces;
 using Data.Entities;
-using Domain.Models.RegForms;
+using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Business.Services;

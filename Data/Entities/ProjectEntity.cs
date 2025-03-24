@@ -23,6 +23,6 @@ public class ProjectEntity
     public decimal Budget { get; set; }
     public bool IsCompleted { get; set; }
 
-
+    public string? MemberId { get; set; }
     public MemberEntity? Member { get; set; }
 }
