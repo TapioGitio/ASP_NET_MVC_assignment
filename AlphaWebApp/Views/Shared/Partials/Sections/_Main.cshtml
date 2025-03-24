@@ -1,14 +1,13 @@
-﻿@model ProjectViewModel
-
+﻿@model Project
 <div class="surface main-content-item">
 
     <div class="main-content-header">
         <div class="main-content-image">
-            <img src="@Model.FormData.ProjectImage" alt="">
+            <img src="@Model.ProjectImagePath" alt="Project image">
         </div>
         <div class="main-content-title">
-            <h6>@Model?.FormData.ProjectName</h6>
-            <p>@Model?.FormData.ClientName</p>
+            <h6>@Model?.ProjectName</h6>
+            <p>@Model?.ClientName</p>
         </div>
 
         <div class="main-content-icon dropdown">
@@ -42,7 +41,7 @@
     </div>
 
     <div class="main-body">
-        <p>@Model?.FormData.ProjectDescription</p>
+        <p>@Model?.ProjectDescription</p>
     </div>
 
     <div class="main-footer">
@@ -53,7 +52,7 @@
         </div>
 
         <div class="main-footer-image flex">
-            <img src="@Model?.FormData.MemberId." alt="">
+            <img src="@(string.IsNullOrEmpty(Model?.ProfileImagePath) ? "/Images/avatar-orange.svg" : Model.ProfileImagePath)" alt="Profile image of member">
         </div>
 
     </div>

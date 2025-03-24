@@ -5,7 +5,6 @@ namespace Domain.Models;
 
 public class ProjectRegForm
 {
-
     public IFormFile? ProjectImage { get; set; }
     public string? ProjectImagePath { get; set; }
 
@@ -37,7 +36,7 @@ public class ProjectRegForm
     [Display(Name = "Budget")]
     [Required(ErrorMessage = "Required")]
     public decimal Budget { get; set; }
-    public bool StatusBool { get; set; }
+    public bool IsCompleted { get; set; }
 
 
 

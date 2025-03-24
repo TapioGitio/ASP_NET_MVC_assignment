@@ -823,7 +823,7 @@ textarea {
 .main-content {
     padding-top: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
@@ -832,6 +832,9 @@ textarea {
     display: grid;
     grid-template-rows: auto 1fr auto;
     padding: 1rem;
+    max-width: 100%;
+    min-height: 300px;
+    overflow: hidden;
 }
 
 /* Card Header */
@@ -894,8 +897,12 @@ textarea {
 /* Card Body */
 .main-body {
     margin-bottom: 2rem;
-    p {
+    
+    p
+    {
         font-weight: var(--font-regular);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }
 

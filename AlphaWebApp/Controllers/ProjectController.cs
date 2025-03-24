@@ -3,6 +3,7 @@ using Domain.Models;
 using Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.SqlServer.Server;
 
 namespace AlphaWebApp.Controllers
 {
@@ -38,13 +39,11 @@ namespace AlphaWebApp.Controllers
             return View(model);
         }
 
-        [Route("projects/add")]
         [HttpPost]
         public async Task<IActionResult> Add(ProjectRegForm formData)
         {
             var model = new ProjectViewModel
             {
-                Projects = await _projectService.GetAllProjects(),
                 FormData = formData,
                 MemberOptions = (await _memberService.GetMembersAsync())
                     .Select(x => new SelectListItem
@@ -55,10 +54,10 @@ namespace AlphaWebApp.Controllers
             };
 
             if (!ModelState.IsValid)
-            {
-                return View("Projects", model);
-            }
+                return View(model);
 
+
+            
             formData.ProjectImagePath = await UploadImageAsync(formData);
             await _projectService.CreateProjectAsync(formData);
 
@@ -70,13 +69,49 @@ namespace AlphaWebApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task <IActionResult> Edit(ProjectUpdForm updForm)
+        {
+            var model = new ProjectViewModel
+            {
+                UpdateFormData = updForm,
+                MemberOptions = (await _memberService.GetMembersAsync())
+                    .Select(x => new SelectListItem
+                    {
+                        Value = x.MemberId.ToString(),
+                        Text = x.FullName,
+                    }).ToList()
+            };
+
+            if (!ModelState.IsValid)
+                return View(model);
+            
+
+            updForm.ProjectImagePath = await UploadImageAsync(updForm);
+            await _projectService.UpdateProjectAsync(updForm.Id, updForm);
+
+            return RedirectToAction("Projects");
+   
+        }
+
+
 
         public async Task<string?> UploadImageAsync(ProjectRegForm formData)
+        {
+            return await HandleUploadImageAsync(formData.ProjectImage!);
+        }
+
+        public async Task<string?> UploadImageAsync(ProjectUpdForm updform)
+        {
+            return await HandleUploadImageAsync(updform.ProjectImage!);
+        }
+
+        public async Task<string?> HandleUploadImageAsync(IFormFile image)
         {
             try
             {
 
-                if (formData.ProjectImage == null)
+                if (image == null)
                     return null;
 
       
@@ -87,12 +122,13 @@ namespace AlphaWebApp.Controllers
                     Directory.CreateDirectory(uploadFolder);
                 }
 
-                var fileName = Guid.NewGuid().ToString();
+                var fileExtension = Path.GetExtension(image.FileName);
+                var fileName = Guid.NewGuid().ToString() + fileExtension;
                 var filePath = Path.Combine(uploadFolder, fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await formData.ProjectImage.CopyToAsync(stream);
+                    await image.CopyToAsync(stream);
                 }
 
                 return Path.Combine("uploads", fileName).Replace("\\", "/");

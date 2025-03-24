@@ -18,7 +18,7 @@ public static class ProjectFactory
             StartDate = formData.StartDate,
             EndDate = formData.EndDate,
             Budget = formData.Budget,
-            IsCompleted = formData.StatusBool,
+            IsCompleted = formData.IsCompleted,
            
         };
     }
@@ -44,14 +44,14 @@ public static class ProjectFactory
         return new ProjectEntity
         {
             Id = entity.Id,
-            ProjectImagePath = updForm.ProjectImagePath,
-            ProjectName = updForm.ProjectName,
-            ClientName = updForm.ClientName,
-            ProjectDescription = updForm.ProjectDescription,
-            StartDate = entity.StartDate,
-            EndDate = updForm.EndDate,
-            Budget = updForm.Budget,
-            IsCompleted = updForm.StatusBool,
+            ProjectImagePath = string.IsNullOrEmpty(updForm.ProjectImagePath) ? entity.ProjectImagePath : updForm.ProjectImagePath,
+            ProjectName = string.IsNullOrEmpty(updForm.ProjectName) ? entity.ProjectName : updForm.ProjectName,
+            ClientName = string.IsNullOrEmpty(updForm.ClientName) ? entity.ClientName : updForm.ClientName,
+            ProjectDescription = string.IsNullOrEmpty(updForm.ProjectDescription) ? entity.ProjectDescription : updForm.ProjectDescription,
+            StartDate = updForm.StartDate ?? entity.StartDate,
+            EndDate = updForm.EndDate ?? entity.EndDate,
+            Budget = updForm.Budget ?? entity.Budget,
+            IsCompleted = updForm.IsCompleted,
         };
     }
 }
