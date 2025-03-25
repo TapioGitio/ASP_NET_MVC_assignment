@@ -1,4 +1,3 @@
-using AlphaWebApp.Models;
 using Business.Interfaces;
 using Business.Services;
 using Data.Context;
@@ -36,15 +35,14 @@ builder.Services.AddIdentity<MemberEntity, IdentityRole>(x =>
     })
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
-
 builder.Services.ConfigureApplicationCookie(x =>
 {
-    x.LoginPath = "/auth/login";
-    x.AccessDeniedPath = "/auth/accessdenied";
+    x.LoginPath = "/login";
+    x.AccessDeniedPath = "/accessdenied";
     x.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     x.SlidingExpiration = true;
+    x.Cookie.HttpOnly = true; 
 });
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -54,6 +52,32 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+using (var createAdminAtStartup = app.Services.CreateScope())
+{
+    var roleManager = createAdminAtStartup.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    string[] roles = { "Admin", "User" };
+
+    foreach (string role in roles)
+    {
+        var roleExists = await roleManager.RoleExistsAsync(role);
+        if (!roleExists)
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+
+    var UserManager = createAdminAtStartup.ServiceProvider.GetRequiredService<UserManager<MemberEntity>>();
+    var user = new MemberEntity { UserName = "admin@domain.com", Email = "admin@domain.com" };
+    var userExists = await UserManager.Users.AnyAsync(x => x.Email == user.Email);
+    if (!userExists)
+    {
+        var result = await UserManager.CreateAsync(user, "Bytmig123");
+        if (result.Succeeded)
+        {
+            await UserManager.AddToRoleAsync(user, "Admin");
+        }
+    }
+}
 app.MapStaticAssets();
 app.MapControllerRoute(
     name: "default",

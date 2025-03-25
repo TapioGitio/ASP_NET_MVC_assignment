@@ -1,5 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-    const previewSize = 125
+    const previewSize = 150
 
     // Open Modal
     const modalButtons = document.querySelectorAll('[data-modal="true"]')
@@ -8,11 +8,18 @@
             const modalTarget = button.getAttribute('data-target')
             const modal = document.querySelector(modalTarget)
 
+
             if (modal)
                 modal.style.display = 'flex';
+
+            const Id = button.getAttribute('data-id') || '';
+            const hiddenField = modal.querySelector('[name="UpdateFormData.Id"]');
+
+            if (hiddenField) {
+                hiddenField.value = Id;
+            }
         })
     })
-
 
     // Close Modal
     const closeButtons = document.querySelectorAll('[data-close="true"]')
@@ -52,7 +59,6 @@
                 processImage(file, imagePreview, previewer, previewSize)
         })
     })
-
 
     // Handle submit forms
     const forms = document.querySelectorAll('form')
@@ -103,7 +109,6 @@
     })
 })
 
-
 // Clear errors
 function clearErrorMessage(form) {
     form.querySelectorAll('[data-val="true"]').forEach(input => {
@@ -115,7 +120,6 @@ function clearErrorMessage(form) {
         span.classList.remove('field-validation-error')
     })
 }
-
 
 // Process image
 async function processImage(file, imagePreview, previewer, previewSize = 125) {

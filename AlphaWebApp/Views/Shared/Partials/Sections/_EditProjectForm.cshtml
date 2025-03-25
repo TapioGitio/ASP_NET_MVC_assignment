@@ -12,7 +12,7 @@
 
         <form asp-controller="Project" asp-action="Edit" enctype="multipart/form-data" method="post" novalidate>
 
-            <input asp-for="UpdateFormData.Id" hidden />
+            <input asp-for="UpdateFormData.Id" name="UpdateFormData.Id" hidden>
             <input asp-for="UpdateFormData.MemberId" hidden />
             <input asp-for="UpdateFormData.IsCompleted" hidden />
 

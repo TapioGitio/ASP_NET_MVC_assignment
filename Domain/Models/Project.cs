@@ -11,9 +11,10 @@ public class Project
     public DateTime? EndDate { get; set; }
     public decimal Budget { get; set; }
 
-    public bool StatusBool { get; set; }
+    public bool IsCompleted { get; set; }
 
     public string? ProfileImagePath { get; set; }
 
+    public int? MemberId { get; set; }
     public Member? Member { get; set; }
 }

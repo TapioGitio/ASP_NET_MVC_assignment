@@ -80,7 +80,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 
         try
         {
-            var BaseEntity = await _dbSet.FirstOrDefaultAsync(expression) ?? null!;
+            var BaseEntity = await _dbSet.FirstOrDefaultAsync(expression);
 
             if (BaseEntity == null)
             {

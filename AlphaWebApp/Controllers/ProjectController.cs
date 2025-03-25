@@ -3,10 +3,14 @@ using Domain.Models;
 using Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.SqlServer.Server;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace AlphaWebApp.Controllers
 {
+
+    [Authorize]
     public class ProjectController : Controller
     {
         private readonly IProjectService _projectService;
@@ -21,7 +25,7 @@ namespace AlphaWebApp.Controllers
         }
 
         [Route("projects")]
-        public async Task<IActionResult> Projects()
+        public async Task<IActionResult> Index()
         {
             var model = new ProjectViewModel
             {
@@ -61,20 +65,15 @@ namespace AlphaWebApp.Controllers
             formData.ProjectImagePath = await UploadImageAsync(formData);
             await _projectService.CreateProjectAsync(formData);
 
-            return RedirectToAction("Projects");
-        }
-
-        public IActionResult Edit()
-        {
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task <IActionResult> Edit(ProjectUpdForm updForm)
+        public async Task <IActionResult> Edit(ProjectUpdForm UpdateFormData)
         {
             var model = new ProjectViewModel
             {
-                UpdateFormData = updForm,
+                UpdateFormData = UpdateFormData,
                 MemberOptions = (await _memberService.GetMembersAsync())
                     .Select(x => new SelectListItem
                     {
@@ -85,13 +84,12 @@ namespace AlphaWebApp.Controllers
 
             if (!ModelState.IsValid)
                 return View(model);
-            
 
-            updForm.ProjectImagePath = await UploadImageAsync(updForm);
-            await _projectService.UpdateProjectAsync(updForm.Id, updForm);
 
-            return RedirectToAction("Projects");
-   
+            UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData);
+            await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData);
+
+            return RedirectToAction("Index");
         }
 
 
@@ -100,12 +98,10 @@ namespace AlphaWebApp.Controllers
         {
             return await HandleUploadImageAsync(formData.ProjectImage!);
         }
-
-        public async Task<string?> UploadImageAsync(ProjectUpdForm updform)
+        public async Task<string?> UploadImageAsync(ProjectUpdForm UpdateFormData)
         {
-            return await HandleUploadImageAsync(updform.ProjectImage!);
+            return await HandleUploadImageAsync(UpdateFormData.ProjectImage!);
         }
-
         public async Task<string?> HandleUploadImageAsync(IFormFile image)
         {
             try

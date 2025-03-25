@@ -237,6 +237,15 @@ a {
 li {
     list-style: none;
 }
+.denied {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    i {
+          color: var(--Red);
+      }
+}
 textarea {
     resize: none;
 }
@@ -494,8 +503,8 @@ textarea {
 .image-previewer {
     position: relative;
     border: 2px dashed var(--border200);
-    height: 125px;
-    width: 125px;
+    height: 150px;
+    width: 150px;
     margin: 2rem auto;
     display: flex;
     justify-content: center;
@@ -823,7 +832,7 @@ textarea {
 .main-content {
     padding-top: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
 }
 
@@ -832,7 +841,7 @@ textarea {
     display: grid;
     grid-template-rows: auto 1fr auto;
     padding: 1rem;
-    max-width: 100%;
+    width: 100%;
     min-height: 300px;
     overflow: hidden;
 }

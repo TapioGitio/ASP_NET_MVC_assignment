@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaWebApp.Controllers;
 
-//[Authorize]
+[Authorize]
 public class AdminController : Controller  
 {
 
@@ -13,7 +13,7 @@ public class AdminController : Controller
         return View();
     }
 
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "Admin")]
     [Route("members")]
     public IActionResult Members()
     {

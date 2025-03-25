@@ -63,5 +63,10 @@ public class AuthController(IAuthService authService) : Controller
         return RedirectToAction("Login", "Auth");
     }
 
+    [Route("accessdenied")]
+    public IActionResult AccessDenied()
+    {
+        return View();
+    }
 
 }

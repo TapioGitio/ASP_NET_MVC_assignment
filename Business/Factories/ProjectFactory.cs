@@ -35,7 +35,7 @@ public static class ProjectFactory
             StartDate = entity.StartDate,
             EndDate = entity.EndDate,
             Budget = entity.Budget,
-            StatusBool = entity.IsCompleted,
+            IsCompleted = entity.IsCompleted,
         };
     }
 
