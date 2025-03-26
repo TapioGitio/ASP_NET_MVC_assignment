@@ -821,18 +821,20 @@ textarea {
     margin: 1rem 0;
 }
 
-.main-nav-item {
+.main-nav > .main-nav-item {
     position: relative;
     color: var(--bodyLight);
     margin-bottom: .5rem;
 
-    &:hover, 
-    &:focus
-    {
+}
+    .main-nav > .main-nav-item:hover,
+    .main-nav > .main-nav-item:focus
+    .main-nav > .main-nav-item.active {
         color: var(--accent);
     }
 
-    &::after {
+    .main-nav > .main-nav-item::after
+    {
         content: "";
         position: absolute;
         left: 0;
@@ -845,11 +847,12 @@ textarea {
         transition: var(--transition-time);
     }
 
-    &:hover::after,
-    &:focus::after {
+    .main-nav > .main-nav-item:hover::after,
+    .main-nav > .main-nav-item:focus::after,
+    .main-nav > .main-nav-item.active::after {
         transform: scaleX(1);
     }
-}
+
 
 .main-content {
     padding-top: 1rem;
