@@ -37,12 +37,19 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
             return false;
         }
     }
-    public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+    public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null!)
     {
         try
         {
-            var list = await _dbSet.ToListAsync();
-            return list;
+            IQueryable<TEntity> query = _dbSet;
+
+            if (predicate != null)
+                query = query.Where(predicate);
+
+
+            var result = await query.ToListAsync();
+
+            return result;
         }
         catch (Exception ex)
         {

@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaWebApp.Controllers;
 
-[Authorize]
-public class AdminController : Controller  
+[Authorize(Roles = "Admin")]
+public class MemberController : Controller
 {
 
-    [Route("dashboard")]
+  
+    [Route("members")]
     public IActionResult Index()
     {
         return View();
     }
-
 }

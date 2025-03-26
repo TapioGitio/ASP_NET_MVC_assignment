@@ -73,6 +73,42 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
         }
     }
 
+    public async Task<IEnumerable<Project>> GetCompletedProjects()
+    {
+        try
+        {
+            var entities = await _projectRepository.GetAllAsync(p => p.IsCompleted == true);
+            if (entities == null)
+                return [];
+
+            var projects = entities.Select(ProjectFactory.Create);
+            return projects;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Could not read the projects || {ex.Message}");
+            return [];
+        }
+    }
+
+    public async Task<IEnumerable<Project>> GetOngoingProjects()
+    {
+        try
+        {
+            var entities = await _projectRepository.GetAllAsync(p => p.IsCompleted == false);
+            if (entities == null)
+                return [];
+
+            var projects = entities.Select(ProjectFactory.Create);
+            return projects;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Could not read the projects || {ex.Message}");
+            return [];
+        }
+    }
+
     public async Task<bool> UpdateProjectAsync(int id, ProjectUpdForm formData)
     {
         try
