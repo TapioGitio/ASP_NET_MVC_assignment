@@ -36,5 +36,6 @@ public class ProjectUpdForm
     [Display(Name = "Budget")]
     public decimal? Budget { get; set; }
 
+    [Display(Name = "Mark if project is completed")]
     public bool IsCompleted { get; set; }
 }

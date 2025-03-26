@@ -92,6 +92,14 @@ namespace AlphaWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Remove(ProjectUpdForm UpdateFormData)
+        {
+            await _projectService.DeleteProjectAsync(UpdateFormData.Id);
+
+            return RedirectToAction("Index");
+        }
+
 
 
         public async Task<string?> UploadImageAsync(ProjectRegForm formData)

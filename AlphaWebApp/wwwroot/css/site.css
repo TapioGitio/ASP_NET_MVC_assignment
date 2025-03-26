@@ -39,6 +39,7 @@
     --green: #31D482;
     --darkGreen: #24B26B;
     --Red: #FF6640;
+    --Red-slightlyDarker: #e6532e;
     --darkRed: #E94D3F;
     --black: #1A1926;
     --lightGrey: #637085;
@@ -335,6 +336,18 @@ textarea {
     background: var(--btn-accent-hover);
 }
 }
+.btn-delete {
+    color: var(--white);
+    background-color: var(--Red);
+    width: 100%;
+    &:hover
+
+{
+    color: var(--white);
+    background: var(--Red-slightlyDarker);
+}
+
+}
 .btn-gray {
     color: var(--btn-gray-text);
     background-color: var(--btn-gray-bg);
@@ -626,6 +639,14 @@ textarea {
 
 #editProjectModal .modal-content {
     width: 550px;
+}
+
+#removeProjectModal .modal-content {
+    width: 400px;
+
+    .modal-header, p{
+    margin-bottom: 1rem;
+}
 }
 
 .logotype {

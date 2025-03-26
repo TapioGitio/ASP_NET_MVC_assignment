@@ -23,13 +23,13 @@
                     </a>
                 </li>
                 <li class="dropdown-item">
-                    <a class="edit">
+                    <a  data-id="@Model?.Id" class="edit">
                         <i class="bi bi-person-plus-fill"></i>
                         <span>Add Member</span>
                     </a>
                 </li>
                 <li class="dropdown-item">
-                    <a class="remove">
+                    <a data-modal="true" data-target="#removeProjectModal" data-id="@Model?.Id" class="remove">
                         <i class="bi bi-trash-fill"></i>
                         <span>Delete Project</span>
                     </a>

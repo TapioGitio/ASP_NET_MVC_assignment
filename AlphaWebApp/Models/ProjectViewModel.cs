@@ -9,5 +9,6 @@ public class ProjectViewModel
     public List<SelectListItem> MemberOptions = [];
     public ProjectRegForm FormData { get; set; } = new();
     public ProjectUpdForm UpdateFormData { get; set; } = new();   
+
 }
 
