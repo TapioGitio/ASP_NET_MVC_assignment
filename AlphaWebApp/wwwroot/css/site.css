@@ -340,9 +340,7 @@ textarea {
     color: var(--white);
     background-color: var(--Red);
     width: 100%;
-    &:hover
-
-{
+    &:hover {
     color: var(--white);
     background: var(--Red-slightlyDarker);
 }
@@ -504,6 +502,9 @@ textarea {
 .terms {
     margin-top: 1em;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 .account-already {
     display: flex;
