@@ -28,6 +28,9 @@ namespace AlphaWebApp.Controllers
             var model = new ProjectViewModel
             {
                 Projects = await _projectService.GetAllProjects(),
+                TotalProjects = (await _projectService.GetAllProjects()).Count(),
+                OngoingProjects = (await _projectService.GetOngoingProjects()).Count(),
+                CompletedProjects = (await _projectService.GetCompletedProjects()).Count(),
                 FormData = new ProjectRegForm(),
                 UpdateFormData = new ProjectUpdForm(),
                 MemberOptions = (await _memberService.GetMembersAsync())
@@ -38,7 +41,51 @@ namespace AlphaWebApp.Controllers
                     }).ToList()
             };
 
-            return View(model);
+            return View("Index", model);
+        }
+
+        [Route("projects/ongoing")]
+        public async Task<IActionResult> Ongoing()
+        {
+            var model = new ProjectViewModel
+            {
+                Projects = await _projectService.GetOngoingProjects(),
+                TotalProjects = (await _projectService.GetAllProjects()).Count(),
+                OngoingProjects = (await _projectService.GetOngoingProjects()).Count(),
+                CompletedProjects = (await _projectService.GetCompletedProjects()).Count(),
+                FormData = new ProjectRegForm(),
+                UpdateFormData = new ProjectUpdForm(),
+                MemberOptions = (await _memberService.GetMembersAsync())
+                    .Select(x => new SelectListItem
+                    {
+                        Value = x.MemberId.ToString(),
+                        Text = x.FullName,
+                    }).ToList()
+            };
+
+            return View("Index", model);
+        }
+
+        [Route("projects/completed")]
+        public async Task<IActionResult> Completed()
+        {
+            var model = new ProjectViewModel
+            {
+                Projects = await _projectService.GetCompletedProjects(),
+                TotalProjects = (await _projectService.GetAllProjects()).Count(),
+                OngoingProjects = (await _projectService.GetOngoingProjects()).Count(),
+                CompletedProjects = (await _projectService.GetCompletedProjects()).Count(),
+                FormData = new ProjectRegForm(),
+                UpdateFormData = new ProjectUpdForm(),
+                MemberOptions = (await _memberService.GetMembersAsync())
+                    .Select(x => new SelectListItem
+                    {
+                        Value = x.MemberId.ToString(),
+                        Text = x.FullName,
+                    }).ToList()
+            };
+
+            return View("Index", model);
         }
 
         [HttpPost]

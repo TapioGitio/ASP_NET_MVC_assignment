@@ -5,7 +5,7 @@
         <span>Dashboard</span>
     </a>
 
-    <a class="nav-link @(Context.Request.Path == "/projects" ? "active": "")" asp-controller="Project" asp-action="Index">
+    <a class="nav-link @(Context.Request.Path == "/projects" || Context.Request.Path == "/projects/ongoing" || Context.Request.Path == "/projects/completed" ? "active": "")" asp-controller="Project" asp-action="Index">
         <i class="bi bi-suitcase-lg"></i>
         <span>Projects</span>
     </a>

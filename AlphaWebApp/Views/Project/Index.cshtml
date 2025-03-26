@@ -14,9 +14,9 @@
 </div>
 
 <div class="main-nav">
-    <a class="main-nav-item @(Context.Request.Path == "/projects" ? "active": "")" asp-controller="Project" asp-action="Index">All</a>
-    <a class="main-nav-item">Started []</a>
-    <a class="main-nav-item">Completed []</a>
+    <a class="main-nav-item @(Context.Request.Path == "/projects" ? "active": "")" asp-controller="Project" asp-action="Index">All (@Model.TotalProjects)</a>
+    <a class="main-nav-item @(Context.Request.Path == "/projects/ongoing" ? "active" : "")" asp-controller="Project" asp-action="Ongoing">Started (@Model.OngoingProjects)</a>
+    <a class="main-nav-item @(Context.Request.Path == "/projects/completed" ? "active": "")" asp-controller="Project" asp-action="Completed">Completed (@Model.CompletedProjects)</a>
 </div>
 
 <div class="main-content">

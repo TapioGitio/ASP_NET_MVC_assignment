@@ -3,7 +3,7 @@
 
     <div class="main-content-header">
         <div class="main-content-image">
-            <img src="@Model.ProjectImagePath" alt="Project image">
+            <img src="~/@Model.ProjectImagePath" alt="Project image">
         </div>
         <div class="main-content-title">
             <h6>@Model?.ProjectName</h6>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="main-footer-image flex">
-            <img src="@(string.IsNullOrEmpty(Model?.ProfileImagePath) ? "/Images/avatar-orange.svg" : Model.ProfileImagePath)" alt="Profile image of member">
+            <img src="@Url.Content(string.IsNullOrEmpty(Model?.ProfileImagePath) ? "~/Images/avatar-orange.svg" : $"~/{Model.ProfileImagePath}")" alt="Profile image of member">
         </div>
 
     </div>
