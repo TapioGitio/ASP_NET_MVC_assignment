@@ -41,7 +41,7 @@ namespace AlphaWebApp.Controllers
                     }).ToList()
             };
 
-            return View("Index", model);
+            return View(model);
         }
 
         [Route("projects/ongoing")]
