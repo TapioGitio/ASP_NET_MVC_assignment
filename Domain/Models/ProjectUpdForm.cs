@@ -11,7 +11,8 @@ public class ProjectUpdForm
     public IFormFile? ProjectImage { get; set; }
 
     [Display(Name = "Project Name", Prompt = "Project name")]
-    public string? ProjectName { get; set; }
+    [Required(ErrorMessage = "Please edit or quit")]
+    public string ProjectName { get; set; } = null!;
 
 
     [Display(Name = "Client Name", Prompt = "Client name")]

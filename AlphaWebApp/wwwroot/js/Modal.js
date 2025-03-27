@@ -1,5 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-    const previewSize = 150
+    const previewSize = 125
 
     // Open Modal
     const modalButtons = document.querySelectorAll('[data-modal="true"]')
@@ -40,28 +40,39 @@
                     const imagePreviewer = form.querySelector('.image-previewer')
                     if (imagePreviewer)
                         imagePreviewer.classList.remove('selected')
-                })
-
+                
+                    clearErrorMessage(form);
+                });
             }
-        })
-    })
+        });
+    });
 
     // Handle image-previewer
     document.querySelectorAll('.image-previewer').forEach(previewer => {
-        const fileInput = previewer.querySelector('input[type="file"]')
-        const imagePreview = previewer.querySelector('.image-preview')
+        const fileInput = previewer.querySelector('input[type="file"]');
+        const imagePreview = previewer.querySelector('.image-preview');
 
-        previewer.addEventListener('click', () => fileInput.click())
+        previewer.addEventListener('click', () => fileInput.click());
 
         fileInput.addEventListener('change', ({ target: { files } }) => {
-            const file = files[0]
+            const file = files[0];
             if (file)
-                processImage(file, imagePreview, previewer, previewSize)
-        })
-    })
+                processImage(file, imagePreview, previewer, previewSize);
+        });
+    });
+});
 
-})
+// Clear errors
+function clearErrorMessage(form) {
+    form.querySelectorAll('[data-val="true"]').forEach(input => {
+        input.classList.remove('input-validation-error');
+    });
 
+    form.querySelectorAll('[data-valmsg-for]').forEach(span => {
+        span.innerText = '';
+        span.classList.remove('field-validation-error');
+    });
+}
 // Process image
 async function processImage(file, imagePreview, previewer, previewSize = 125) {
     try {

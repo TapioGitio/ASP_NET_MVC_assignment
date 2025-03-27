@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AlphaWebApp.Controllers
 {
-
     [Authorize]
     public class ProjectController : Controller
     {
@@ -103,9 +102,7 @@ namespace AlphaWebApp.Controllers
             };
 
             if (!ModelState.IsValid)
-            {
                 return View(model);     
-            }
                 
             formData.ProjectImagePath = await UploadImageAsync(formData);
             await _projectService.CreateProjectAsync(formData);
@@ -126,8 +123,8 @@ namespace AlphaWebApp.Controllers
                         Text = x.FullName,
                     }).ToList()
             };
-
             if (!ModelState.IsValid)
+
                 return View(model);
 
 
