@@ -30,8 +30,7 @@ public class ProjectRegForm
 
     [Display(Name = "End Date", Prompt = "End date")]
     [DataType(DataType.Date)]
-    [Required(ErrorMessage = "Required")]
-    public DateTime EndDate { get; set; }
+    public DateTime? EndDate { get; set; }
 
     [Display(Name = "Budget")]
     [Required(ErrorMessage = "Required")]
