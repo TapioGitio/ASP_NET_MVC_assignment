@@ -60,66 +60,7 @@
         })
     })
 
-    // Handle submit forms
-    const forms = document.querySelectorAll('form')
-    forms.forEach(form => {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault()
-
-            clearErrorMessage(form)
-
-            const formData = new FormData(form)
-
-            try {
-                const res = await fetch(form.action, {
-                    method: 'post',
-                    body: formData
-                })
-
-                if (res.ok) {
-                    const modal = form.closest('.modal')
-                    if (modal)
-                        modal.style.display = 'none';
-
-                    window.location.reload()
-                }
-                else if (!res.ok) {
-                    const data = await res.json()
-
-                    if (data.errors) {
-                        Object.keys(data.errors).forEach(key => {
-                            const input = form.querySelector(`[name="${key}"]`)
-                            if (input) {
-                                input.classList.add('input-validation-error')
-                            }
-
-                            const span = form.querySelector(`[data-valmsg-for="${key}"]`)
-                            if (span) {
-                                span.innerText = data.errors[key].join('\n')
-                                span.classList.add('field-validation-error')
-                            }
-                        })
-                    }
-                }
-            }
-            catch (error) {
-                console.error('Error submitting the form', error)
-            }
-        })
-    })
 })
-
-// Clear errors
-function clearErrorMessage(form) {
-    form.querySelectorAll('[data-val="true"]').forEach(input => {
-        input.classList.remove('input-validation-error')
-    })
-
-    form.querySelectorAll('[data-valmsg-for]').forEach(span => {
-        span.innerText = '';
-        span.classList.remove('field-validation-error')
-    })
-}
 
 // Process image
 async function processImage(file, imagePreview, previewer, previewSize = 125) {

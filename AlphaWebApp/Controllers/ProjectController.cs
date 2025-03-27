@@ -102,17 +102,15 @@ namespace AlphaWebApp.Controllers
                     }).ToList()
             };
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
-                formData.ProjectImagePath = await UploadImageAsync(formData);
-                await _projectService.CreateProjectAsync(formData);
-
-                return RedirectToAction("Index");
-
+                return View(model);     
             }
                 
-            return View(model);     
+            formData.ProjectImagePath = await UploadImageAsync(formData);
+            await _projectService.CreateProjectAsync(formData);
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

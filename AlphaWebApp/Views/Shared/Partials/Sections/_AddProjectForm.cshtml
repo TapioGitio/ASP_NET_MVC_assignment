@@ -42,12 +42,12 @@
 
             <div class="form-date">
 
-                <div class="input-group">
+                <div class="input-group date-field">
                     <label asp-for="FormData.StartDate" class="form-label"></label>
                     <input asp-for="FormData.StartDate" class="form-input" value="@Model?.FormData?.StartDate">
                     <span asp-validation-for="FormData.StartDate"></span>
                 </div>
-                <div class="input-group">
+                <div class="input-group date-field">
                     <label asp-for="FormData.EndDate" class="form-label"></label>
                     <input asp-for="FormData.EndDate" class="form-input" value="@Model?.FormData?.EndDate">
                     <span asp-validation-for="FormData.EndDate"></span>
@@ -80,4 +80,5 @@
         </form>
     </div>
 </div>
+
 @await Html.PartialAsync("_ValidationScripts")

@@ -36,8 +36,8 @@ public class ProjectRegForm
     [Display(Name = "Budget")]
     [Required(ErrorMessage = "Required")]
     public decimal Budget { get; set; }
-    public bool IsCompleted { get; set; }
 
+    public bool IsCompleted { get; set; }
 
 
 

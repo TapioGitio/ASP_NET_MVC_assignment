@@ -587,7 +587,9 @@ textarea {
     font-family: var(--font-bootstrap);
     font-size: 1rem;
 }
-
+.date-field .field-validation-error {
+    top: 3.5rem;
+}
 /* MODAL */
 .modal {
     display: none;
