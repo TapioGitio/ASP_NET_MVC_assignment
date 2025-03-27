@@ -13,11 +13,12 @@
 });
 
 function enableValidation(form) {
-    const fields = form.querySelectorAll('input[data-val="true"]');
+    const fields = form.querySelectorAll('input[data-val="true"], textarea[data-val="true"]');
 
     fields.forEach(field => {
         field.addEventListener('input', () => validateField(field));
     });
+
 
     form.addEventListener('submit', function (e) {
         let isValid = true;
