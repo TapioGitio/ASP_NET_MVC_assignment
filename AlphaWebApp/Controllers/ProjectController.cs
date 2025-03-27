@@ -106,7 +106,6 @@ namespace AlphaWebApp.Controllers
                 
             formData.ProjectImagePath = await UploadImageAsync(formData);
             await _projectService.CreateProjectAsync(formData);
-
             return RedirectToAction("Index");
         }
 
@@ -123,14 +122,13 @@ namespace AlphaWebApp.Controllers
                         Text = x.FullName,
                     }).ToList()
             };
-            if (!ModelState.IsValid)
 
+            if (!ModelState.IsValid)
                 return View(model);
 
 
             UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData);
             await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData);
-
             return RedirectToAction("Index");
         }
 
@@ -138,10 +136,8 @@ namespace AlphaWebApp.Controllers
         public async Task<IActionResult> Remove(ProjectUpdForm UpdateFormData)
         {
             await _projectService.DeleteProjectAsync(UpdateFormData.Id);
-
             return RedirectToAction("Index");
         }
-
 
 
         public async Task<string?> UploadImageAsync(ProjectRegForm formData)
