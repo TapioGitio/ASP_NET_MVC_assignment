@@ -8,15 +8,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DataContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("AlphaConnection")));
 
+/* Services */
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 
-
+/* Repositories */
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
@@ -42,8 +44,9 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     x.SlidingExpiration = true;
     x.Cookie.HttpOnly = true; 
+    x.Cookie.SameSite = SameSiteMode.None;
+    x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
