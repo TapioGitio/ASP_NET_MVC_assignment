@@ -9,6 +9,5 @@ namespace Business.Interfaces
         Task<IEnumerable<Member>> GetMembersAsync();
         Task<bool> UpdateMemberAsync(ClaimsPrincipal user, MemberUpdForm formData);
         Task<bool> DeleteAsync(ClaimsPrincipal user);
-        
     }
 }
