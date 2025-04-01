@@ -6,6 +6,7 @@ namespace Business.Interfaces
     public interface IMemberService
     {
         Task<Member> GetOneMemberAsync(ClaimsPrincipal user);
+        Task<string> GetMemberNameAsync(string? memberName);
         Task<IEnumerable<Member>> GetMembersAsync();
         Task<bool> UpdateMemberAsync(ClaimsPrincipal user, MemberUpdForm formData);
         Task<bool> DeleteAsync(ClaimsPrincipal user);
