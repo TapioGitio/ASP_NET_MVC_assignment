@@ -20,7 +20,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
         return View();
     }
 
-    [HttpPost]
+    [HttpPost] 
     public async Task<IActionResult> Login(UserLoginForm form)
     {
 
