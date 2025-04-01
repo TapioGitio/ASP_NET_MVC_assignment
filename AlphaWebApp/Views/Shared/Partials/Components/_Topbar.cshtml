@@ -1,4 +1,7 @@
-﻿<div class="flex">
+﻿@{
+    string loginName = await memberService.GetMemberNameAsync(User.Identity?.Name!);
+}
+<div class="flex">
     <i class="bi bi-search"></i>
     <input class="searchbar" type="text" placeholder="Search anything...">
 </div>
@@ -40,7 +43,7 @@
                 <div class="dropdown-item-image">
                     <img src="~/Images/avatar-orange.svg" alt="">
                 </div>
-                <p class="dropdown-item-header">Janne Heikkinen</p>
+                <p class="dropdown-item-header">@loginName</p>
             </li>
 
 
