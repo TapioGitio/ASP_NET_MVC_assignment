@@ -801,6 +801,7 @@ textarea {
     color: var(--white);
     background-color: var(--orange);
     border-radius: 50%;
+    line-height: 1;
 }
 .dropdown-item {
     display: flex;
