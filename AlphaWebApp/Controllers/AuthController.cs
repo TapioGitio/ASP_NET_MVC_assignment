@@ -51,7 +51,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
 
     public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null!, string remoteError = null!)
     {
-        returnUrl ??= Url.Action("Index", "Admin")!;
+        returnUrl ??= Url.Content("~/")!;
 
         if (!string.IsNullOrEmpty(remoteError))
         {
@@ -65,7 +65,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
 
         var loginResult = await _signInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, isPersistent: false, bypassTwoFactor: true);
         if (loginResult.Succeeded)
-            return LocalRedirect(returnUrl);
+            return RedirectToAction("Index", "Admin");
         else
         {
             string firstName = string.Empty;
@@ -88,7 +88,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
             {
                 await _userManager.AddLoginAsync(user, loginInfo);
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return LocalRedirect(returnUrl);
+                return RedirectToAction("Index", "Admin");
             }
 
             foreach (var error in identityResult.Errors)
