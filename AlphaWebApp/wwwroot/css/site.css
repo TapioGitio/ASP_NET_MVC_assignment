@@ -75,7 +75,7 @@
     --btn-accent-bg: var(--Blue);
     --btn-gray-text: var(--black);
     --btn-gray-hover: var(--gray300);
-    --btn-gray-bg: var(--gray100);
+    --btn-gray-bg: var(--gray200);
     --surface-color: var(--white);
     --time-bg-long: var(--gray-dimmed);
     --time-bg-short: var(--red-dimmed);
@@ -222,6 +222,22 @@ label {
 span {
     font-weight: var(--font-regular);
 }
+.text-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+    color: var(--bodyLight);
+}
+}
+.text-line::before,
+.text-line::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--border100);
+    margin: 1rem;
+}
 p {
     font-weight: var(--font-semibold);
 }
@@ -334,6 +350,24 @@ textarea {
 {
     color: var(--btn-accent-text);
     background: var(--btn-accent-hover);
+}
+}
+.btn-external-login {
+    width: 100%;
+    color: var(--heading-color);
+    font-weight: var(--font-medium);
+    background-color: var(--btn-gray-bg);
+    position: relative;
+    margin-bottom: 2rem;
+
+    img {
+    position: absolute;
+    left: 1rem;
+}
+    &:hover {
+    color: var(--heading-color);
+    font-weight: var(--font-bold);
+    background: var(--btn-gray-hover);
 }
 }
 .btn-delete {

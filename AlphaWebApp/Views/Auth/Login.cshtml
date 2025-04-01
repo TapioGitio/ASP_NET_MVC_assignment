@@ -9,13 +9,26 @@
 
         <h1 class="create-account-title">Login</h1>
 
-        <form asp-action="Login" asp-controller="Auth" class="form" method="post" novalidate>
+        <form asp-controller="Auth" asp-action="ExternalLogin" class="form" method="post" novalidate>
+            <input name="returnUrl" value="@ViewBag.ReturnUrl" hidden />
+
+            <button type="submit" name="provider" value="Google" class="btn btn-external-login">
+                <img src="~/Images/google-icon.svg" alt="Google-Icon" />
+                Login with Google
+            </button>
+
+            <div class="text-line">
+                <span>OR</span>
+            </div>
+        </form>
+
+        <form asp-controller="Auth" asp-action="Login" class="form" method="post" novalidate>
 
             @if (!string.IsNullOrEmpty(ViewBag?.ErrorMessage))
             {
-		        <div class="alert alert-danger" role="alert">
-			        @ViewBag?.ErrorMessage
-		        </div>
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag?.ErrorMessage
+                </div>
             }
 
             <div class="shrink">
@@ -43,4 +56,4 @@
 
     </div>
 </div>
-@await Html.PartialAsync("_ValidationScripts")
+@await Html.PartialAsync("_ValidationScripts")"_ValidationScripts")
