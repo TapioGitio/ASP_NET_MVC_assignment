@@ -8,5 +8,9 @@ public class DataContext(DbContextOptions<DataContext> options) : IdentityDbCont
 {
     public DbSet<AddressEntity> Addresses { get; set; }
     public DbSet<ProjectEntity> Projects { get; set; }
+    public DbSet<NotificationEntity> Notifications { get; set; }
+    public DbSet<NotificationTypeEntity> NotificationTypes { get; set; }
+    public DbSet<NotificationTargetGroupEntity> NotificationTargetGroups { get; set; }
+    public DbSet<NotificationDismissedEntity> NotificationDismissed { get; set; }
 
 }

@@ -391,13 +391,25 @@ textarea {
 }
 .btn-dropdown {
     background-color: var(--bg-transparent);
+    position: relative;
     border: none;
     cursor: pointer;
     transition: var(--transition-time);
+
     &:hover
 {
     color: var(--accent);
 }
+}
+.btn-dropdown > .red-dot {
+    position: absolute;
+    background-color: var(--darkRed);
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    top: -2px;
+    right: -2px;
+    border: 1px solid var(--white);
 }
 .btn-exit {
     border: none;

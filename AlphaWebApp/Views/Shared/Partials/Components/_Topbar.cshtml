@@ -7,31 +7,7 @@
 </div>
 <div class="flex">
 
-    <div class="dropdown">
-        <button class="btn-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-bell"></i>
-        </button>
-        <ul class="dropdown-menu">
-
-            <li class="dropdown-header">
-                <p>Notifications</p>
-                <p class="dropdown-header-number">4</p>
-            </li>
-
-            <li class="dropdown-item">
-                <div class="dropdown-item-image">
-                    <img src="~/Images/avatar-orange.svg" alt="">
-                </div>
-                <div class="dropdown-item-text">
-                    <p class="dropdown-item-header">Janne heikkinen updated</p>
-                    <p class="dropdown-item-footer">1 min ago</p>
-                </div>
-                <button class="btn-exit">
-                    <i class="bi bi-x"></i>
-                </button>
-            </li>
-        </ul>
-    </div>
+    <partial name="Partials/Notification/_NotificationDropdownPartial" />
 
     <div class="dropdown">
         <button class="btn-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,7 +17,7 @@
 
             <li class="dropdown-header dropdown-item settings">
                 <div class="dropdown-item-image">
-                    <img src="~/Images/avatar-orange.svg" alt="">
+                    <img src="~/images/avatar-orange.svg" alt="">
                 </div>
                 <p class="dropdown-item-header">@loginName</p>
             </li>

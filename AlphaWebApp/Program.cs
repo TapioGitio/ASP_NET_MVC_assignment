@@ -1,3 +1,4 @@
+using AlphaWebApp.Hubs;
 using Business.Interfaces;
 using Business.Services;
 using Data.Context;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<DataContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("AlphaConnection")));
@@ -18,6 +20,7 @@ builder.Services.AddDbContext<DataContext>(x =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 /* Repositories */
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
@@ -97,5 +100,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Auth}/{action=Login}/{id?}")
     .WithStaticAssets();
+app.MapHub<NotificationHub>("/notificationHub");
 
 app.Run();

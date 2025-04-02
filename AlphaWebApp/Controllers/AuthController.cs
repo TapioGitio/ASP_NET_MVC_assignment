@@ -1,15 +1,20 @@
-﻿using Business.Interfaces;
+﻿using AlphaWebApp.Hubs;
+using Business.Interfaces;
+using Business.Services;
 using Data.Entities;
 using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;
 
 namespace AlphaWebApp.Controllers;
 
-public class AuthController(IAuthService authService, SignInManager<MemberEntity> signInManager, UserManager<MemberEntity> userManager) : Controller
+public class AuthController(IAuthService authService, SignInManager<MemberEntity> signInManager, UserManager<MemberEntity> userManager, INotificationService notificationService, IHubContext<NotificationHub> notificationHub) : Controller
 {
     private readonly IAuthService _authService = authService;
+    private readonly INotificationService _notificationService = notificationService;
+    private readonly IHubContext<NotificationHub> _notificationHub = notificationHub;
     private readonly SignInManager<MemberEntity> _signInManager = signInManager;
     private readonly UserManager<MemberEntity> _userManager = userManager;
 
@@ -20,15 +25,40 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
         return View();
     }
 
-    [HttpPost] 
+    [HttpPost]
     public async Task<IActionResult> Login(UserLoginForm form)
     {
 
         if (ModelState.IsValid)
         {
             var result = await _authService.LoginAsync(form);
+
             if (result)
+            {
+
+                /* Send notification */
+                var user = await _userManager.FindByEmailAsync(form.Email);
+                if (user != null)
+                {
+                    var notify = new NotificationEntity
+                    {
+                        Message = $"{user.FirstName} {user.LastName} logged in",
+                        NotificationTypeId = 1,
+
+                    };
+
+                    await _notificationService.AddNotificationAsync(notify);
+                    var notifications = await _notificationService.GetNotificationsAsync(user.Id);
+                    var newNotification = notifications.OrderByDescending(x => x.Created).FirstOrDefault();
+
+                    if (newNotification != null)
+                    {
+                        await _notificationHub.Clients.All.SendAsync("RecieveNotification", newNotification);
+                    }
+                }
+
                 return RedirectToAction("Index", "Admin");
+            }
         }
 
         ViewBag.ErrorMessage = "Invalid email or password";
@@ -65,7 +95,31 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
 
         var loginResult = await _signInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, isPersistent: false, bypassTwoFactor: true);
         if (loginResult.Succeeded)
+        {
+            /* Send notification */
+            var user = await _userManager.FindByLoginAsync(loginInfo.LoginProvider, loginInfo.ProviderKey);
+            if (user != null)
+            {
+                var notify = new NotificationEntity
+                {
+                    Message = $"{user.FirstName} {user.LastName} logged in",
+                    NotificationTypeId = 1,
+
+                };
+
+                await _notificationService.AddNotificationAsync(notify);
+                var notifications = await _notificationService.GetNotificationsAsync(user.Id);
+                var newNotification = notifications.OrderByDescending(x => x.Created).FirstOrDefault();
+
+                if (newNotification != null)
+                {
+                    await _notificationHub.Clients.All.SendAsync("RecieveNotification", newNotification);
+                }
+            }
             return RedirectToAction("Index", "Admin");
+        }
+
+
         else
         {
             string firstName = string.Empty;
