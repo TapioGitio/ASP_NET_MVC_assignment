@@ -779,8 +779,9 @@ textarea {
     border: 1px solid var(--border100);
     box-shadow: 0 0 10px #2c2b2b28;
     padding: .5rem;
-    right: 0;
+    right: 1rem;
     left: auto;
+    top: 1.5rem;
 }
 .dropdown-menu.show {
     display: block;

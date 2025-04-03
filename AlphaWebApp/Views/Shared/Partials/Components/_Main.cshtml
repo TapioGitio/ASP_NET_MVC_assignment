@@ -11,10 +11,10 @@
         </div>
 
         <div class="main-content-icon dropdown">
-            <button class="main-content-icon" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="main-content-icon" data-type="dropdown" data-target="#dropdown-@Model?.Id.ToString()">
                 <i class="bi bi-three-dots"></i>
             </button>
-            <ul class="dropdown-menu">
+            <ul id="dropdown-@Model?.Id.ToString()" class="dropdown-menu">
 
                 <li class="dropdown-item">
                     <a data-modal="true" data-target="#editProjectModal" data-id="@Model?.Id" class="edit">
