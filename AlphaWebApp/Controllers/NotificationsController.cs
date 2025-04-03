@@ -47,6 +47,8 @@ public class NotificationsController(IHubContext<NotificationHub> notificationHu
         if (string.IsNullOrEmpty(userId))
             return Unauthorized();
 
+
+        id = Uri.UnescapeDataString(id); // Decode the notificationId
         await _notificationService.DismissNotificationAsync(id, userId);
         await _notificationHub.Clients.User(userId).SendAsync("NotificationDismissed", id);
         return Ok(new { success = true });
