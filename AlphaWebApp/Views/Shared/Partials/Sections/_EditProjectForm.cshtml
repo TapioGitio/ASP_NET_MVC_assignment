@@ -36,8 +36,28 @@
 
             <div class="input-group">
                 <label asp-for="UpdateFormData.ProjectDescription" class="form-label"></label>
-                <textarea asp-for="UpdateFormData.ProjectDescription" class="form-input input-large" contenteditable="true" value="@Model?.UpdateFormData?.ProjectDescription"></textarea>
+                <textarea asp-for="UpdateFormData.ProjectDescription" class="form-input" value="@Model?.UpdateFormData?.ProjectDescription"></textarea>
                 <span asp-validation-for="UpdateFormData.ProjectDescription"></span>
+                <div id="p-edit-wysiwyg-editor" class="wysiwyg-editor"></div>
+                <div id="p-edit-wysiwyg-toolbar" class="wysiwyg-toolbar">
+                    <span class="ql-formats">
+                        <button class="ql-bold"></button>
+                        <button class="ql-italic"></button>
+                        <button class="ql-underline"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-align" value=""></button>
+                        <button class="ql-align" value="center"></button>
+                        <button class="ql-align" value="right"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-list" value="ordered"></button>
+                        <button class="ql-list" value="bullet"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-link"></button>
+                    </span>
+                </div>
             </div>
 
             <div class="form-date">
@@ -85,4 +105,5 @@
     </div>
 </div>
 
+@await Html.PartialAsync("_WysiwygEditScripts")
 @await Html.PartialAsync("_ValidationScripts")

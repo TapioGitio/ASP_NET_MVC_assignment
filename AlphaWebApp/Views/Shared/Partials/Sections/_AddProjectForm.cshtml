@@ -36,12 +36,31 @@
 
             <div class="input-group">
                 <label asp-for="FormData.ProjectDescription" class="form-label"></label>
-                <textarea asp-for="FormData.ProjectDescription" class="form-input input-large" value="@Model?.FormData?.ProjectDescription"></textarea>
+                <textarea asp-for="FormData.ProjectDescription" class="form-input" value="@Model?.FormData?.ProjectDescription"></textarea>
                 <span asp-validation-for="FormData.ProjectDescription"></span>
+                <div id="p-add-wysiwyg-editor" class="wysiwyg-editor"></div>
+                <div id="p-add-wysiwyg-toolbar" class="wysiwyg-toolbar">
+					<span class="ql-formats">
+						<button class="ql-bold"></button>
+                        <button class="ql-italic"></button>
+						<button class="ql-underline"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-align" value=""></button>
+                        <button class="ql-align" value="center"></button>
+                        <button class="ql-align" value="right"></button>
+                    </span>
+                    <span class="ql-formats">
+						<button class="ql-list" value="ordered"></button>
+						<button class="ql-list" value="bullet"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-link"></button>
+                    </span>
+                </div>   
             </div>
 
             <div class="form-date">
-
                 <div class="input-group date-field">
                     <label asp-for="FormData.StartDate" class="form-label"></label>
                     <input asp-for="FormData.StartDate" class="form-input" value="@Model?.FormData?.StartDate">
@@ -52,7 +71,6 @@
                     <input asp-for="FormData.EndDate" class="form-input" value="@Model?.FormData?.EndDate">
                     <span asp-validation-for="FormData.EndDate"></span>
                 </div>
-
             </div>
 
             <div class="input-group">
@@ -81,4 +99,5 @@
     </div>
 </div>
 
+@await Html.PartialAsync("_WysiwygAddScripts")
 @await Html.PartialAsync("_ValidationScripts")

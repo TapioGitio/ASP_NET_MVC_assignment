@@ -92,7 +92,7 @@ namespace AlphaWebApp.Controllers
         {
             var model = new ProjectViewModel
             {
-                FormData = formData,
+                FormData = formData,             
                 MemberOptions = (await _memberService.GetMembersAsync())
                     .Select(x => new SelectListItem
                     {

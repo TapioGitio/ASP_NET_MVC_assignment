@@ -497,7 +497,56 @@ textarea {
     text-align: center;
     margin-top: 4rem;
 }
+/* WhatYouSeeIsWhatYouGet */
+#FormData_ProjectDescription {
+    display: none;
+}
+#UpdateFormData_ProjectDescription {
+    display: none;
+}
+
+.wysiwyg-editor {
+    width: 100%;
+    font-size: 1em;
+    font-family: var(--font);
+    font-weight: var(--font-regular);
+    color: var(--bodyDark);
+    background-color: var(--surface-color);
+
+    border: none !important;
+    border-radius: .8rem;
+    min-height: 150px;
+    transition: var(--transition-time);
+    z-index: 0;
+    outline: none;
+}
+.wysiwyg-toolbar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: none !important;
+    border-top: 1px solid var(--border100) !important;
+    border-radius: 0 0 .8rem .8rem;
+    color: var(--bodyDark);
+    background-color: var(--transparent);
+}
+
+.ql-editor {
+    width: 100%;
+    min-height: 150px;
+    border: 1px solid var(--border100);
+    padding: .3rem 1rem;
+    border-radius: .8rem;
+}
+    .ql-editor:focus {
+        outline: none;
+        box-shadow: 0 0 5px var(--accent-dark);
+    }
+/* WhatYouSeeIsWhatYouGet End */
+
 .input-group {
+    width: 100%;
     position: relative;
     margin-bottom: .5rem;
 }
@@ -513,12 +562,14 @@ textarea {
 }
 .form-label {
     display: block;
+    font-size: 14px;
     margin-bottom: .3rem;
     width: 100%;
+    
 }
 .form-input {
     width: 100%;
-    font-size: 1rem;
+    font-size: 1em;
     border: 1px solid var(--border100);
     border-radius: .8rem !important;
     color: var(--bodyDark);
@@ -530,13 +581,11 @@ textarea {
     }
 }
 
-.form-input::placeholder {
+.form-input::placeholder,
+.ql-editor.ql-blank::before {
     color: var(--bodyLight);
     font-style: italic;
     font-size: .9em;
-}
-.input-large {
-    height: 100px;
 }
 .form-date {
     display: flex;
