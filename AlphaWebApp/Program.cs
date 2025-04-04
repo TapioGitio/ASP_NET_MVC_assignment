@@ -85,7 +85,7 @@ using (var createAdminAtStartup = app.Services.CreateScope())
     }
 
     var UserManager = createAdminAtStartup.ServiceProvider.GetRequiredService<UserManager<MemberEntity>>();
-    var user = new MemberEntity { UserName = "admin@domain.com", Email = "admin@domain.com" };
+    var user = new MemberEntity { UserName = "admin@domain.com", Email = "admin@domain.com", FirstName = "Mr", LastName = "Admin" };
     var userExists = await UserManager.Users.AnyAsync(x => x.Email == user.Email);
     if (!userExists)
     {
