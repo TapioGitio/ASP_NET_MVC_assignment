@@ -108,27 +108,6 @@ html, body {
 }
 
 /* STRUCTURE */
-.container {
-    width: 100%;
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
-    margin-left: auto;
-    margin-right: auto;
-
-
-    @media (min-width: 768px) {
-        max-width: 720px;
-    }
-
-    @media (min-width: 1200px) {
-        max-width: 1140px;
-    }
-
-    @media (min-width: 1400px) {
-        max-width: 1320px;
-    }
-}
-
 .center-screen {
     display: grid;
     place-items: center;
@@ -583,21 +562,19 @@ textarea {
     position: relative;
     width: 100%;
 }
-
-    .member-select select {
-        appearance: none;
-    }
-
-    .member-select::after {
-        content: "\F52A";
-        font-family: var(--font-bootstrap);
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-        color: var(--bodyDark);
-    } 
+.member-select select {
+    appearance: none;
+}
+.member-select::after {
+    content: "\F52A";
+    font-family: var(--font-bootstrap);
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--bodyDark);
+} 
 .terms {
     margin-top: 1em;
     position: relative;
