@@ -267,23 +267,7 @@ li {
 textarea {
     resize: none;
 }
-.member-select {
-    position: relative;
-    width: 100%;
-}
-.member-select select {
-    appearance: none;
-}
-.member-select::after {
-    content: "\F52A";
-    font-family: var(--font-bootstrap);
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: var(--bodyDark);
-} 
+
 
 /* LINKS */
 .nav-links {
@@ -595,6 +579,25 @@ textarea {
         gap: 2rem
     }
 }
+.member-select {
+    position: relative;
+    width: 100%;
+}
+
+    .member-select select {
+        appearance: none;
+    }
+
+    .member-select::after {
+        content: "\F52A";
+        font-family: var(--font-bootstrap);
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: var(--bodyDark);
+    } 
 .terms {
     margin-top: 1em;
     position: relative;
@@ -612,6 +615,7 @@ textarea {
 /* Image Container */
 .image-previewer {
     position: relative;
+    font-size: .9em;
     border: 2px dashed var(--border200);
     height: 125px;
     width: 125px;
@@ -625,6 +629,7 @@ textarea {
 
     .image-previewer::after {
         content: "\F220";
+        font-size: .9em;
         font-family: var(--font-bootstrap);
         background-color: var(--grayWithTransparency);
         color: var(--gray200);
@@ -635,6 +640,7 @@ textarea {
 
     .image-previewer.selected::after {
         content: "\F4C9";
+        font-size: .9em;
         position: absolute;
         bottom: 5px;
     }
@@ -648,6 +654,7 @@ textarea {
     }
 
 .image-preview {
+
 }
 
  /* Form Validation */
