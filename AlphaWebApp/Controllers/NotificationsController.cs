@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using AlphaWebApp.Hubs;
-using Business.Services;
 using Data.Entities;
 using System.Security.Claims;
+using Business.Interfaces;
 
 namespace AlphaWebApp.Controllers;
 

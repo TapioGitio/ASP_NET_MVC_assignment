@@ -1,6 +1,7 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     initializeDropdowns();
     updateRelativeTimes();
+    updateTimeLeft();
     setInterval(updateRelativeTimes, 60000);
 });
 
@@ -53,36 +54,94 @@ function initializeDropdowns() {
 
 /* Userfriendly displaying of time */
 function updateRelativeTimes() {
-    const elements = document.querySelectorAll('.dropdown-item-footer');
-    const now = new Date();
+    const elements = document.querySelectorAll('.dropdown-item-footer')
+    const now = new Date()
 
     elements.forEach(el => {
-        const created = new Date(el.getAttribute('data-created'));
-        if (isNaN(created.getTime())) return;
-        const diff = now - created;
-        const diffSeconds = Math.floor(diff / 1000);
-        const diffMinutes = Math.floor(diffSeconds / 60);
-        const diffHours = Math.floor(diffMinutes / 60);
-        const diffDays = Math.floor(diffHours / 24);
-        const diffWeeks = Math.floor(diffDays / 7);
+        const created = new Date(el.getAttribute('data-created'))
+        if (isNaN(created.getTime())) return
 
-        let relativeTime = '';
+        const diff = now - created
+        const diffSeconds = Math.floor(diff / 1000);
+        const diffMinutes = Math.floor(diffSeconds / 60)
+        const diffHours = Math.floor(diffMinutes / 60)
+        const diffDays = Math.floor(diffHours / 24)
+        const diffWeeks = Math.floor(diffDays / 7)
+
+        let relativeTime = ''
 
         if (diffMinutes < 1) {
-            relativeTime = 'just now';
+            relativeTime = 'just now'
         } else if (diffMinutes < 60) {
-            relativeTime = diffMinutes + ' min ago';
+            relativeTime = diffMinutes + ' min ago'
         } else if (diffHours < 2) {
-            relativeTime = diffHours + ' hour ago';
+            relativeTime = diffHours + ' hour ago'
         } else if (diffHours < 24) {
-            relativeTime = diffHours + ' hours ago';
+            relativeTime = diffHours + ' hours ago'
         } else if (diffDays < 2) {
-            relativeTime = diffDays + ' day ago';
+            relativeTime = diffDays + ' day ago'
         } else if (diffDays < 7) {
-            relativeTime = diffDays + ' days ago';
+            relativeTime = diffDays + ' days ago'
         } else {
-            relativeTime = diffWeeks + ' weeks ago';
+            relativeTime = diffWeeks + ' weeks ago'
         }
-        el.textContent = relativeTime;
+        el.textContent = relativeTime
+    });
+}
+
+function updateTimeLeft() {
+    const elements = document.querySelectorAll('.time-left')
+    const now = new Date()
+
+    elements.forEach(el => {
+        const endTime = new Date(el.getAttribute('data-end'))
+        if (isNaN(endTime.getTime())) return
+
+        const diff = endTime - now
+
+        if (diff <= 0) {
+            el.textContent = 'Time is up'
+            return
+        }
+
+        const diffSeconds = Math.floor(diff / 1000)
+        const diffMinutes = Math.floor(diffSeconds / 60)
+        const diffHours = Math.floor(diffMinutes / 60)
+        const diffDays = Math.floor(diffHours / 24)
+        const diffWeeks = Math.floor(diffDays / 7)
+
+        let timeLeft = ''
+        let badge = el.closest('.notice')
+
+        if (!badge) return
+
+        if (diffDays < 1) {
+            timeLeft = diffHours + ' hours left'
+            badge.classList.add('notice-red')
+            badge.classList.remove('notice-gray')
+            badge.classList.remove('notice-yellow')
+        } else if (diffDays == 1) {
+            timeLeft = diffDays + ' day left'
+            badge.classList.add('notice-red')
+            badge.classList.remove('notice-gray')
+            badge.classList.remove('notice-yellow')
+        } else if (diffWeeks < 1) {
+            timeLeft = diffDays + ' days left'
+            badge.classList.add('notice-red')
+            badge.classList.remove('notice-gray')
+            badge.classList.remove('notice-yellow')
+        } else if (diffWeeks == 1) {
+            timeLeft = diffWeeks + ' week left'
+            badge.classList.add('notice-yellow')
+            badge.classList.remove('notice-gray')
+            badge.classList.remove('notice-red')
+        } else {
+            timeLeft = diffWeeks + ' weeks left'
+            badge.classList.add('notice-gray')
+            badge.classList.remove('notice-yellow')
+            badge.classList.remove('notice-red')
+        }
+
+        el.textContent = timeLeft
     });
 }

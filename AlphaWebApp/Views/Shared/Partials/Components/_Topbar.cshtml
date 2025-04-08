@@ -1,51 +1,11 @@
-﻿@{
-    string loginName = await memberService.GetMemberNameAsync(User.Identity?.Name!);	
-}
-<div class="flex">
+﻿
+<form class="search-form" asp-controller="" asp-action="" method="get" novalidate>
     <i class="bi bi-search"></i>
-    <input class="searchbar" type="text" placeholder="Search anything...">
-</div>
-<div class="flex">
+    <input class="searchbar" type="search" placeholder="Search anything...">
+</form>
 
-    <partial name="Partials/Notification/_NotificationDropdownPartial" />
+<partial name="Partials/Notification/_NotificationDropdownPartial" />
+<partial name="Partials/Profile/_ProfileDropdownPartial" />
 
-    <div class="dropdown">
-        <button class="btn-dropdown" data-type="dropdown" data-target="#profile-dropdown">
-            <i class="bi bi-gear"></i>
-        </button>
-        <ul id="profile-dropdown" class="dropdown-menu">
+<img class="topbar-avatar" src="~/images/avatar-orange.svg" alt="">
 
-            <li class="dropdown-header dropdown-item settings">
-                <div class="dropdown-item-image">
-                    <img src="~/images/avatar-orange.svg" alt="">
-                </div>
-                <p class="dropdown-item-header">@loginName</p>
-            </li>
-
-
-            <li class="dropdown-item">
-                <div class="settings-text">
-                    <i class="bi bi-moon"></i>
-                    <span>Dark Mode</span>
-                </div>
-
-                <div class="btn-toggle-switch">
-                    <label for="darkmode-switch" class="toggle-switch">
-                        <input id="darkmode-switch" type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </li>
-
-            <li class="dropdown-item">
-                <a asp-action="Logout" asp-controller="Auth" class="settings-text">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Logout</span>
-                </a>
-            </li>
-
-        </ul>
-    </div>
-
-    <img class="topbar-avatar" src="~/images/avatar-orange.svg" alt="">
-</div>

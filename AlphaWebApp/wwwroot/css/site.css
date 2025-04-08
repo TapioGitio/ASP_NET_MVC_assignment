@@ -36,6 +36,8 @@
     --success: #22C55E;
     --orange: #FF9640;
     --blue: #2CD9D9;
+    --yellow: #ffff59;
+    --yellow-dimmed: #ffff85;
     --green: #31D482;
     --darkGreen: #24B26B;
     --Red: #FF6640;
@@ -49,6 +51,13 @@
     --grayWithTransparency: #1d1c1c7c;
     --transparent: #ffffff00;
     /*MISC*/
+
+    --time-bg-gray: var(--gray-dimmed);
+    --time-text-gray: var(--heading-color);
+    --time-bg-yellow: var(--yellow-dimmed);
+    --time-text-yellow: var(--heading-color);
+    --time-bg-red: var(--red-dimmed);
+    --time-text-red: var(--Red);
     --container-padding: 1rem;
     --transition-time: all 0.2s;
     /*VARIABLES TO CHANGE*/
@@ -77,10 +86,6 @@
     --btn-gray-hover: var(--gray300);
     --btn-gray-bg: var(--gray200);
     --surface-color: var(--white);
-    --time-bg-long: var(--gray-dimmed);
-    --time-bg-short: var(--red-dimmed);
-    --time-text-long: var(--black);
-    --time-text-short: var(--Red);
     --bg-transparent: var(--transparent);
     --modal-bg: var(--grayWithTransparency);
     --modal-surface: var(--white);
@@ -516,7 +521,7 @@ textarea {
 
 .input-group .dollar-sign {
     position: absolute;
-    top: 2.2rem;
+    top: 2em;
     left: .5rem;
 }
 
@@ -545,9 +550,11 @@ textarea {
 }
 
 .form-input::placeholder,
+.member-select::placeholder,
+.searchbar::placeholder,
 .ql-editor.ql-blank::before {
     color: var(--bodyLight);
-    font-style: italic;
+    font-style:inherit;
     font-size: .9em;
 }
 .form-date {
@@ -562,9 +569,12 @@ textarea {
     position: relative;
     width: 100%;
 }
-.member-select select {
-    appearance: none;
-}
+    .member-select select {
+        appearance: none;
+        font: inherit;
+        color: var(--bodyDark);
+        background-color: var(--surface-color);
+    }
 .member-select::after {
     content: "\F52A";
     font-family: var(--font-bootstrap);
@@ -575,6 +585,8 @@ textarea {
     pointer-events: none;
     color: var(--bodyDark);
 } 
+
+
 .terms {
     margin-top: 1em;
     position: relative;
@@ -652,7 +664,7 @@ textarea {
 }
 .field-validation-error {
     position: absolute;
-    top: 2rem;
+    top: 1.6rem;
     right: .1rem;
     border-radius: .8rem;
     padding: .4rem 1rem;
@@ -669,6 +681,10 @@ textarea {
 }
 .date-field .field-validation-error {
     top: 3.5rem;
+    right: -.7rem;
+}
+.description-field .field-validation-error {
+    top: 1.5rem;
 }
 /* MODAL */
 .modal {
@@ -768,9 +784,10 @@ textarea {
     grid-area: topbar;
     border-bottom: 1px solid var(--border200);
     padding: 1rem 2rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
     align-items: center;
-    justify-content: space-between;
+    gap: 1rem;
 }
 .main {
     grid-area: main;
@@ -792,15 +809,24 @@ textarea {
 }
 
 /* TOPBAR CONTENT */
+.search-form {
+    display: flex;
+    align-items:center;
+    gap: .5rem;
+}
 .searchbar {
+    width: 90%;
+    position:relative;
+    font:inherit;
     border-radius: .8rem;
-    border: none;
+    border: 1px solid var(--border100);
+    outline: none;
     padding: .4rem;
-    margin-left: .5rem;
-    background-color: var(--background-color);
+    background-color: var(--transparent);
     &:focus
     {
-        outline-color: var(--border200);
+        border-radius: 0;
+        border-bottom:1px solid var(--accent);
     }
 }
 .dropdown-menu {
@@ -1039,14 +1065,25 @@ textarea {
     justify-content: space-between;
 }
 
-.main-footer-time {
+.notice {
     padding: .5rem;
     border-radius: .8rem;
-    background-color: var(--time-bg-short);
-    color: var(--time-text-short);
     font-size: 14px;
-}
+ 
 
+    &.notice-gray {
+        background-color: var(--time-bg-gray);
+        color: var(--time-text-gray);
+    }
+    &.notice-yellow {
+        background-color: var(--time-bg-yellow);
+        color: var(--time-text-yellow);
+    }
+    &.notice-red {
+        background-color: var(--time-bg-red);
+        color: var(--time-text-red);
+    }
+}
 .main-footer-image * {
     height: 30px;
     aspect-ratio: 1;

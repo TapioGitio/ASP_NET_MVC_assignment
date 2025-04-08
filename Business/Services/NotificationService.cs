@@ -1,15 +1,9 @@
-﻿using Data.Context;
+﻿using Business.Interfaces;
+using Data.Context;
 using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
-
-public interface INotificationService
-{
-    Task AddNotificationAsync(NotificationEntity entity);
-    Task DismissNotificationAsync(string notificationId, string userId);
-    Task<IEnumerable<NotificationEntity>> GetNotificationsAsync(string userId, int take = 10);
-}
 
 public class NotificationService(DataContext context) : INotificationService
 {

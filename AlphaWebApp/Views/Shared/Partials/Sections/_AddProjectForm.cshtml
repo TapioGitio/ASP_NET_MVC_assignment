@@ -34,10 +34,9 @@
                 </div>
             </div>
 
-            <div class="input-group">
+            <div class="input-group description-field">
                 <label asp-for="FormData.ProjectDescription" class="form-label"></label>
                 <textarea asp-for="FormData.ProjectDescription" class="form-input" value="@Model?.FormData?.ProjectDescription"></textarea>
-                <span asp-validation-for="FormData.ProjectDescription"></span>
                 <div id="p-add-wysiwyg-editor" class="wysiwyg-editor"></div>
                 <div id="p-add-wysiwyg-toolbar" class="wysiwyg-toolbar">
 					<span class="ql-formats">
@@ -58,6 +57,7 @@
                         <button class="ql-link"></button>
                     </span>
                 </div>   
+                <span asp-validation-for="FormData.ProjectDescription"></span>
             </div>
 
             <div class="form-date">
@@ -79,7 +79,7 @@
 
                 <div class="member-select">
                     <select asp-for="FormData.MemberId" asp-items="@Model?.MemberOptions" class="form-input">
-                        <option value="0" disabled hidden selected>Select Member</option>
+                        <option value="0" disabled hidden selected>Choose a member</option>
                     </select>
                 </div>
 
