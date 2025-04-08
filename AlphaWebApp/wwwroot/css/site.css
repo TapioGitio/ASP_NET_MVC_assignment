@@ -216,13 +216,6 @@ span {
     color: var(--bodyLight);
 }
 }
-.text-line::before,
-.text-line::after {
-    content: "";
-    flex: 1;
-    border-bottom: 2px solid var(--border100);
-    margin: 1rem;
-}
 p {
     font-weight: var(--font-semibold);
 }
@@ -238,6 +231,16 @@ a {
 }
 li {
     list-style: none;
+}
+.text-line::before,
+.text-line::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--border100);
+    margin: 1rem;
+}
+.divider {
+    border-top: 1px solid var(--border200);
 }
 .denied {
     display: flex;
@@ -891,7 +894,6 @@ textarea {
     justify-content: space-between;
     padding: .9rem;
     border-radius: .5rem;
-    border-top: 1px solid var(--border200);
     font-size: .9rem;
     &:hover
 {
