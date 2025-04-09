@@ -9,5 +9,56 @@
     <button class="btn btn-add"><i class="bi bi-plus-lg"></i>Add Member</button>
 </div>
 
-<div class="main-content">
+<div class="main-content-member">
+    <div class="surface main-content-item-member">
+
+        <div class="main-content-header">
+            <div class="main-content-icon dropdown">
+                <button class="main-content-icon" data-type="dropdown" data-target="#dropdown-@Model?.Id.ToString()">
+                    <i class="bi bi-three-dots"></i>
+                </button>
+                <ul id="dropdown-@Model?.Id.ToString()" class="dropdown-menu">
+
+                    <li class="dropdown-item">
+                        <a data-modal="true" data-target="#editProjectModal" data-id="@Model?.Id" class="edit">
+                            <i class="bi bi-pencil-fill"></i>
+                            <span>Edit</span>
+                        </a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a data-id="@Model?.Id" class="edit">
+                            <i class="bi bi-person-plus-fill"></i>
+                            <span>Add Member</span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="dropdown-item">
+                        <a data-modal="true" data-target="#removeProjectModal" data-id="@Model?.Id" class="remove">
+                            <i class="bi bi-trash-fill"></i>
+                            <span>Delete Project</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-member-image">
+            <img src="~/images/avatar-brown.svg" alt="Alternate Text" />
+        </div>
+
+        <div class="main-member-title">
+            <h4>Janne Heikkinen</h4>
+            <p>Frontend developer</p>
+        </div>
+
+        <div class="main-member-body">
+            <p>janne@domain.com</p>
+            <p>+46 213123 123132</p>
+        </div>
+
+ 
+         <button class="btn-message">message</button>
+
+    </div>
 </div>
