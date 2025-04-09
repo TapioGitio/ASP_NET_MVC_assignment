@@ -292,6 +292,8 @@ textarea {
 /* For future self: no padding on .btn */
 .btn {
     font-size: 1em;
+    font-family: var(--font);
+    font-weight: var(--font-medium);
     border-radius: .8rem;
     background-color: transparent;
     border: none;
@@ -353,12 +355,14 @@ textarea {
 
 }
 .btn-gray {
-    color: var(--btn-gray-text);
+    color: var(--heading-color);
     background-color: var(--btn-gray-bg);
+    font-weight: var(--font-bold);
     &:hover
 {
-    color: var(--btn-accent-text);
+    color: var(--heading-color);
     background: var(--btn-gray-hover);
+    font-weight: var(--font-extrabold);
 }
 }
 .btn-dropdown {
@@ -1002,9 +1006,7 @@ textarea {
     padding: 1rem;
     width: 100%;
     min-height: 460px;
-    overflow: hidden;
-
-
+    overflow: hidden;    
 }
 
 /* Card Header */
@@ -1014,19 +1016,29 @@ textarea {
     gap: 1rem;
 }
 .main-member-title {
+    display:flex;
+    flex-direction: column;
     text-align: center;
+}
+.main-member-title p{
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    padding: .4rem .9rem;
+    font-size: 13px;
+    font-weight: var(--font-regular);
+    background-color: var(--gray100);
+    border-radius: .8rem;
 }
 .main-content-image {
     height: 56px;
     aspect-ratio: 1;
-    img
-
-{
+    img {
     max-width: 100%;
 }
 }
 .main-member-image {
     margin: 0 auto;
+    margin-bottom: 1rem;
 }
 .main-content-title p {
     color: var(--bodyLight);
@@ -1078,8 +1090,10 @@ textarea {
         overflow-wrap: break-word;
     }
 }
-.main-member-body {
+.main-member-body p{
     text-align: center;
+    font-size: .9rem;
+    font-weight: var(--font-regular);
 }
 /* Card Footer */
 .main-footer {
