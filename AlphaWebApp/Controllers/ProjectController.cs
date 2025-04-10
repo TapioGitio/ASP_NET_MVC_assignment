@@ -35,7 +35,7 @@ namespace AlphaWebApp.Controllers
                 MemberOptions = (await _memberService.GetMembersAsync())
                     .Select(x => new SelectListItem
                     {
-                        Value = x.MemberId.ToString(),
+                        Value = x.Id.ToString(),
                         Text = x.FullName,
                     }).ToList()
             };
@@ -57,7 +57,7 @@ namespace AlphaWebApp.Controllers
                 MemberOptions = (await _memberService.GetMembersAsync())
                     .Select(x => new SelectListItem
                     {
-                        Value = x.MemberId.ToString(),
+                        Value = x.Id.ToString(),
                         Text = x.FullName,
                     }).ToList()
             };
@@ -79,7 +79,7 @@ namespace AlphaWebApp.Controllers
                 MemberOptions = (await _memberService.GetMembersAsync())
                     .Select(x => new SelectListItem
                     {
-                        Value = x.MemberId.ToString(),
+                        Value = x.Id.ToString(),
                         Text = x.FullName,
                     }).ToList()
             };
@@ -96,7 +96,7 @@ namespace AlphaWebApp.Controllers
                 MemberOptions = (await _memberService.GetMembersAsync())
                     .Select(x => new SelectListItem
                     {
-                        Value = x.MemberId.ToString(),
+                        Value = x.Id.ToString(),
                         Text = x.FullName,
                     }).ToList()
             };
@@ -118,7 +118,7 @@ namespace AlphaWebApp.Controllers
                 MemberOptions = (await _memberService.GetMembersAsync())
                     .Select(x => new SelectListItem
                     {
-                        Value = x.MemberId.ToString(),
+                        Value = x.Id.ToString(),
                         Text = x.FullName,
                     }).ToList()
             };

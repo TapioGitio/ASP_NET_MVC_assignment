@@ -1,0 +1,47 @@
+﻿@model Member
+<div class="surface main-content-item-member">
+
+    <div class="main-content-header">
+        <div class="main-content-icon dropdown">
+            <button class="main-content-icon" data-type="dropdown" data-target="#dropdown-@Model?.Id.ToString()">
+                <i class="bi bi-three-dots"></i>
+            </button>
+            <ul id="dropdown-@Model?.Id.ToString()" class="dropdown-menu">
+
+                <li class="dropdown-item">
+                    <a data-modal="true" data-target="#editMemberModal" data-id="@Model?.Id" class="edit">
+                        <i class="bi bi-pencil-fill"></i>
+                        <span>Edit member</span>
+                    </a>
+                </li>
+
+                <li class="divider"></li>
+                <li class="dropdown-item">
+                    <a data-modal="true" data-target="#removeProjectModal" data-id="@Model?.Id" class="remove">
+                        <i class="bi bi-trash-fill"></i>
+                        <span>Delete</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-member-image">
+        <img src="@(Model?.ProfileImagePath ?? Url.Content("~/images/avatar-brown.svg"))" alt="Alternate Text" />
+    </div>
+
+    <div class="main-member-title">
+        <h4>@Model?.FullName</h4>
+        <p>@(Model?.JobTitle ?? "No Jobtitle")</p>
+    </div>
+
+    <div class="main-member-body">
+        <p>@(Model?.Email ?? "No Email")</p>
+        <p>@(Model?.PhoneNumber ?? "No Phone-number")</p>
+    </div>
+
+
+    <button class="btn btn-gray">Message</button>
+
+</div>

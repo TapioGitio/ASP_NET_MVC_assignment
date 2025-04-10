@@ -5,7 +5,7 @@ namespace Domain.Models;
 
 public class MemberUpdForm
 {
-    public int MemberId { get; set; }
+    public string Id { get; set; } = null!;
     public IFormFile? MemberImage { get; set; }
     public string? ProfileImagePath { get; set; }
 
@@ -21,17 +21,14 @@ public class MemberUpdForm
     [Required(ErrorMessage = "Required")]
     public string LastName { get; set; } = null!;
 
-    [Display(Name = "Email", Prompt = "Your Email")]
-    [Required(ErrorMessage = "Required")]
-    public string Email { get; set; } = null!;
+    [Display(Name = "Email", Prompt = "Email")]
+    public string? Email { get; set; }
 
-    [Display(Name = "Phone Number", Prompt = "Your Phone Number")]
+    [Display(Name = "Phone Number", Prompt = "Phone Number")]
     public string? PhoneNumber { get; set; }
     public bool AcceptTerms { get; set; }
 
 
-
-    public int? AddressId { get; set; }
 
     [Display(Name = "Street", Prompt = "Street")]
     public string? Street { get; set; }

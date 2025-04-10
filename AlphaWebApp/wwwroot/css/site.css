@@ -734,6 +734,11 @@ textarea {
         column-gap: 2rem;
     }
 }
+.shrink-only {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1rem;
+}
 
 
 /* MAIN LAYOUT */
@@ -744,6 +749,10 @@ textarea {
 }
 
 #editProjectModal .modal-content {
+    width: 550px;
+}
+
+#editMemberModal .modal-content {
     width: 550px;
 }
 

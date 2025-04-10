@@ -1,0 +1,81 @@
+﻿@model MemberViewModel
+
+<div id="editMemberModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h3>Edit Member</h3>
+            <button class="btn-exit" data-close="true">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+
+        <form asp-controller="Member" asp-action="Edit" enctype="multipart/form-data" method="post" novalidate>
+
+            <input asp-for="UpdateFormData.Id" name="UpdateFormData.Id" hidden>
+
+            <div class="image-previewer circle">
+                <img class="image-preview" src="">
+                <input asp-for="UpdateFormData.MemberImage" class="hide" accept="image/*">
+            </div>
+
+
+            <div class="shrink-only">
+                <div class="input-group">
+                    <label asp-for="UpdateFormData.FirstName" class="form-label"></label>
+                    <input asp-for="UpdateFormData.FirstName" class="form-input" value="@Model?.UpdateFormData?.FirstName">
+                    <span asp-validation-for="UpdateFormData.FirstName"></span>
+                </div>
+                <div class="input-group">
+                    <label asp-for="UpdateFormData.LastName" class="form-label"></label>
+                    <input asp-for="UpdateFormData.LastName" class="form-input" value="@Model?.UpdateFormData?.LastName">
+                    <span asp-validation-for="UpdateFormData.LastName"></span>
+                </div>
+            </div>
+         
+            <div class="input-group">
+                <label asp-for="UpdateFormData.JobTitle" class="form-label"></label>
+                <input asp-for="UpdateFormData.JobTitle" class="form-input" value="@Model?.UpdateFormData?.JobTitle">
+                <span asp-validation-for="UpdateFormData.JobTitle"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="UpdateFormData.PhoneNumber" class="form-label"></label>   
+                <input asp-for="UpdateFormData.PhoneNumber" class="form-input" value="@Model?.UpdateFormData?.PhoneNumber">
+                <span asp-validation-for="UpdateFormData.PhoneNumber"></span>
+            </div>
+         
+
+       
+
+         
+            <div class="input-group">
+                <label asp-for="UpdateFormData.City" class="form-label"></label>
+                <input asp-for="UpdateFormData.City" class="form-input" value="@Model?.UpdateFormData?.City">
+                <span asp-validation-for="UpdateFormData.City"></span>
+            </div>
+      
+            <div class="shrink-only">
+                <div class="input-group">
+                    <label asp-for="UpdateFormData.Street" class="form-label"></label>
+                    <input asp-for="UpdateFormData.Street" class="form-input" value="@Model?.UpdateFormData?.Street">
+                    <span asp-validation-for="UpdateFormData.Street"></span>
+                </div>
+       
+	
+			    <div class="input-group">
+				    <label asp-for="UpdateFormData.ZipCode" class="form-label"></label>
+				    <input asp-for="UpdateFormData.ZipCode" class="form-input" value="@Model?.UpdateFormData?.ZipCode">
+				    <span asp-validation-for="UpdateFormData.ZipCode"></span>
+			    </div>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-register-login">Update</button>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("_ValidationScripts")

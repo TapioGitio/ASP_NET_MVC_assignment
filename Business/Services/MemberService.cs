@@ -31,6 +31,24 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
         }
     }
 
+    public async Task<Member> GetOneMemberByIdAsync(string id)
+    {
+        try
+        {
+            var entity = await _userManager.FindByIdAsync(id);
+            if (entity == null)
+                return null!;
+
+            var member = MemberFactory.Create(entity);
+            return member;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Could not read the member || {ex.Message}");
+            return null!;
+        }
+    }
+
     public async Task<string> GetMemberNameAsync(string? memberName)
     {
         if (memberName == null)
@@ -57,14 +75,14 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
             return [];
         }
     }
-    public async Task<bool> UpdateMemberAsync(ClaimsPrincipal user, MemberUpdForm formData)
+    public async Task<bool> UpdateMemberAsync(string id, MemberUpdForm formData)
     {
         try
         {
             if (formData == null)
                 return false;
 
-            var entity = await _userManager.GetUserAsync(user);
+            var entity = await _userManager.FindByIdAsync(id);
             if (entity == null)
                 return false;
 

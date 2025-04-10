@@ -4,7 +4,7 @@ namespace Domain.Models;
 
 public class Member
 {
-    public string MemberId { get; set; } = null!;
+    public string Id { get; set; } = null!;
     public IFormFile? MemberImage { get; set; }
     public string? ProfileImagePath { get; set; }
     public string? JobTitle { get; set; }

@@ -26,7 +26,7 @@ public static class MemberFactory
     {
         return new Member
         {
-            MemberId = entity.Id,
+            Id = entity.Id,
             ProfileImagePath = entity.ProfileImagePath,
             JobTitle = entity.JobTitle,
             FirstName = entity.FirstName,
@@ -39,16 +39,40 @@ public static class MemberFactory
 
     public static MemberEntity Update(MemberEntity entity, MemberUpdForm form)
     {
-        return new MemberEntity
+
+
+        entity.ProfileImagePath = form.ProfileImagePath;
+        entity.JobTitle = form.JobTitle;
+        entity.FirstName = form.FirstName;
+        entity.LastName = form.LastName;
+        entity.PhoneNumber = form.PhoneNumber;
+
+        // Got help from ai, to be able to set and check if the address is null or not,
+        // and to be able to set the address to null if all fields are empty.
+
+        if (!string.IsNullOrWhiteSpace(form.Street) ||
+            !string.IsNullOrWhiteSpace(form.ZipCode) ||
+            !string.IsNullOrWhiteSpace(form.City))
         {
-            Id = entity.Id,
-            ProfileImagePath = form.ProfileImagePath,
-            JobTitle = form.JobTitle,
-            FirstName = form.FirstName,
-            LastName = form.LastName,
-            PhoneNumber = form.PhoneNumber,
+            if (entity.Address == null)
+                entity.Address = new AddressEntity();
+
+            if (!string.IsNullOrWhiteSpace(form.Street))
+                entity.Address.Street = form.Street;
+
+            if (!string.IsNullOrWhiteSpace(form.ZipCode))
+                entity.Address.PostalCode = form.ZipCode;
+
+            if (!string.IsNullOrWhiteSpace(form.City))
+                entity.Address.City = form.City;
+
+        }
+        else
+            entity.Address = null;
 
 
-        };
+        return entity;
+
+ 
     }
 }
