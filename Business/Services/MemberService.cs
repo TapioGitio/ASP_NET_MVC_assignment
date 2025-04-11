@@ -82,9 +82,9 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
         {
             var entities = await _userManager.Users
                 .Where(u =>
-                    u.FirstName!.Contains(term) ||
-                    u.LastName!.Contains(term) ||
-                    (u.FirstName + " " + u.LastName).Contains(term))
+                    u.FirstName!.ToLower().Contains(term.ToLower()) ||
+                    u.LastName!.ToLower().Contains(term.ToLower()) ||
+                    (u.FirstName.ToLower() + " " + u.LastName.ToLower()).Contains(term.ToLower()))
                 .ToListAsync();
 
             return entities.Select(MemberFactory.Create);

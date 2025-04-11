@@ -1,16 +1,19 @@
 ﻿using Business.Factories;
 using Business.Interfaces;
+using Data.Entities;
 using Data.Interfaces;
 using Domain.Models;
+using Microsoft.AspNetCore.Identity;
 using System.Diagnostics;
 
 namespace Business.Services;
 
-public class ProjectService(IProjectRepository projectRepository) : IProjectService
+public class ProjectService(IProjectRepository projectRepository, UserManager<MemberEntity> userManager) : IProjectService
 {
     private readonly IProjectRepository _projectRepository = projectRepository;
+    private readonly UserManager<MemberEntity> _userManager = userManager;
 
-    public async Task<bool> CreateProjectAsync(ProjectRegForm formData)
+    public async Task<bool> CreateProjectAsync(ProjectRegForm formData, List<string> memberIds)
     {
 
         try
@@ -22,10 +25,22 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
 
             if (duplicate != null)
                 return false;
-
+  
             var entity = ProjectFactory.Create(formData);
-            var result = await _projectRepository.CreateAsync(entity);
 
+            var members = new List<MemberEntity>();
+
+            foreach (var memberId in memberIds)
+            {
+                var member = await _userManager.FindByIdAsync(memberId);
+                if (member != null)
+                {
+                    members.Add(member);
+                }
+            }
+            entity.Members = members;
+
+            var result = await _projectRepository.CreateAsync(entity);
             return result;
         }
         catch (Exception ex)
@@ -59,7 +74,7 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
     {
         try
         {
-            var entities = await _projectRepository.GetAllAsync();
+            var entities = await _projectRepository.GetAllIncludeAllAsync();
             if (entities == null)
                 return [];
 
@@ -109,7 +124,7 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
         }
     }
 
-    public async Task<bool> UpdateProjectAsync(int id, ProjectUpdForm formData)
+    public async Task<bool> UpdateProjectAsync(int id, ProjectUpdForm formData, List<string> memberIds)
     {
         try
         {
@@ -121,6 +136,19 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
                 return false;
 
             var updatedEntity = ProjectFactory.Update(entity, formData);
+
+            var members = new List<MemberEntity>();
+
+            foreach (var memberId in memberIds)
+            {
+                var member = await _userManager.FindByIdAsync(memberId);
+                if (member != null)
+                {
+                    members.Add(member);
+                }
+            }
+
+            updatedEntity.Members = members;
 
             var result = await _projectRepository.UpdateAsync(x => x.Id == id, updatedEntity);
 

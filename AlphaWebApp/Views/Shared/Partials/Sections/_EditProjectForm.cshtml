@@ -13,7 +13,7 @@
         <form asp-controller="Project" asp-action="Edit" enctype="multipart/form-data" method="post" novalidate>
 
             <input asp-for="UpdateFormData.Id" name="UpdateFormData.Id" hidden>
-            <input asp-for="UpdateFormData.MemberId" hidden />
+            <input asp-for="UpdateFormData.SelectedMemberIds" hidden />
 
             <div class="image-previewer square">
                 <img class="image-preview" src="">
@@ -77,15 +77,13 @@
 
 
             <div class="input-group">
-                <label asp-for="UpdateFormData.MemberId" class="form-label"></label>
-
-                <div class="member-select">
-                    <select asp-for="UpdateFormData.MemberId" asp-items="@Model?.MemberOptions" class="form-input">
-                        <option value="0" disabled hidden selected>Choose a member</option>
-                    </select>
+                <label asp-for="UpdateFormData.SelectedMemberIds" class="form-label"></label>
+                <div class="form-tag-select form-input" id="tags">
+                    <i class="bi bi-three-dots"></i>
+                    <input type="text" id="tag-search" class="form-tag-input" placeholder="Add tag(s)..." />
+                    <label for="tag-search"></label>
+                    <div id="tag-search-results" class="search-results"></div>
                 </div>
-
-                <span asp-validation-for="UpdateFormData.MemberId"></span>
             </div>
 
             <div class="input-group">

@@ -42,6 +42,6 @@ public class ProjectRegForm
 
 
     [Display(Name = "Members")]
-    public int MemberId { get; set; }
+    public List<string> SelectedMemberIds { get; set; } = []; // Store the selected member IDs
 
 }

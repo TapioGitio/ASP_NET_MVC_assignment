@@ -15,6 +15,6 @@ public class Project
 
     public string? ProfileImagePath { get; set; }
 
-    public int? MemberId { get; set; }
-    public Member? Member { get; set; }
+
+    public List<Member> Members { get; set; } = [];
 }

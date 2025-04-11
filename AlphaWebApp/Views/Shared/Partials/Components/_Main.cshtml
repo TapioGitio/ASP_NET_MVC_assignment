@@ -54,7 +54,11 @@
         </div>
 
         <div class="main-footer-image flex">
-            <img src="@(Model?.ProfileImagePath ?? Url.Content("~/images/avatar-green.svg"))" alt="Profile image of member">
+			@foreach (var member in Model.Members)
+			{
+                <img src="@(member.ProfileImagePath ?? Url.Content("~/images/avatar-green.svg"))" alt="Profile image of member">
+			}
+            
         </div>
 
     </div>

@@ -12,7 +12,7 @@
 
         <form asp-controller="Project" asp-action="Add" enctype="multipart/form-data" method="post" novalidate>
 
-            <input asp-for="FormData.MemberId" hidden />
+            <input asp-for="FormData.SelectedMemberIds" id="FormData_SelectedMemberIds" hidden />
             <input asp-for="FormData.IsCompleted" hidden />
 
             <div class="image-previewer square">
@@ -74,16 +74,13 @@
             </div>
 
             <div class="input-group">
-                <label asp-for="FormData.MemberId" class="form-label"></label>
-
-
-                <div class="member-select">
-                    <select asp-for="FormData.MemberId" asp-items="@Model?.MemberOptions" class="form-input">
-                        <option value="0" disabled hidden selected>Choose a member</option>
-                    </select>
+                <label asp-for="FormData.SelectedMemberIds" class="form-label"></label>
+                <div class="form-tag-select form-input" id="tags">
+                    <i class="bi bi-three-dots"></i>
+                    <input id="tag-search" type="text" class="form-tag-input" placeholder="Add tag(s)..." />
+                    <label for="tag-search"></label>
+                    <div id="tag-search-results" class="search-results"></div>
                 </div>
-
-                <span asp-validation-for="FormData.MemberId"></span>
             </div>
 
             <div class="input-group">
@@ -98,6 +95,24 @@
         </form>
     </div>
 </div>
+<script>
+    const preSelectedTags = []
 
+    initTagSelector({
+        containerId: 'tags',
+        inputId: 'tag-search',
+        selectedInputIds: 'FormData_SelectedMemberIds',
+        resultsId: 'tag-search-results',
+        searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
+        displayProperty: 'tagName',
+        imageProperty: 'imageUrl',
+        tagClass: 'user-tag',
+        avatarFolder: '',
+        emptyMessage: 'No tags found.',
+        preselected: preSelectedTags
+
+    });
+
+</script>
 @await Html.PartialAsync("_WysiwygAddScripts")
 @await Html.PartialAsync("_ValidationScripts")

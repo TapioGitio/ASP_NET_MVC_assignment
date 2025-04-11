@@ -7,7 +7,7 @@ public static class ProjectFactory
 {
     public static ProjectRegForm Create() => new();
 
-    public static ProjectEntity Create(ProjectRegForm formData)
+    public static ProjectEntity Create(ProjectRegForm formData, List<MemberEntity> members = null!)
     {
         return new ProjectEntity
         {
@@ -19,7 +19,7 @@ public static class ProjectFactory
             EndDate = formData.EndDate,
             Budget = formData.Budget,
             IsCompleted = formData.IsCompleted,
-           
+            Members = members ?? []
         };
     }
 
@@ -36,6 +36,13 @@ public static class ProjectFactory
             EndDate = entity.EndDate,
             Budget = entity.Budget,
             IsCompleted = entity.IsCompleted,
+            Members = entity.Members?.Select(m => new Member
+            {
+                Id = m.Id,
+                FirstName = m.FirstName,
+                LastName = m.LastName,
+                ProfileImagePath = m.ProfileImagePath,
+            }).ToList() ?? []
         };
     }
 

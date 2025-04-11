@@ -10,44 +10,40 @@
             </button>
         </div>
 
-        <form asp-controller="Member" asp-action="Add" enctype="multipart/form-data" method="post" novalidate>
+        <form asp-controller="Project" asp-action="Add" enctype="multipart/form-data" method="post" novalidate>
 
-            <input asp-for="UpdateFormData.Id" name="UpdateFormData.Id" hidden />
-			<input asp-for="UpdateFormData.MemberId" hidden />
+            <input asp-for="UpdateFormData.Id" hidden />
+            <input asp-for="UpdateFormData.SelectedMemberIds" id="UpdateFormData_SelectedMemberIds" hidden />
 
 
             <div class="input-group">
-
-                <label asp-for="UpdateFormData.MemberId" class="form-label"></label>
-                <div class="form-tag-select form-input" id="tags">
+                <label asp-for="UpdateFormData.SelectedMemberIds" class="form-label"></label>
+                <div id="tags" class="form-tag-select form-input">
                     <i class="bi bi-three-dots"></i>
-                    <input type="text" id="tag-search" class="form-tag-input" placeholder="Add tag(s)..."/>
+                    <input id="tag-search" type="text" class="form-tag-input" placeholder="Add tag(s)..." />
                     <label for="tag-search"></label>
-					<div id="tag-search-results" class="search-results"></div>
+                    <div id="tag-search-results" class="search-results"></div>
                 </div>
-
-
-
             </div>
+
             <button type="submit" class="btn btn-register-login">Save</button>
 
         </form>
     </div>
 </div>
-
 <script>
     const preSelectedTags = []
 
     initTagSelector({
         containerId: 'tags',
         inputId: 'tag-search',
-        selectedInputIds: 'SelectedUserIds',
+        selectedInputIds: 'UpdateFormData_SelectedMemberIds',
         resultsId: 'tag-search-results',
         searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
         displayProperty: 'tagName',
         imageProperty: 'imageUrl',
-        tagClass: 'user-avatar',
-        avatarFolder: '/images/',
+        tagClass: 'user-tag',
+        avatarFolder: '',
         emptyMessage: 'No tags found.',
         preselected: preSelectedTags
     });

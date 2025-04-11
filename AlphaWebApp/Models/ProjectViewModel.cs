@@ -1,15 +1,14 @@
 ﻿using Domain.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaWebApp.Models;
 
 public class ProjectViewModel
 {
-    public IEnumerable<Project> Projects = [];
+    public IEnumerable<Project> Projects { get; set; } = [];
     public int TotalProjects { get; set; }
     public int OngoingProjects { get; set; }
     public int CompletedProjects { get; set; }
-    public List<SelectListItem> MemberOptions = [];
+    public List<string> SelectedMemberIds { get; set; } = []; 
     public ProjectRegForm FormData { get; set; } = new();
     public ProjectUpdForm UpdateFormData { get; set; } = new();   
 

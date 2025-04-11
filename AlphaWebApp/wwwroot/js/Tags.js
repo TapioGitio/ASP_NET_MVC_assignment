@@ -8,7 +8,7 @@
     const selectedInputIds = document.getElementById(config.selectedInputIds)
 
     if (Array.isArray(config.preselected)) {
-        config.preselected.array.forEach(item => addTag(item))
+        config.preselected.forEach(item => addTag(item))
     }
 
 
@@ -102,7 +102,7 @@
                     if (config.tagClass === 'user-tag') {
                         resultItem.innerHTML =
                             `
-                        <img class="user-avatar" src="${config.avatarFolder || ''} ${item[config.imageProperty]}">
+                        <img class="user-avatar" src="${config.avatarFolder || ''}${item[config.imageProperty]}">
                         <span>${item[config.displayProperty]} </span>
                         `;
 
@@ -118,13 +118,18 @@
                 }
             })
         }
+
+        results.style.display = 'block'
     }
 
     function addTag(item) {
         //parse int or string for ID
-        const id = item.id
+        const id = String(item.id)
         if (selectedIds.includes(id))
             return;
+
+        selectedIds.push(id)
+        updateSelectedIdsInput()
 
         const tag = document.createElement('div')
         tag.classList.add(config.tagClass || 'tag')
@@ -132,8 +137,8 @@
         if (config.tagClass === 'user-tag') {
             tag.innerHTML =
                 `
-            <img class="user-avatar" src="${config.avatarFolder || ''} ${item[config.imageProperty]}">
-            <span>${item[config.displayProperty]} </span>
+            <img class="user-avatar" src="${config.avatarFolder || ''}${item[config.imageProperty]}">
+            <span>${item[config.displayProperty]}</span>
             `;
 
         } else {
@@ -161,12 +166,14 @@
         input.value = ''
         results.innerHTML = ''
         results.style.display = 'none'
+
+  
     }
 
     function updateSelectedIdsInput() {
         const hiddenInput = selectedInputIds
         if (hiddenInput) {
-            hiddenInput.value = JSON.stringify(selectedIds)
+            hiddenInput.value = selectedIds.join(",");
         }
     }
 
@@ -176,7 +183,7 @@
             return
 
         const lastTag = tags[tags.length - 1]
-        const lastId = parseInt(lastTag.querySelector('.btn-remove').dataset.id)
+        const lastId = lastTag.querySelector('.btn-remove').dataset.id
 
         selectedIds = selectedIds.filter(id => id !== lastId)
         lastTag.remove()

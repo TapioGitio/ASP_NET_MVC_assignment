@@ -31,7 +31,8 @@ public class ProjectUpdForm
     public DateTime? EndDate { get; set; }
 
     [Display(Name = "Members")]
-    public int? MemberId { get; set; }
+    public List<string> SelectedMemberIds { get; set; } = [];
+
 
     [Display(Name = "Budget")]
     public decimal? Budget { get; set; }
