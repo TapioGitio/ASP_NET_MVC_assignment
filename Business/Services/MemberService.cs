@@ -75,6 +75,26 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
             return [];
         }
     }
+
+    public async Task<IEnumerable<Member>> GetMembersAsync(string term)
+    {
+        try
+        {
+            var entities = await _userManager.Users
+                .Where(u =>
+                    u.FirstName!.Contains(term) ||
+                    u.LastName!.Contains(term) ||
+                    (u.FirstName + " " + u.LastName).Contains(term))
+                .ToListAsync();
+
+            return entities.Select(MemberFactory.Create);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Could not search members || {ex.Message}");
+            return [];
+        }
+    }
     public async Task<bool> UpdateMemberAsync(string id, MemberUpdForm formData)
     {
         try

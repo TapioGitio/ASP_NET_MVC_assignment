@@ -1,0 +1,54 @@
+﻿@model ProjectViewModel
+
+<div id="addMemberModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h3>Add Member</h3>
+            <button class="btn-exit" data-close="true">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+
+        <form asp-controller="Member" asp-action="Add" enctype="multipart/form-data" method="post" novalidate>
+
+            <input asp-for="UpdateFormData.Id" name="UpdateFormData.Id" hidden />
+			<input asp-for="UpdateFormData.MemberId" hidden />
+
+
+            <div class="input-group">
+
+                <label asp-for="UpdateFormData.MemberId" class="form-label"></label>
+                <div class="form-tag-select form-input" id="tags">
+                    <i class="bi bi-three-dots"></i>
+                    <input type="text" id="tag-search" class="form-tag-input" placeholder="Add tag(s)..."/>
+                    <label for="tag-search"></label>
+					<div id="tag-search-results" class="search-results"></div>
+                </div>
+
+
+
+            </div>
+            <button type="submit" class="btn btn-register-login">Save</button>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    const preSelectedTags = []
+
+    initTagSelector({
+        containerId: 'tags',
+        inputId: 'tag-search',
+        selectedInputIds: 'SelectedUserIds',
+        resultsId: 'tag-search-results',
+        searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
+        displayProperty: 'tagName',
+        imageProperty: 'imageUrl',
+        tagClass: 'user-avatar',
+        avatarFolder: '/images/',
+        emptyMessage: 'No tags found.',
+        preselected: preSelectedTags
+    });
+</script>

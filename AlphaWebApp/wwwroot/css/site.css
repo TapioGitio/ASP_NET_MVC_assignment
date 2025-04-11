@@ -555,15 +555,6 @@ textarea {
         box-shadow: 0 0 5px var(--accent-dark);
     }
 }
-
-.form-input::placeholder,
-.member-select::placeholder,
-.searchbar::placeholder,
-.ql-editor.ql-blank::before {
-    color: var(--bodyLight);
-    font-style:inherit;
-    font-size: .9em;
-}
 .form-date {
     display: flex;
     gap: 1rem;
@@ -572,27 +563,86 @@ textarea {
         gap: 2rem
     }
 }
-.member-select {
-    position: relative;
-    width: 100%;
+.form-input::placeholder,
+.form-tag-input::placeholder,
+.searchbar::placeholder,
+.ql-editor.ql-blank::before {
+    color: var(--bodyLight);
+    font-style: inherit;
+    font-size: .9em;
 }
-    .member-select select {
-        appearance: none;
-        font: inherit;
-        color: var(--bodyDark);
-        background-color: var(--surface-color);
-    }
-.member-select::after {
-    content: "\F52A";
-    font-family: var(--font-bootstrap);
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: var(--bodyDark);
-} 
+.form-tag-select.focused,
+.search-results.focused {
+    box-shadow: 0 0 5px var(--accent-dark);
+}
 
+.form-tag-select {
+    position: relative;
+}
+.form-tag-select label,
+.form-tag-select i {
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.1em;
+    right: 1rem;
+    top: 5px;
+}
+.form-tag-input {
+    font-size: 1em;
+    outline: none;
+    border: none;
+    flex-grow: 1;
+    background-color: var(--surface-color);
+}
+.search-results {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border100);
+    border-top: none;
+    border-radius: 0 0 .8rem .8rem;
+    width: 100%;
+    position: absolute;
+    top: 85%;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
+.search-item {
+    padding: .5rem 1rem;
+    cursor: pointer;
+    font-size: .8em;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+    .search-item:hover {
+        background-color: var(--accent-dimmed);
+        border-radius: .8rem;
+    }
+    .search-item.active {
+        background-color: var(--accent-dimmed);
+        border-radius: .8rem;
+    }
+.user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--gray200);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .8em;
+    font-weight: var(--font-bold);
+    color: var(--white);
+}
+.tag {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background-color: var(--gray100);
+    font-size: .8em;
+    padding: .3rem .6rem;
+    border-radius: .8rem;
+}
 
 .terms {
     margin-top: 1em;
@@ -755,15 +805,18 @@ textarea {
 #editMemberModal .modal-content {
     width: 550px;
 }
-
-#removeProjectModal .modal-content {
+#addMemberModal .modal-content {
     width: 400px;
-
-    .modal-header, p{
+    .modal-header, p {
     margin-bottom: 1rem;
 }
 }
-
+#removeProjectModal .modal-content {
+    width: 400px;
+    .modal-header, p {
+    margin-bottom: 1rem;
+}
+}
 .logotype {
     grid-area: logo;
     padding: 1rem 2rem;

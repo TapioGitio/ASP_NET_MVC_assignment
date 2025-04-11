@@ -24,6 +24,12 @@ public class MemberController(IMemberService memberService, IWebHostEnvironment 
     }
 
     [HttpPost]
+    public async Task<IActionResult> Add()
+    {
+        return View();
+    }
+
+    [HttpPost]
     public async Task<IActionResult> Edit(MemberUpdForm UpdateFormData)
     {
         var model = new MemberViewModel

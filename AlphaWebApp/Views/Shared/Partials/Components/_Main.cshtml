@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li class="dropdown-item">
-                    <a  data-id="@Model?.Id" class="edit">
+                    <a data-modal="true" data-target="#addMemberModal" data-id="@Model?.Id" class="edit">
                         <i class="bi bi-person-plus-fill"></i>
                         <span>Add Member</span>
                     </a>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="main-footer-image flex">
-            <img src="@Url.Content(string.IsNullOrEmpty(Model?.ProfileImagePath) ? "~/images/avatar-orange.svg" : $"~/{Model.ProfileImagePath}")" alt="Profile image of member">
+            <img src="@(Model?.ProfileImagePath ?? Url.Content("~/images/avatar-green.svg"))" alt="Profile image of member">
         </div>
 
     </div>

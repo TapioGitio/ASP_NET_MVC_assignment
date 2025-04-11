@@ -41,17 +41,17 @@ public static class ProjectFactory
 
     public static ProjectEntity Update(ProjectEntity entity, ProjectUpdForm updForm)
     {
-        return new ProjectEntity
-        {
-            Id = entity.Id,
-            ProjectImagePath = string.IsNullOrEmpty(updForm.ProjectImagePath) ? entity.ProjectImagePath : updForm.ProjectImagePath,
-            ProjectName = string.IsNullOrEmpty(updForm.ProjectName) ? entity.ProjectName : updForm.ProjectName,
-            ClientName = string.IsNullOrEmpty(updForm.ClientName) ? entity.ClientName : updForm.ClientName,
-            ProjectDescription = string.IsNullOrEmpty(updForm.ProjectDescription) ? entity.ProjectDescription : updForm.ProjectDescription,
-            StartDate = updForm.StartDate ?? entity.StartDate,
-            EndDate = updForm.EndDate ?? entity.EndDate,
-            Budget = updForm.Budget ?? entity.Budget,
-            IsCompleted = updForm.IsCompleted,
-        };
+
+        entity.Id = entity.Id;
+        entity.ProjectImagePath = string.IsNullOrEmpty(updForm.ProjectImagePath) ? entity.ProjectImagePath : updForm.ProjectImagePath;
+        entity.ProjectName = string.IsNullOrEmpty(updForm.ProjectName) ? entity.ProjectName : updForm.ProjectName;
+        entity.ClientName = string.IsNullOrEmpty(updForm.ClientName) ? entity.ClientName : updForm.ClientName;
+        entity.ProjectDescription = string.IsNullOrEmpty(updForm.ProjectDescription) ? entity.ProjectDescription : updForm.ProjectDescription;
+        entity.StartDate = updForm.StartDate ?? entity.StartDate;
+        entity.EndDate = updForm.EndDate ?? entity.EndDate;
+        entity.Budget = updForm.Budget ?? entity.Budget;
+        entity.IsCompleted = updForm.IsCompleted;
+
+        return entity;
     }
 }
