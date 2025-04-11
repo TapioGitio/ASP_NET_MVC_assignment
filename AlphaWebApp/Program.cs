@@ -73,7 +73,7 @@ app.UseAuthorization();
 using (var createAdminAtStartup = app.Services.CreateScope())
 {
     var roleManager = createAdminAtStartup.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    string[] roles = { "Admin", "User" };
+    string[] roles = ["Admin", "User"];
 
     foreach (string role in roles)
     {
