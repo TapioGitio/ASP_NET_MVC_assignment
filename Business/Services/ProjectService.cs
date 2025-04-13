@@ -135,7 +135,8 @@ public class ProjectService(IProjectRepository projectRepository, UserManager<Me
             if (entity == null)
                 return false;
 
-            var updatedEntity = ProjectFactory.Update(entity, formData);
+            // Update core fields only (not members)
+            ProjectFactory.Update(entity, formData);
 
             var members = new List<MemberEntity>();
 
