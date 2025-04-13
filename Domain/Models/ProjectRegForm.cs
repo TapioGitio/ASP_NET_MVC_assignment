@@ -50,6 +50,6 @@ public class ProjectRegForm
         SelectedMemberIdsRaw?
         .Split(',', StringSplitOptions.RemoveEmptyEntries)
         .Select(x => x.Trim())
-        .ToList() ?? new();
+        .ToList() ?? [];
 
 }
