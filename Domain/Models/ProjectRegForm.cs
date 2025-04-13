@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models;
 
@@ -42,6 +43,13 @@ public class ProjectRegForm
 
 
     [Display(Name = "Members")]
-    public List<string> SelectedMemberIds { get; set; } = []; // Store the selected member IDs
+    public string? SelectedMemberIdsRaw { get; set; }
+
+    [NotMapped]
+    public List<string> SelectedMemberIds =>
+        SelectedMemberIdsRaw?
+        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+        .Select(x => x.Trim())
+        .ToList() ?? new();
 
 }

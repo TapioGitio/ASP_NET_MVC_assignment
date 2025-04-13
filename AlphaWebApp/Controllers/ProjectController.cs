@@ -7,18 +7,10 @@ using Microsoft.AspNetCore.Authorization;
 namespace AlphaWebApp.Controllers
 {
     [Authorize]
-    public class ProjectController : Controller
+    public class ProjectController(IProjectService projectService, IWebHostEnvironment env) : Controller
     {
-        private readonly IProjectService _projectService;
-        private readonly IMemberService _memberService;
-        private readonly IWebHostEnvironment _env;
-
-        public ProjectController(IProjectService projectService, IMemberService memberService, IWebHostEnvironment env)
-        {
-            _projectService = projectService;
-            _memberService = memberService;
-            _env = env;
-        }
+        private readonly IProjectService _projectService = projectService;
+        private readonly IWebHostEnvironment _env = env;
 
         [Route("projects")]
         public async Task<IActionResult> Index()
@@ -71,13 +63,12 @@ namespace AlphaWebApp.Controllers
             var model = new ProjectViewModel
             {
                 FormData = formData,
-
             };
 
             if (!ModelState.IsValid)
                 return View(model);
 
-            formData.ProjectImagePath = await UploadImageAsync(formData);
+            formData.ProjectImagePath = await UploadImageAsync(formData.ProjectImage);
             await _projectService.CreateProjectAsync(formData, formData.SelectedMemberIds);
             return RedirectToAction("Index");
         }
@@ -88,14 +79,13 @@ namespace AlphaWebApp.Controllers
             var model = new ProjectViewModel
             {
                 UpdateFormData = UpdateFormData,
-
             };
 
             if (!ModelState.IsValid)
                 return View(model);
 
 
-            UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData);
+            UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData.ProjectImage);
             await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, UpdateFormData.SelectedMemberIds);
             return RedirectToAction("Index");
         }
@@ -108,14 +98,12 @@ namespace AlphaWebApp.Controllers
         }
 
 
-        public async Task<string?> UploadImageAsync(ProjectRegForm formData)
+        private async Task<string?> UploadImageAsync(IFormFile? image)
         {
-            return await HandleUploadImageAsync(formData.ProjectImage!);
+            if (image == null) return null;
+            return await HandleUploadImageAsync(image);
         }
-        public async Task<string?> UploadImageAsync(ProjectUpdForm UpdateFormData)
-        {
-            return await HandleUploadImageAsync(UpdateFormData.ProjectImage!);
-        }
+    
         public async Task<string?> HandleUploadImageAsync(IFormFile image)
         {
             try

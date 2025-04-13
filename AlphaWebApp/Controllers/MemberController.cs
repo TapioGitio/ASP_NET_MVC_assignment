@@ -35,16 +35,17 @@ public class MemberController(IMemberService memberService, IWebHostEnvironment 
             return View(model);
 
 
-        UpdateFormData.ProfileImagePath = await UploadImageAsync(UpdateFormData);
+        UpdateFormData.ProfileImagePath = await UploadImageAsync(UpdateFormData.MemberImage);
         await _memberService.UpdateMemberAsync(UpdateFormData.Id, UpdateFormData);
         return RedirectToAction("Index");
     }
 
 
 
-    public async Task<string?> UploadImageAsync(MemberUpdForm UpdateFormData)
+    private async Task<string?> UploadImageAsync(IFormFile? image)
     {
-        return await HandleUploadImageAsync(UpdateFormData.MemberImage!);
+        if (image == null) return null;
+        return await HandleUploadImageAsync(image);
     }
     public async Task<string?> HandleUploadImageAsync(IFormFile image)
     {

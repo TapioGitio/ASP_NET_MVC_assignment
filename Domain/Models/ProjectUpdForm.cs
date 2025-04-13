@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models;
 
@@ -30,13 +31,22 @@ public class ProjectUpdForm
     [DataType(DataType.Date)]
     public DateTime? EndDate { get; set; }
 
-    [Display(Name = "Members")]
-    public List<string> SelectedMemberIds { get; set; } = [];
-
 
     [Display(Name = "Budget")]
     public decimal? Budget { get; set; }
 
     [Display(Name = "Mark if project is completed")]
     public bool IsCompleted { get; set; }
+
+
+    [Display(Name = "Members")]
+    public string? SelectedMemberIdsRaw { get; set; }
+
+    [NotMapped]
+    public List<string> SelectedMemberIds =>
+        SelectedMemberIdsRaw?
+        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+        .Select(x => x.Trim())
+        .ToList() ?? new();
+
 }

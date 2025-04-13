@@ -171,12 +171,12 @@
     }
 
     function updateSelectedIdsInput() {
-        const hiddenInput = selectedInputIds
+        const hiddenInput = document.getElementById(config.selectedInputIds);
+
         if (hiddenInput) {
-            hiddenInput.value = selectedIds.join(",");
+            hiddenInput.value = selectedIds.join(',');
         }
     }
-
     function removeLastTag() {
         const tags = tagContainer.querySelectorAll(`.${config.tagClass}`)
         if (tags.length === 0)

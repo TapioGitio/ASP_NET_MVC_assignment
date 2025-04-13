@@ -13,7 +13,7 @@
         <form asp-controller="Project" asp-action="Edit" enctype="multipart/form-data" method="post" novalidate>
 
             <input asp-for="UpdateFormData.Id" name="UpdateFormData.Id" hidden>
-            <input asp-for="UpdateFormData.SelectedMemberIds" hidden />
+            <input asp-for="UpdateFormData.SelectedMemberIdsRaw" id="UpdateFormData_SelectedMemberIds" hidden />
 
             <div class="image-previewer square">
                 <img class="image-preview" src="">

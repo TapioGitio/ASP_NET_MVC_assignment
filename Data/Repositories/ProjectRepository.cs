@@ -7,6 +7,7 @@ namespace Data.Repositories;
 
 public class ProjectRepository(DataContext context) : BaseRepository<ProjectEntity>(context), IProjectRepository
 {
+
     public async Task<IEnumerable<ProjectEntity>> GetAllIncludeAllAsync()
     {
         var result = await _dbSet

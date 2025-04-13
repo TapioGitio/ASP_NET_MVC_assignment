@@ -15,40 +15,38 @@ public class ProjectService(IProjectRepository projectRepository, UserManager<Me
 
     public async Task<bool> CreateProjectAsync(ProjectRegForm formData, List<string> memberIds)
     {
-
         try
         {
-            if (formData == null)
+            if (formData == null) 
                 return false;
 
             var duplicate = await _projectRepository.GetOneAsync(x => x.ProjectName == formData.ProjectName);
-
-            if (duplicate != null)
+            if (duplicate != null) 
                 return false;
-  
-            var entity = ProjectFactory.Create(formData);
 
-            var members = new List<MemberEntity>();
+            var members = await GetMembersByIdsAsync(memberIds);
 
-            foreach (var memberId in memberIds)
-            {
-                var member = await _userManager.FindByIdAsync(memberId);
-                if (member != null)
-                {
-                    members.Add(member);
-                }
-            }
-            entity.Members = members;
-
-            var result = await _projectRepository.CreateAsync(entity);
-            return result;
+            var entity = ProjectFactory.Create(formData, members);
+            return await _projectRepository.CreateAsync(entity);
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"Could not create the project || {ex.Message}");
             return false;
         }
-
+    }
+    private async Task<List<MemberEntity>> GetMembersByIdsAsync(List<string> memberIds)
+    {
+        var members = new List<MemberEntity>();
+        foreach (var memberId in memberIds)
+        {
+            var member = await _userManager.FindByIdAsync(memberId);
+            if (member != null)
+            {
+                members.Add(member);
+            }
+        }
+        return members;
     }
 
     public async Task<Project> GetOneProjectIncludeAllAsync(int Id)
@@ -128,30 +126,18 @@ public class ProjectService(IProjectRepository projectRepository, UserManager<Me
     {
         try
         {
-            if (formData == null)
-                return false;
+            if (formData == null) return false;
 
             var entity = await _projectRepository.GetOneAsync(x => x.Id == id);
-            if (entity == null)
-                return false;
+            if (entity == null) return false;
 
-            // Update core fields only (not members)
             ProjectFactory.Update(entity, formData);
 
-            var members = new List<MemberEntity>();
+            var members = await GetMembersByIdsAsync(memberIds);
 
-            foreach (var memberId in memberIds)
-            {
-                var member = await _userManager.FindByIdAsync(memberId);
-                if (member != null)
-                {
-                    members.Add(member);
-                }
-            }
+            entity.Members = members;
 
-            updatedEntity.Members = members;
-
-            var result = await _projectRepository.UpdateAsync(x => x.Id == id, updatedEntity);
+            var result = await _projectRepository.UpdateAsync(x => x.Id == id, entity);
 
             return result;
         }
@@ -166,7 +152,7 @@ public class ProjectService(IProjectRepository projectRepository, UserManager<Me
     {
         try
         {
-            var entity = await _projectRepository.GetOneAsync(x => x.Id == id);
+            var entity = await _projectRepository.GetOneIncludeAllAsync(id);
             if (entity == null)
                 return false;
 
