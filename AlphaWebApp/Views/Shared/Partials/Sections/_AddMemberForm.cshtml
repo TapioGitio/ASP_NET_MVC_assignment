@@ -17,12 +17,12 @@
 
 
             <div class="input-group">
-                <label asp-for="UpdateFormData.SelectedMemberIds" class="form-label"></label>
-                <div id="tags" class="form-tag-select form-input">
+                <label asp-for="UpdateFormData.SelectedMemberIdsRaw" class="form-label"></label>
+                <div id="add-member-tags" class="form-tag-select form-input">
                     <i class="bi bi-three-dots"></i>
-                    <input id="tag-search" type="text" class="form-tag-input" placeholder="Add tag(s)..." />
-                    <label for="tag-search"></label>
-                    <div id="tag-search-results" class="search-results"></div>
+                    <input id="add-member-tag-search" type="text" class="form-tag-input" placeholder="Add tag(s)..." />
+                    <label for="add-member-tag-search"></label>
+                    <div id="add-member-tag-search-results" class="search-results"></div>
                 </div>
             </div>
 
@@ -32,19 +32,19 @@
     </div>
 </div>
 <script>
-    const preSelectedTags = []
-
-    initTagSelector({
-        containerId: 'tags',
-        inputId: 'tag-search',
-        selectedInputIds: 'UpdateFormData_SelectedMemberIds',
-        resultsId: 'tag-search-results',
-        searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
-        displayProperty: 'tagName',
-        imageProperty: 'imageUrl',
-        tagClass: 'user-tag',
-        avatarFolder: '',
-        emptyMessage: 'No tags found.',
-        preselected: preSelectedTags
+    document.addEventListener('DOMContentLoaded', () => {
+        initTagSelector({
+            containerId: 'add-member-tags',
+            inputId: 'add-member-tag-search',
+            selectedInputIds: 'UpdateFormData_SelectedMemberIds',
+            resultsId: 'add-member-tag-search-results',
+            searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
+            displayProperty: 'tagName',
+            imageProperty: 'imageUrl',
+            tagClass: 'user-tag',
+            avatarFolder: '',
+            emptyMessage: 'No tags found.',
+            preselected: preSelectedTags
+        });
     });
 </script>

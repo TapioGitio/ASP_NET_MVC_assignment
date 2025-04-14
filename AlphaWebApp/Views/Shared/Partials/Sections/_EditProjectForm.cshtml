@@ -77,12 +77,12 @@
 
 
             <div class="input-group">
-                <label asp-for="UpdateFormData.SelectedMemberIds" class="form-label"></label>
-                <div class="form-tag-select form-input" id="tags">
+                <label asp-for="UpdateFormData.SelectedMemberIdsRaw" class="form-label"></label>
+                <div id="edit-project-tags" class="form-tag-select form-input">
                     <i class="bi bi-three-dots"></i>
-                    <input type="text" id="tag-search" class="form-tag-input" placeholder="Add tag(s)..." />
-                    <label for="tag-search"></label>
-                    <div id="tag-search-results" class="search-results"></div>
+                    <input id="edit-project-tag-search" type="text" class="form-tag-input" placeholder="Add tag(s)..." />
+                    <label for="edit-project-tag-search"></label>
+                    <div id="edit-project-tag-search-results" class="search-results"></div>
                 </div>
             </div>
 
@@ -102,6 +102,22 @@
         </form>
     </div>
 </div>
-
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initTagSelector({
+            containerId: 'edit-project-tags',
+            inputId: 'edit-project-tag-search',
+            selectedInputIds: 'UpdateFormData_SelectedMemberIds',
+            resultsId: 'edit-project-tag-search-results',
+            searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
+            displayProperty: 'tagName',
+            imageProperty: 'imageUrl',
+            tagClass: 'user-tag',
+            avatarFolder: '',
+            emptyMessage: 'No tags found.',
+            preselected: preSelectedTags
+        });
+    });
+</script>
 @await Html.PartialAsync("_WysiwygEditScripts")
 @await Html.PartialAsync("_ValidationScripts")

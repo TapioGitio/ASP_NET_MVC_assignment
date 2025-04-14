@@ -74,12 +74,12 @@
             </div>
 
             <div class="input-group">
-                <label asp-for="FormData.SelectedMemberIds" class="form-label"></label>
-                <div class="form-tag-select form-input" id="tags">
+                <label asp-for="FormData.SelectedMemberIdsRaw" class="form-label"></label>
+                <div id="add-project-tags" class="form-tag-select form-input">
                     <i class="bi bi-three-dots"></i>
-                    <input id="tag-search" type="text" class="form-tag-input" placeholder="Add tag(s)..." />
-                    <label for="tag-search"></label>
-                    <div id="tag-search-results" class="search-results"></div>
+                    <input id="add-project-tag-search" type="text" class="form-tag-input" placeholder="Add tag(s)..." />
+                    <label for="add-project-tag-search"></label>
+                    <div id="add-project-tag-search-results" class="search-results"></div>
                 </div>
             </div>
 
@@ -99,10 +99,10 @@
     const preSelectedTags = []
 
     initTagSelector({
-        containerId: 'tags',
-        inputId: 'tag-search',
+        containerId: 'add-project-tags',
+        inputId: 'add-project-tag-search',
         selectedInputIds: 'FormData_SelectedMemberIds',
-        resultsId: 'tag-search-results',
+        resultsId: 'add-project-tag-search-results',
         searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
         displayProperty: 'tagName',
         imageProperty: 'imageUrl',
