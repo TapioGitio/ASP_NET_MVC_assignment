@@ -21,9 +21,7 @@ namespace AlphaWebApp.Controllers
                 TotalProjects = (await _projectService.GetAllProjects()).Count(),
                 OngoingProjects = (await _projectService.GetOngoingProjects()).Count(),
                 CompletedProjects = (await _projectService.GetCompletedProjects()).Count(),
-
             };
-
             return View(model);
         }
 
@@ -36,9 +34,7 @@ namespace AlphaWebApp.Controllers
                 TotalProjects = (await _projectService.GetAllProjects()).Count(),
                 OngoingProjects = (await _projectService.GetOngoingProjects()).Count(),
                 CompletedProjects = (await _projectService.GetCompletedProjects()).Count(),
-
             };
-
             return View("Index", model);
         }
 
@@ -51,9 +47,7 @@ namespace AlphaWebApp.Controllers
                 TotalProjects = (await _projectService.GetAllProjects()).Count(),
                 OngoingProjects = (await _projectService.GetOngoingProjects()).Count(),
                 CompletedProjects = (await _projectService.GetCompletedProjects()).Count(),
-
             };
-
             return View("Index", model);
         }
 

@@ -24,5 +24,7 @@ namespace Data.Entities
 
         public AddressEntity? Address { get; set; }
         public ICollection<NotificationDismissedEntity> DismissedNotification { get; set; } = [];
+
+        public ICollection<ProjectEntity> Projects { get; set; } = [];
     }
 }

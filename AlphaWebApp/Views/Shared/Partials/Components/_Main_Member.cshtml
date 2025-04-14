@@ -26,9 +26,14 @@
             </ul>
         </div>
     </div>
-
+  
     <div class="main-member-image">
-        <img src="@(Model?.ProfileImagePath ?? Url.Content("~/images/avatar-brown.svg"))" alt="Alternate Text" />
+        @if (!string.IsNullOrWhiteSpace(Model?.ProfileImagePath))
+        {
+            <img src="@Model.ProfileImagePath" alt="Profile Image" />
+        } else {
+            <img src="~/images/avatar-green.svg" alt="Default Profile-Image" />
+        }
     </div>
 
     <div class="main-member-title">
@@ -38,7 +43,7 @@
 
     <div class="main-member-body">
         <p>@(Model?.Email ?? "No Email")</p>
-        <p>@(Model?.PhoneNumber ?? "No Phone-number")</p>
+        <p>@(Model?.PhoneNumber ?? "")</p>
     </div>
 
 

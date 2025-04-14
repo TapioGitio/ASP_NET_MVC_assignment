@@ -90,7 +90,7 @@ public class ProjectService(IProjectRepository projectRepository, UserManager<Me
     {
         try
         {
-            var entities = await _projectRepository.GetAllAsync(p => p.IsCompleted == true);
+            var entities = await _projectRepository.GetAllIncludeAllAsync(p => p.IsCompleted == true);
             if (entities == null)
                 return [];
 
@@ -108,7 +108,7 @@ public class ProjectService(IProjectRepository projectRepository, UserManager<Me
     {
         try
         {
-            var entities = await _projectRepository.GetAllAsync(p => p.IsCompleted == false);
+            var entities = await _projectRepository.GetAllIncludeAllAsync(p => p.IsCompleted == false);
             if (entities == null)
                 return [];
 

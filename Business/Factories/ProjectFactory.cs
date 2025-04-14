@@ -36,6 +36,13 @@ public static class ProjectFactory
             EndDate = entity.EndDate,
             Budget = entity.Budget,
             IsCompleted = entity.IsCompleted,
+            Members = entity.Members.Select(m => new Member
+            {
+                Id = m.Id,
+                FirstName = m.FirstName,
+                LastName = m.LastName,
+                ProfileImagePath = m.ProfileImagePath
+            }).ToList()
 
         };
     }

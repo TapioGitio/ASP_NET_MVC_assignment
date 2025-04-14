@@ -10,7 +10,6 @@ public class MemberUpdForm
     public string? ProfileImagePath { get; set; }
 
     [Display(Name = "Job Title", Prompt = "Job title")]
-    [Required(ErrorMessage = "Required")]
     public string? JobTitle { get; set; }
 
     [Display(Name = "First Name", Prompt = "First name")]
