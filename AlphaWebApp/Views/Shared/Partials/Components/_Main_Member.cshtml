@@ -30,7 +30,7 @@
     <div class="main-member-image">
         @if (!string.IsNullOrWhiteSpace(Model?.ProfileImagePath))
         {
-            <img src="@Model.ProfileImagePath" alt="Profile Image" />
+            <img src="~/@Model.ProfileImagePath" alt="Profile Image" />
         } else {
             <img src="~/images/avatar-green.svg" alt="Default Profile-Image" />
         }

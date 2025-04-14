@@ -56,7 +56,14 @@
         <div class="main-footer-image flex">
 			@foreach (var member in Model!.Members)
 			{
-                <img src="@(member.ProfileImagePath ?? Url.Content("~/images/avatar-green.svg"))" alt="Profile image of member">
+                @if (!string.IsNullOrWhiteSpace(member.ProfileImagePath))
+                {
+                    <img src="~/@member.ProfileImagePath" alt="Profile Image" />
+                }
+                else
+                {
+                    <img src="~/images/avatar-green.svg" alt="Default Profile-Image" />
+                }
 			}
             
         </div>
