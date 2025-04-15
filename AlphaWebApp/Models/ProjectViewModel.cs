@@ -10,7 +10,7 @@ public class ProjectViewModel
     public int CompletedProjects { get; set; }
     public List<string> SelectedMemberIds { get; set; } = []; 
     public ProjectRegForm FormData { get; set; } = new();
-    public ProjectUpdForm UpdateFormData { get; set; } = new();   
+    public ProjectUpdForm UpdateFormData { get; set; } = new();
 
 }
 

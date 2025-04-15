@@ -128,17 +128,15 @@ public class ProjectService(IProjectRepository projectRepository, UserManager<Me
         {
             if (formData == null) return false;
 
-            var entity = await _projectRepository.GetOneAsync(x => x.Id == id);
+            var entity = await _projectRepository.GetOneIncludeAllAsync(id);
             if (entity == null) return false;
 
-            ProjectFactory.Update(entity, formData);
 
-            var members = await GetMembersByIdsAsync(memberIds);
+            var newMembers = await GetMembersByIdsAsync(memberIds);
 
-            entity.Members = members;
+            ProjectFactory.Update(entity, formData, newMembers);
 
             var result = await _projectRepository.UpdateAsync(x => x.Id == id, entity);
-
             return result;
         }
         catch (Exception ex)

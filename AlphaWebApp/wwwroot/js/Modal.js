@@ -18,6 +18,7 @@
             if (hiddenField) {
                 hiddenField.value = Id;
             }
+
         })
     })
 
@@ -107,3 +108,4 @@ async function loadImage(file) {
         reader.readAsDataURL(file)
     })
 }
+

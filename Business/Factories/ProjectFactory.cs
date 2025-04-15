@@ -47,7 +47,7 @@ public static class ProjectFactory
         };
     }
 
-    public static ProjectEntity Update(ProjectEntity entity, ProjectUpdForm updForm)
+    public static ProjectEntity Update(ProjectEntity entity, ProjectUpdForm updForm, List<MemberEntity> members)
     {
 
         entity.ProjectImagePath = string.IsNullOrEmpty(updForm.ProjectImagePath) ? entity.ProjectImagePath : updForm.ProjectImagePath;
@@ -59,6 +59,22 @@ public static class ProjectFactory
         entity.Budget = updForm.Budget ?? entity.Budget;
         entity.IsCompleted = updForm.IsCompleted;
 
+        if (members != null)
+        {
+            var newMemberIds = members.Select(m => m.Id).ToHashSet();
+
+            entity.Members = entity.Members
+                .Where(m => newMemberIds.Contains(m.Id))
+                .ToList();
+
+            var existingMemberIds = entity.Members.Select(m => m.Id).ToHashSet();
+            var membersToAdd = members.Where(m => !existingMemberIds.Contains(m.Id)).ToList();
+
+            foreach (var member in membersToAdd)
+            {
+                entity.Members.Add(member);
+            }
+        }
         return entity;
     }
 }

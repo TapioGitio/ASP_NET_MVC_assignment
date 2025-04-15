@@ -28,7 +28,7 @@ public class NotificationService(DataContext context) : INotificationService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<NotificationEntity>> GetNotificationsAsync(string userId, int take = 10)
+    public async Task<IEnumerable<NotificationEntity>> GetNotificationsAsync(string userId, int take = 5)
     {
         var dismissedIds = await _context.NotificationDismissed
             .Where(x => x.UserId == userId)
