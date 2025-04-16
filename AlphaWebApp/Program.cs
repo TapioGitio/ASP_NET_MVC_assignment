@@ -12,7 +12,11 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR(); 
-
+builder.Services.Configure<CookiePolicyOptions>(x =>
+{
+    x.CheckConsentNeeded = context => !context.Request.Cookies.ContainsKey("cookieConsent");
+    x.MinimumSameSitePolicy = SameSiteMode.Lax;
+});
 
 builder.Services.AddDbContext<DataContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("AlphaConnection")));
@@ -68,6 +72,8 @@ var app = builder.Build();
 app.UseHsts();
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCookiePolicy();
+
 app.UseAuthentication();
 app.UseAuthorization();
 using (var createAdminAtStartup = app.Services.CreateScope())

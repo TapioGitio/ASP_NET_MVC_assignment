@@ -806,6 +806,9 @@ span.btn-remove:hover {
 /* MAIN LAYOUT */
 
 /* modal section */
+#cookieModal .modal-content {
+    width: 550px;
+}
 #addProjectModal .modal-content {
     width: 550px;
 }
