@@ -32,6 +32,7 @@
     --Blue: #2D99FF;
     --darkBlue: #2682D9;
     --darkerBlue: #2D7DCC;
+    --darkestBlue :#0075e2; 
     --lightBlue: #DBE9F8;
     --success: #22C55E;
     --orange: #FF9640;
@@ -74,6 +75,7 @@
     --surface: var(--white);
     --accent: var(--Blue);
     --accent-dark: var(--darkBlue);
+    --accent-darkest: var(--darkestBlue);
     --accent-dimmed: var(--lightBlue);
     --background-color: var(--softBlue);
     --btn-border: var(--white);
@@ -441,15 +443,18 @@ textarea {
     background-color: var(--white);
     transition: 0.4s;
 }
+    /* Background color when checked */
 .toggle-switch input:checked + .slider {
     background-color: var(--border300);
 }
+
 .toggle-switch input:focus + .slider {
-    box-shadow: 0 0 1px var(--heading-color);
+    box-shadow: 0 0 1px var(--gray200);
 }
+    /* Dot color when checked */
 .toggle-switch input:checked + .slider::before {
     transform: translateX(13px);
-    background-color: var(--heading-color);
+    background-color: var(--accent-darkest);
 }
 .toggle-switch .slider.round {
     border-radius: 35px;
@@ -668,6 +673,27 @@ span.btn-remove:hover {
     justify-content: center;
     gap: .5rem;
     margin-top: 4rem;
+}
+
+#cookieConsentForm .modal-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.cookie-options {
+
+}
+.cookie-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    label {
+              color: var(--accent-dark);
+          }
+    p {
+        margin-bottom: .5rem;
+    }
 }
 
 /* Image Container */

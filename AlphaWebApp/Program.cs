@@ -55,6 +55,7 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.Cookie.HttpOnly = true; 
     x.Cookie.SameSite = SameSiteMode.None;
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    x.Cookie.IsEssential = true;
 });
 builder.Services.AddAuthentication(x =>
 {
