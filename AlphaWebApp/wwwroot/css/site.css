@@ -398,6 +398,7 @@ textarea {
     border: none;
     background: var(--transparent);
     font-size: 2em;
+    margin-left: auto;
     &:hover
 {
     color: var(--accent-dark);
@@ -1004,7 +1005,6 @@ span.btn-remove:hover {
 .dropdown-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: .9rem;
     border-radius: .5rem;
     font-size: .9rem;
