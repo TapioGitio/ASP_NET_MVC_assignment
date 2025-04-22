@@ -3,13 +3,20 @@ using Domain.Models;
 using Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using AlphaWebApp.Hubs;
+using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 
 namespace AlphaWebApp.Controllers
 {
     [Authorize]
-    public class ProjectController(IProjectService projectService, IWebHostEnvironment env) : Controller
+    public class ProjectController(IProjectService projectService, IWebHostEnvironment env, INotificationService notificationService, IHubContext<NotificationHub> notificationHub, UserManager<MemberEntity> userManager) : Controller
     {
         private readonly IProjectService _projectService = projectService;
+        private readonly INotificationService _notificationService = notificationService;
+        private readonly UserManager<MemberEntity> _userManager = userManager;
+        private readonly IHubContext<NotificationHub> _notificationHub = notificationHub;
         private readonly IWebHostEnvironment _env = env;
 
         [Route("projects")]
@@ -63,8 +70,41 @@ namespace AlphaWebApp.Controllers
                 return View(model);
 
             formData.ProjectImagePath = await UploadImageAsync(formData.ProjectImage);
-            await _projectService.CreateProjectAsync(formData, formData.SelectedMemberIds);
-            return RedirectToAction("Index");
+            var result = await _projectService.CreateProjectAsync(formData, formData.SelectedMemberIds);
+            if (result)
+            {
+
+                /* Send notification */
+                var project = (await _projectService.GetAllProjects())
+                    .FirstOrDefault(x => x.ProjectName == formData.ProjectName);
+
+                if (project != null)
+                {
+                    var user = await _userManager.GetUserAsync(User);
+                    if (user != null)
+                    {
+                        var notify = new NotificationEntity
+                        {
+                            Image = project.ProjectImagePath!,
+                            Message = $"{project.ProjectName} added",
+                            NotificationTypeId = 2,
+                        };
+
+                        await _notificationService.AddNotificationAsync(notify);
+                        var notifications = await _notificationService.GetNotificationsAsync(user.Id);
+                        var newNotification = notifications.OrderByDescending(x => x.Created).FirstOrDefault();
+
+                        if (newNotification != null)
+                        {
+                            await _notificationHub.Clients.All.SendAsync("RecieveNotification", newNotification);
+                        }
+                    }
+
+                    return RedirectToAction("Index");
+                }
+
+            }
+                return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -97,7 +137,7 @@ namespace AlphaWebApp.Controllers
             if (image == null) return null;
             return await HandleUploadImageAsync(image);
         }
-    
+
         public async Task<string?> HandleUploadImageAsync(IFormFile image)
         {
             try

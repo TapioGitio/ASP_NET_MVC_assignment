@@ -21,7 +21,9 @@
         @foreach (var notification in notifications)
         {
             <li class="dropdown-item" data-id="@notification.Id">
-                <img class="dropdown-item-image" src="@notification.Image">
+                <div class="dropdown-item-image">
+                    <img src="@notification.Image" alt="Notification-Image">
+                </div>
                 <div class="dropdown-item-text">
                     <p class="dropdown-item-header">@notification.Message</p>
                     <p class="dropdown-item-footer" data-created="@notification.Created.ToString("s")">@notification.Created</p>

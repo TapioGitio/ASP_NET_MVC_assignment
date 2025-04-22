@@ -10,7 +10,9 @@ connection.on("RecieveNotification", function (notification) {
     item.setAttribute('data-id', notification.id)
     item.innerHTML =
         `
-            <img class="dropdown-item-image" src="${notification.image}">
+            <div class="dropdown-item-image"
+                <img src="${notification.image}">
+            </div>
             <div class="dropdown-item-text">
                 <p class="dropdown-item-header">${notification.message}</p>
                 <p class="dropdown-item-footer" data-created="${new Date(notification.created).toISOString()}">${notification.created}</p>

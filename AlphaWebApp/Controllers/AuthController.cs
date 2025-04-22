@@ -35,7 +35,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
             if (result)
             {
 
-                /* Send notification */
+                /* Send notification 
                 var user = await _userManager.FindByEmailAsync(form.Email);
                 if (user != null)
                 {
@@ -55,6 +55,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
                         await _notificationHub.Clients.All.SendAsync("RecieveNotification", newNotification);
                     }
                 }
+                */
 
                 return RedirectToAction("Index", "Admin");
             }
@@ -95,7 +96,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
         var loginResult = await _signInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, isPersistent: false, bypassTwoFactor: true);
         if (loginResult.Succeeded)
         {
-            /* Send notification */
+            /* Send notification
             var user = await _userManager.FindByLoginAsync(loginInfo.LoginProvider, loginInfo.ProviderKey);
             if (user != null)
             {
@@ -115,6 +116,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
                     await _notificationHub.Clients.All.SendAsync("RecieveNotification", newNotification);
                 }
             }
+            */
             return RedirectToAction("Index", "Admin");
         }
 
