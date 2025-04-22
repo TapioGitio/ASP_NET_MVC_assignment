@@ -415,6 +415,7 @@ textarea {
 .btn-toggle-switch {
     display: flex;
     align-items: center;
+    margin-left: auto;
     gap: 10px;
 }
 .btn-toggle-switch .label {
