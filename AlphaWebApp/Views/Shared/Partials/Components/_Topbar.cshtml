@@ -1,4 +1,7 @@
-﻿
+﻿@{
+	var loggedinUser = await memberService.GetOneMemberAsync(User);
+	var imgPath = loggedinUser.ProfileImagePath ?? "~/images/avatar-orange.svg";
+}
 <form class="search-form" asp-controller="" asp-action="" method="get" novalidate>
     <i class="bi bi-search"></i>
     <input class="searchbar" type="search" placeholder="Search anything...">
@@ -7,5 +10,9 @@
 <partial name="Partials/Notification/_NotificationDropdownPartial" />
 <partial name="Partials/Profile/_ProfileDropdownPartial" />
 
-<img class="topbar-avatar" src="~/images/avatar-orange.svg" alt="">
+<div class="divider-verticle"></div>
+<div class="dropdown-item-image">
+    <img class="topbar-avatar" src="@imgPath" alt="Profile-Image">
+</div>
+
 

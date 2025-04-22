@@ -244,6 +244,11 @@ li {
 .divider {
     border-top: 1px solid var(--border200);
 }
+.divider-verticle:after {
+    content: "";
+    border-right: 1px solid var(--border200);
+
+}
 .denied {
     display: flex;
     align-items: center;
@@ -372,6 +377,7 @@ textarea {
     border: none;
     cursor: pointer;
     transition: var(--transition-time);
+    margin-right: .5rem;
 
     &:hover
 {
@@ -895,7 +901,7 @@ span.btn-remove:hover {
     border-bottom: 1px solid var(--border200);
     padding: 1rem 2rem;
     display: grid;
-    grid-template-columns: 1fr auto auto auto;
+    grid-template-columns: 1fr auto auto auto auto;
     align-items: center;
     gap: 1rem;
 }
@@ -1023,7 +1029,7 @@ span.btn-remove:hover {
 }
 
 .topbar-avatar {
-    margin-left: 2rem;
+    margin-left: .5rem;
 }
 
 /* MAIN CONTENT */
