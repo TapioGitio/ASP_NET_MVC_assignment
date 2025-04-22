@@ -49,15 +49,6 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
         }
     }
 
-    public async Task<string> GetMemberNameAsync(string? memberName)
-    {
-        if (memberName == null)
-            return "";
-
-        var member = await _userManager.FindByNameAsync(memberName);
-        return member == null ? "" : $"{member.FirstName} {member.LastName}";
-    }
-    
     public async Task<IEnumerable<Member>> GetMembersAsync()
     {
         try

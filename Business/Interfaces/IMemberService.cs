@@ -7,7 +7,6 @@ namespace Business.Interfaces
     {
         Task<Member> GetOneMemberAsync(ClaimsPrincipal user);
         Task<Member> GetOneMemberByIdAsync(string id);
-        Task<string> GetMemberNameAsync(string? memberName);
         Task<IEnumerable<Member>> GetMembersAsync();
         Task<IEnumerable<Member>> GetMembersAsync(string term);
         Task<bool> UpdateMemberAsync(string id, MemberUpdForm formData);
