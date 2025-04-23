@@ -86,6 +86,7 @@
         modal.querySelector('[name="UpdateFormData.Budget"]').value = data.updateFormData.budget || '';
         modal.querySelector('[name="UpdateFormData.IsCompleted"]').checked = data.updateFormData.isCompleted || false;
 
+
         // Update the image preview
         const imagePreview = modal.querySelector('.image-preview');
         const imagePreviewer = modal.querySelector('.image-previewer')
