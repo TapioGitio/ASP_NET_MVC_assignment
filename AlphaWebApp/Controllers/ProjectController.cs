@@ -14,8 +14,8 @@ namespace AlphaWebApp.Controllers
     public class ProjectController(IProjectService projectService, IWebHostEnvironment env, INotificationService notificationService, IHubContext<NotificationHub> notificationHub, UserManager<MemberEntity> userManager) : Controller
     {
         private readonly IProjectService _projectService = projectService;
-        private readonly INotificationService _notificationService = notificationService;
         private readonly UserManager<MemberEntity> _userManager = userManager;
+        private readonly INotificationService _notificationService = notificationService;
         private readonly IHubContext<NotificationHub> _notificationHub = notificationHub;
         private readonly IWebHostEnvironment _env = env;
 
@@ -107,7 +107,30 @@ namespace AlphaWebApp.Controllers
                 return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var project = await _projectService.GetOneProjectIncludeAllAsync(id);
+            if (project == null)
+                return NotFound();
+
+            var model = new ProjectUpdForm
+            {
+                Id = project.Id,
+                ProjectName = project.ProjectName,
+                ClientName = project.ClientName,
+                ProjectDescription = project.ProjectDescription,
+                ProjectImagePath = project.ProjectImagePath,
+                StartDate = project.StartDate,
+                EndDate = project.EndDate,
+                Budget = project.Budget,
+                IsCompleted = project.IsCompleted
+            };
+
+            return Json(new { updateFormData = model }); ;
+        }
+
+            [HttpPost]
         public async Task<IActionResult> Edit(ProjectUpdForm UpdateFormData)
         {
             var model = new ProjectViewModel
