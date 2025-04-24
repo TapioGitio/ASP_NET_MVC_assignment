@@ -147,23 +147,11 @@ function updateTimeLeft() {
 }
 // Handle darkmode
 const darkmodeSwitch = document.querySelector('#darkmode-switch');
-const hasDarkmode = localStorage.getItem('darkmode');
-
-// Check initial state
-if (hasDarkmode == null) {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        enableDarkMode();
-    } else {
-        disableDarkMode();
-    }
-} else if (hasDarkmode === 'on') {
-    enableDarkMode();
-} else if (hasDarkmode === 'off') {
-    disableDarkMode();
-}
 
 // Add event listener if the switch exists
 if (darkmodeSwitch) {
+    darkmodeSwitch.checked = localStorage.getItem('darkmode') === 'on';
+
     darkmodeSwitch.addEventListener('change', () => {
         if (darkmodeSwitch.checked) {
             enableDarkMode();
