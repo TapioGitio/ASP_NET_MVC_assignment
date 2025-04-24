@@ -1,37 +1,40 @@
 ﻿// Handle darkmode
-const darkmodeSwitch = document.querySelector('#darkmode-switch')
-const hasDarkmode = localStorage.getItem('darkmode')
+const darkmodeSwitch = document.querySelector('#darkmode-switch');
+const hasDarkmode = localStorage.getItem('darkmode');
 
+// Check initial state
 if (hasDarkmode == null) {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        enableDarkMode()
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        enableDarkMode();
     } else {
-        disableDarkMode()
+        disableDarkMode();
     }
 } else if (hasDarkmode === 'on') {
-    enableDarkMode()
+    enableDarkMode();
 } else if (hasDarkmode === 'off') {
-    disableDarkMode()
+    disableDarkMode();
 }
 
+// Add event listener if the switch exists
+if (darkmodeSwitch) {
+    darkmodeSwitch.addEventListener('change', () => {
+        if (darkmodeSwitch.checked) {
+            enableDarkMode();
+            localStorage.setItem('darkmode', 'on');
+        } else {
+            disableDarkMode();
+            localStorage.setItem('darkmode', 'off');
+        }
+    });
+}
 
-darkmodeSwitch.addEventListener('change', () => {
-    if (darkmodeSwitch.checked) {
-        enableDarkMode()
-        localStorage.setItem('darkmode', 'on')
-    } else {
-        disableDarkMode()
-        localStorage.setItem('darkmode', 'off')
-    }
-})
-
-// Darkmode
+// Darkmode functions
 function enableDarkMode() {
-    darkmodeSwitch.checked = true
-    document.documentElement.classList.add('dark')
+    if (darkmodeSwitch) darkmodeSwitch.checked = true;
+    document.documentElement.classList.add('dark');
 }
-function disableDarkMode() {
-    darkmodeSwitch.checked = false
-    document.documentElement.classList.remove('dark')
 
+function disableDarkMode() {
+    if (darkmodeSwitch) darkmodeSwitch.checked = false;
+    document.documentElement.classList.remove('dark');
 }

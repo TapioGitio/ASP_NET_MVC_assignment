@@ -1,6 +1,6 @@
 ﻿@{
     var loggedinUser = await memberService.GetOneMemberAsync(User);
-    string imgPath = loggedinUser.ProfileImagePath ?? "~/images/avatar-orange.svg";
+    string imgPath = loggedinUser.ProfileImagePath ?? "images/avatar-orange.svg";
     string loginName = $"{loggedinUser.FirstName} {loggedinUser.LastName}" ?? "Guest";
 }
 <div class="dropdown">
@@ -11,7 +11,7 @@
 
         <li class="dropdown-header dropdown-item settings">
             <div class="dropdown-item-image">
-                <img src="@imgPath" alt="Profile-Image">
+                <img src="~/@imgPath" alt="Profile-Image">
             </div>
             <p class="dropdown-item-header">@loginName</p>
         </li>

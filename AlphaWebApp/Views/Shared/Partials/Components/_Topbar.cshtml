@@ -1,6 +1,6 @@
 ﻿@{
 	var loggedinUser = await memberService.GetOneMemberAsync(User);
-	var imgPath = loggedinUser.ProfileImagePath ?? "~/images/avatar-orange.svg";
+	var imgPath = loggedinUser.ProfileImagePath ?? "images/avatar-orange.svg";
 }
 <form class="search-form" asp-controller="" asp-action="" method="get" novalidate>
     <i class="bi bi-search"></i>
@@ -12,7 +12,7 @@
 
 <div class="divider-verticle"></div>
 <div class="dropdown-item-image">
-    <img class="topbar-avatar" src="@imgPath" alt="Profile-Image">
+    <img class="topbar-avatar" src="~/@imgPath" alt="Profile-Image">
 </div>
 
 
