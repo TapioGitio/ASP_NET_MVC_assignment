@@ -7,6 +7,8 @@
 		@(string.IsNullOrEmpty(ViewData["Title"] as string) ? "Alpha Inc.": ViewData["Title"] + " - Alpha Inc.")
 	</title>
     <script>
+        // Got help to figure out that a script is needed here in order to negate the flickering when changing pages.
+		// This script checks if the user has a preference for dark mode and applies it to the document.
         if (localStorage.getItem('darkmode') === 'on' ||
             (!localStorage.getItem('darkmode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');

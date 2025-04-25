@@ -39,6 +39,10 @@ public class ProjectUpdForm
     public bool IsCompleted { get; set; }
 
 
+    // Got help with this from ChatGPT to get several values from one field
+    // it makes a long string and cuts it with comma to seperate the different ids,
+    // and then trims it to remove any spaces and adds it to a list.
+    // Don't know if this is the best way to do it, but it works.
     [Display(Name = "Members")]
     public string? SelectedMemberIdsRaw { get; set; }
 

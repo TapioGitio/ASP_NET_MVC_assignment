@@ -71,6 +71,9 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
     {
         try
         {
+            // Here we are searching for members by first name, last name or full name
+            // and we are using ToLower() to make the search case insensitive
+            // got help from ai to make this work as expected
             var entities = await _userManager.Users
                 .Where(u =>
                     u.FirstName!.ToLower().Contains(term.ToLower()) ||

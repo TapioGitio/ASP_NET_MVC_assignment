@@ -43,7 +43,9 @@ public static class ProjectFactory
                 LastName = m.LastName,
                 ProfileImagePath = m.ProfileImagePath
             }).ToList()
-
+            //Got help from ChatGPT to add this part
+            // to convert members from MemberEntity to Member
+            // and to add ProfileImagePath.
         };
     }
 
@@ -59,6 +61,11 @@ public static class ProjectFactory
         entity.Budget = updForm.Budget ?? entity.Budget;
         entity.IsCompleted = updForm.IsCompleted;
 
+
+        // And here to be able to update members
+        // Its supposed to check if theres exisiting members
+        // and if not, add them to the list
+        // It doesnt work yet, but I will try to fix it.
         if (members != null)
         {
             var newMemberIds = members.Select(m => m.Id).ToHashSet();

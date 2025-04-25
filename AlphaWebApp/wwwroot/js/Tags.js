@@ -124,6 +124,8 @@
 
     function addTag(item) {
         //parse int or string for ID
+        // had to convert to string because of the way the data is being passed
+        // since IdentityUser has the id as a string in the database.
         const id = String(item.id)
         if (selectedIds.includes(id))
             return;
@@ -173,6 +175,8 @@
     function updateSelectedIdsInput() {
         const hiddenInput = document.getElementById(config.selectedInputIds);
 
+        // since the ids are being passed as strings
+        // they are joined with a comma to separate them.
         if (hiddenInput) {
             hiddenInput.value = selectedIds.join(',');
         }

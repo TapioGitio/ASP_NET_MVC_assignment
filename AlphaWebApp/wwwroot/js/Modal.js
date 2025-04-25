@@ -77,6 +77,8 @@
     }
 
     // Populate the form with project data
+    // got help with this to populate the form
+    // it fetches each value from the data object and assigns it to the corresponding input field.
     function populateEditForm(modal, data) {
         modal.querySelector('[name="UpdateFormData.ProjectName"]').value = data.updateFormData.projectName || '';
         modal.querySelector('[name="UpdateFormData.ClientName"]').value = data.updateFormData.clientName || '';

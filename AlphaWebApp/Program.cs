@@ -33,10 +33,6 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
 
 
-
-
-
-
 builder.Services.AddIdentity<MemberEntity, IdentityRole>(x =>
     {
         x.Password.RequiredLength = 8;

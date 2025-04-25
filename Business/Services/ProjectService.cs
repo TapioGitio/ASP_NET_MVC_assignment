@@ -37,6 +37,9 @@ public class ProjectService(IProjectRepository projectRepository, UserManager<Me
     }
     private async Task<List<MemberEntity>> GetMembersByIdsAsync(List<string> memberIds)
     {
+        // got help with this one, had trouble with the syntax
+        // this is the method that gets the members by their ids
+        // from the forms input and adds them to a list.
         var members = new List<MemberEntity>();
         foreach (var memberId in memberIds)
         {
