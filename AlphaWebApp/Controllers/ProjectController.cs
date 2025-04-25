@@ -130,7 +130,7 @@ namespace AlphaWebApp.Controllers
             return Json(new { updateFormData = model }); ;
         }
 
-            [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Edit(ProjectUpdForm UpdateFormData)
         {
             var model = new ProjectViewModel
