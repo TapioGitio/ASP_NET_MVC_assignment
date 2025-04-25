@@ -141,11 +141,11 @@ namespace AlphaWebApp.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-
             UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData.ProjectImage);
             await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, UpdateFormData.SelectedMemberIds);
             return RedirectToAction("Index");
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Remove(ProjectUpdForm UpdateFormData)

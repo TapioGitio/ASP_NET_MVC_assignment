@@ -158,7 +158,7 @@
         removeBtn.addEventListener('click', (e) => {
             selectedIds = selectedIds.filter(i => i !== id)
             tag.remove()
-            updateSelectedIdsInput();
+            updateSelectedIdsInput()
             e.stopPropagation()
         })
 
@@ -173,12 +173,10 @@
     }
 
     function updateSelectedIdsInput() {
-        const hiddenInput = document.getElementById(config.selectedInputIds);
-
         // since the ids are being passed as strings
         // they are joined with a comma to separate them.
-        if (hiddenInput) {
-            hiddenInput.value = selectedIds.join(',');
+        if (selectedInputIds) {
+            selectedInputIds.value = selectedIds.join(',');
         }
     }
     function removeLastTag() {

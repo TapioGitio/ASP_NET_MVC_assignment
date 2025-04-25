@@ -38,10 +38,11 @@
     --orange: #FF9640;
     --blue: #2CD9D9;
     --yellow: #ffff59;
+    --yellow-dark: #f8f805;
     --yellow-dimmed: #ffff85;
     --green: #31D482;
     --darkGreen: #24B26B;
-    --Red: #FF6640;
+    --Red: #df370d;
     --Red-slightlyDarker: #e6532e;
     --darkRed: #E94D3F;
     --black: #1A1926;
@@ -49,16 +50,16 @@
     --lightGrey: #637085;
     --darkGrey: #28263B;
     --darkestGrey: #202123;
-    --red-dimmed: #FFE2DB;
+    --red-dimmed: #f03f1231;
     --gray-dimmed: #F0F1F5;
     --darkblue-dimmed: #06488546;
     --grayWithTransparency: #2e2d2d8a;
     --transparent: #ffffff00;
     /*MISC*/
     --time-bg-gray: var(--gray-dimmed);
-    --time-text-gray: var(--heading-color);
+    --time-text-gray: var(--blackerThanBlack);
     --time-bg-yellow: var(--yellow-dimmed);
-    --time-text-yellow: var(--heading-color);
+    --time-text-yellow: var(--blackerThanBlack);
     --time-bg-red: var(--red-dimmed);
     --time-text-red: var(--Red);
     --container-padding: 1rem;

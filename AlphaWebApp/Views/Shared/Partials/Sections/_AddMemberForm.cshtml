@@ -13,7 +13,7 @@
         <form asp-controller="Project" asp-action="Edit" enctype="multipart/form-data" method="post" novalidate>
 
             <input asp-for="UpdateFormData.Id" hidden />
-            <input asp-for="UpdateFormData.SelectedMemberIdsRaw" id="UpdateFormData_SelectedMemberIds" hidden />
+            <input asp-for="UpdateFormData.SelectedMemberIdsRaw" id="Member_SelectedMemberIds" hidden />
 
 
             <div class="input-group">
@@ -36,7 +36,7 @@
         initTagSelector({
             containerId: 'add-member-tags',
             inputId: 'add-member-tag-search',
-            selectedInputIds: 'UpdateFormData_SelectedMemberIds',
+            selectedInputIds: 'Member_SelectedMemberIds',
             resultsId: 'add-member-tag-search-results',
             searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
             displayProperty: 'tagName',
