@@ -124,7 +124,7 @@ namespace AlphaWebApp.Controllers
                 StartDate = project.StartDate,
                 EndDate = project.EndDate,
                 Budget = project.Budget,
-                IsCompleted = project.IsCompleted
+                IsCompleted = project.IsCompleted,
             };
 
             return Json(new { updateFormData = model }); ;
@@ -138,12 +138,29 @@ namespace AlphaWebApp.Controllers
                 UpdateFormData = UpdateFormData,
             };
 
-            if (!ModelState.IsValid)
-                return View(model);
+            if (ModelState.IsValid)
+            {
+                var project = await _projectService.GetOneProjectIncludeAllAsync(UpdateFormData.Id);
+                if (project == null)
+                    return NotFound();
 
-            UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData.ProjectImage);
-            await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, UpdateFormData.SelectedMemberIds);
-            return RedirectToAction("Index");
+
+                // Parse the new member IDs from the form
+                var newMembers = UpdateFormData.SelectedMemberIdsRaw?
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(id => id.Trim())
+                    .ToList() ?? [];
+
+                // Merge existing and new members
+                var oldMembers = project.Members.Select(m => m.Id).ToList();
+                var combinedMembers = oldMembers.Concat(newMembers).ToList();
+
+                UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData.ProjectImage);
+                await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, combinedMembers);
+                return RedirectToAction("Index");
+
+            }
+                return View(model);
         }
 
 
