@@ -125,8 +125,7 @@ namespace AlphaWebApp.Controllers
                 EndDate = project.EndDate,
                 Budget = project.Budget,
                 IsCompleted = project.IsCompleted,
-                SelectedMemberIdsRaw = string.Join(",", project.Members.Select(m => m.Id)),
-                Members = project.Members.Select(m => new MemberTag
+                MemberTags = project.Members.Select(m => new MemberTag
                 {
                     Id = m.Id,
                     FullName = m.FullName ?? "Guest",
@@ -144,6 +143,7 @@ namespace AlphaWebApp.Controllers
             var model = new ProjectViewModel
             {
                 UpdateFormData = UpdateFormData,
+            
             };
 
             if (ModelState.IsValid)
