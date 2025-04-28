@@ -4,7 +4,14 @@
 
     <div class="main-content-header">
         <div class="main-content-image">
-            <img src="~/@Model.ProjectImagePath" alt="Project image">
+            @if (!string.IsNullOrWhiteSpace(Model.ProjectImagePath))
+            {
+                <img src="~/@Model.ProjectImagePath" alt="Project image">
+            }
+            else
+            {
+                <img src="~/images/alpha-icon-green.svg" alt="Default project image">
+            }
         </div>
         <div class="main-content-title">
             <h6>@Model?.ProjectName</h6>

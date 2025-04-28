@@ -16,10 +16,10 @@ public class NotificationService(DataContext context) : INotificationService
             switch (entity.NotificationTypeId)
             {
                 case 1:
-                    entity.Image = "/images/avatar-orange.svg";
+                    entity.Image = "images/avatar-orange.svg";
                         break;
                 case 2:
-                    entity.Image = "/images/alpha-icon-green.svg";
+                    entity.Image = "images/alpha-icon-green.svg";
                         break;
             }
         }

@@ -85,7 +85,7 @@ namespace AlphaWebApp.Controllers
                     {
                         var notify = new NotificationEntity
                         {
-                            Image = project.ProjectImagePath!,
+                            Image = project.ProjectImagePath ?? "images/alpha-icon-green.svg",
                             Message = $"{project.ProjectName} added",
                             NotificationTypeId = 2,
                         };
