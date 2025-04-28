@@ -1,7 +1,13 @@
 ﻿@model ProjectViewModel
 @{
-    var json = JsonSerializer.Serialize(Model?.UpdateFormData?.MemberTags);
-
+    /*
+    var json = JsonSerializer.Serialize(Model?.UpdateFormData?.MemberTags.Select(t => new
+    {
+		id = t.Id,
+		tagName = t.FullName,
+		imageUrl = t.ImagePath,
+    }));
+    */
 }
 
 <div id="editProjectModal" class="modal">
@@ -15,7 +21,6 @@
         </div>
 
         <form asp-controller="Project" asp-action="Edit" enctype="multipart/form-data" method="post" novalidate>
-            <div>@json</div>
             <input asp-for="UpdateFormData.Id" hidden>
             <input asp-for="UpdateFormData.SelectedMemberIdsRaw" id="UpdateFormData_SelectedMemberIds" hidden />
 
@@ -107,25 +112,24 @@
     </div>
 </div>
 
+
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-		const preSelected = @Html.Raw(json)
-
-
-        initTagSelector({
-            containerId: 'edit-project-tags',
-            inputId: 'edit-project-tag-search',
-            selectedInputIds: 'UpdateFormData_SelectedMemberIds',
-            resultsId: 'edit-project-tag-search-results',
-            searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
-            displayProperty: 'tagName',
-            imageProperty: 'imageUrl',
-            tagClass: 'user-tag',
-            avatarFolder: '',
-            emptyMessage: 'No tags found.',
-            preselected: preSelected
-        });
+/*
+    initTagSelector({
+        containerId: 'edit-project-tags',
+        inputId: 'edit-project-tag-search',
+        selectedInputIds: 'UpdateFormData_SelectedMemberIds',
+        resultsId: 'edit-project-tag-search-results',
+        searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
+        displayProperty: 'tagName',
+        imageProperty: 'imageUrl',
+        tagClass: 'user-tag',
+        avatarFolder: '',
+        emptyMessage: 'No tags found.',
+        preselected: preSelected
     });
+*/
 </script>
+
 @await Html.PartialAsync("_WysiwygEditScripts")
 @await Html.PartialAsync("_ValidationScripts")

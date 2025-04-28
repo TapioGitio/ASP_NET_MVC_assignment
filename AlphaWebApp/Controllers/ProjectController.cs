@@ -128,8 +128,8 @@ namespace AlphaWebApp.Controllers
                 MemberTags = project.Members.Select(m => new MemberTag
                 {
                     Id = m.Id,
-                    FullName = m.FullName ?? "Guest",
-                    ImagePath = m.ProfileImagePath ?? "/images/avatar-green.svg",
+                    tagName = m.FullName ?? "Guest",
+                    imageUrl = m.ProfileImagePath ?? "/images/avatar-green.svg",
                 }).ToList(),
             };
 
@@ -142,8 +142,7 @@ namespace AlphaWebApp.Controllers
         {
             var model = new ProjectViewModel
             {
-                UpdateFormData = UpdateFormData,
-            
+                UpdateFormData = UpdateFormData
             };
 
             if (ModelState.IsValid)

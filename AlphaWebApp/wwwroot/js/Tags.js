@@ -75,7 +75,7 @@
                 break
         }
     })
-
+ 
     function updateActiveItem(items) {
         items.forEach(item => item.classList.remove('active'))
         if (items[activeIndex]) {

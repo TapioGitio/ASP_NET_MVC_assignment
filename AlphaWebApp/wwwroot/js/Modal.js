@@ -98,6 +98,21 @@
         } else {
             imagePreview.src = '';
         }
+
+        // WHY DOES THIS WORK AND NOT THE TAGS SCRIPT???????
+        initTagSelector({
+            containerId: 'edit-project-tags',
+            inputId: 'edit-project-tag-search',
+            selectedInputIds: 'UpdateFormData_SelectedMemberIds',
+            resultsId: 'edit-project-tag-search-results',
+            searchUrl: (query) => '/Tags/SearchTags?term=' + encodeURIComponent(query),
+            displayProperty: 'tagName',
+            imageProperty: 'imageUrl',
+            tagClass: 'user-tag',
+            avatarFolder: '',
+            emptyMessage: 'No tags found.',
+            preselected: data.updateFormData.memberTags || []
+        });
     }
 });
 
