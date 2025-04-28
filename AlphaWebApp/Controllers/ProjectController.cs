@@ -125,9 +125,11 @@ namespace AlphaWebApp.Controllers
                 EndDate = project.EndDate,
                 Budget = project.Budget,
                 IsCompleted = project.IsCompleted,
+                SelectedMemberIdsRaw = string.Join((","), project.Members.Select(m => m.Id))
             };
 
-            return Json(new { updateFormData = model }); ;
+
+            return Json(new { updateFormData = model }); 
         }
 
         [HttpPost]
