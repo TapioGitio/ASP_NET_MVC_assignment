@@ -1,16 +1,4 @@
-﻿
-@model ProjectViewModel
-@{
-    List<Member> memberList = [];
-    foreach (var member in Model.UpdateFormData.SelectedMemberIds)
-    {
-        var result = await memberService.GetOneMemberByIdAsync(member);
-        memberList.Add(result);
-    };
-
-    JsonSerializer.Serialize(memberList);
-
-}
+﻿@model ProjectViewModel
 
 
 <div id="editProjectModal" class="modal">
@@ -118,7 +106,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const preSelected = @Html.Raw(memberList)
+        const preSelected = []
 
 
         initTagSelector({
@@ -130,7 +118,7 @@
             displayProperty: 'tagName',
             imageProperty: 'imageUrl',
             tagClass: 'user-tag',
-            avatarFolder: '/images',
+            avatarFolder: '',
             emptyMessage: 'No tags found.',
             preselected: preSelected
         });

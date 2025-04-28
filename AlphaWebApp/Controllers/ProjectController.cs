@@ -125,7 +125,6 @@ namespace AlphaWebApp.Controllers
                 EndDate = project.EndDate,
                 Budget = project.Budget,
                 IsCompleted = project.IsCompleted,
-                SelectedMemberIdsRaw = string.Join((","), project.Members.Select(m => m.Id))
             };
 
 
