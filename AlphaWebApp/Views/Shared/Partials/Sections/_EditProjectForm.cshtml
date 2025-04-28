@@ -1,5 +1,7 @@
 ﻿@model ProjectViewModel
-
+@{
+	var json = JsonSerializer.Serialize(Model?.UpdateFormData?.Members);
+}
 
 <div id="editProjectModal" class="modal">
     <div class="modal-content">
@@ -106,7 +108,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const preSelected = []
+		const preSelected = @Html.Raw(json)
 
 
         initTagSelector({

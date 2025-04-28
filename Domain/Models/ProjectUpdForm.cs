@@ -53,4 +53,6 @@ public class ProjectUpdForm
         .Select(x => x.Trim())
         .ToList() ?? [];
 
+    [NotMapped]
+    public List<MemberTag> Members { get; set; } = [];
 }

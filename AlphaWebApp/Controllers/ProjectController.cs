@@ -125,6 +125,13 @@ namespace AlphaWebApp.Controllers
                 EndDate = project.EndDate,
                 Budget = project.Budget,
                 IsCompleted = project.IsCompleted,
+                SelectedMemberIdsRaw = string.Join(",", project.Members.Select(m => m.Id)),
+                Members = project.Members.Select(m => new MemberTag
+                {
+                    Id = m.Id,
+                    FullName = m.FullName ?? "Guest",
+                    ImagePath = m.ProfileImagePath ?? "/images/avatar-green.svg",
+                }).ToList(),
             };
 
 
