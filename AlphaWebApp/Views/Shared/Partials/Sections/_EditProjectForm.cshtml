@@ -35,7 +35,9 @@
 
             <div class="input-group">
                 <label asp-for="UpdateFormData.ProjectDescription" class="form-label"></label>
-                <textarea asp-for="UpdateFormData.ProjectDescription" class="form-input">@Model?.UpdateFormData?.ProjectDescription</textarea>
+                <textarea asp-for="UpdateFormData.ProjectDescription" class="form-input">
+                    @Html.Raw(Model?.UpdateFormData?.ProjectDescription)
+                </textarea>
                 <span asp-validation-for="UpdateFormData.ProjectDescription"></span>
                 <div id="p-edit-wysiwyg-editor" class="wysiwyg-editor"></div>
                 <div id="p-edit-wysiwyg-toolbar" class="wysiwyg-toolbar">

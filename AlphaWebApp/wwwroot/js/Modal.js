@@ -24,7 +24,7 @@
                     fetchProjectData(Id, modal)
 
                 else if (modalId === 'addMemberModal')
-                    fetchMemberData(Id)               
+                    fetchMemberData(Id)    
             }
         });
     });
@@ -96,13 +96,21 @@
     function populateEditForm(modal, data) {
         modal.querySelector('[name="UpdateFormData.ProjectName"]').value = data.updateFormData.projectName || '';
         modal.querySelector('[name="UpdateFormData.ClientName"]').value = data.updateFormData.clientName || '';
-        modal.querySelector('[name="UpdateFormData.ProjectDescription"]').value = data.updateFormData.projectDescription || '';
+        // Populate the WYSIWYG editor
+        const textarea = modal.querySelector('[name="UpdateFormData.ProjectDescription"]');
+        const description = data.updateFormData.projectDescription || '';
+        textarea.value = description;
+        if (quill) {
+            quill.root.innerHTML = description;
+        }
         modal.querySelector('[name="UpdateFormData.StartDate"]').value = data.updateFormData.startDate || '';
         modal.querySelector('[name="UpdateFormData.EndDate"]').value = data.updateFormData.endDate || '';
         modal.querySelector('[name="UpdateFormData.Budget"]').value = data.updateFormData.budget || '';
         modal.querySelector('[name="UpdateFormData.IsCompleted"]').checked = data.updateFormData.isCompleted || false;
 
-        // Update the image preview
+
+
+        // Populate the image preview
         const imagePreview = modal.querySelector('.image-preview');
         const imagePreviewer = modal.querySelector('.image-previewer')
 
@@ -113,6 +121,7 @@
             imagePreview.src = '';
         }
 
+        // Populate the tags for the EditProject
         initTagSelector({
             containerId: 'edit-project-tags',
             inputId: 'edit-project-tag-search',
@@ -128,6 +137,7 @@
         });
     }
 
+    // Populate the tags for the AddMember
     function populateMemberForm(data) {
         initTagSelector({
             containerId: 'add-member-tags',

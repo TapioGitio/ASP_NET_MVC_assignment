@@ -4,7 +4,6 @@
 })
 
 function initializeWysiwyg(wysiwygEditorId, wysiwygToolbarId, textareaId, content) {
-
     const textarea = document.getElementById(textareaId);
     const quill = new Quill(wysiwygEditorId, {
         modules: {
