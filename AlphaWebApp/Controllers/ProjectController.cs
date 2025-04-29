@@ -7,6 +7,7 @@ using AlphaWebApp.Hubs;
 using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.SqlServer.Server;
 
 namespace AlphaWebApp.Controllers
 {
@@ -102,11 +103,9 @@ namespace AlphaWebApp.Controllers
 
                     return RedirectToAction("Index");
                 }
-
             }
                 return RedirectToAction("Index");
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -133,7 +132,6 @@ namespace AlphaWebApp.Controllers
                     imageUrl = m.ProfileImagePath ?? "/images/avatar-green.svg",
                 }).ToList(),
             };
-
 
             return Json(new { updateFormData = model }); 
         }
@@ -163,7 +161,6 @@ namespace AlphaWebApp.Controllers
                 UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData.ProjectImage);
                 await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, updatedMembers);
                 return RedirectToAction("Index");
-
             }
                 return View(model);
         }
@@ -185,7 +182,6 @@ namespace AlphaWebApp.Controllers
                     imageUrl = m.ProfileImagePath ?? "/images/avatar-green.svg",
                 }).ToList(),
             };
-
             return Json(new { memberFormData = model });
         }
 
@@ -208,9 +204,31 @@ namespace AlphaWebApp.Controllers
                     .Select(id => id.Trim())
                     .ToList() ?? [];
 
-                await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, updatedMembers);
-                return RedirectToAction("Index");
+               var result = await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, updatedMembers);
+                if (result)
+                {
+                    /* Send notification */  
+                    var user = await _userManager.GetUserAsync(User);
+                    if (user != null)
+                    {
+                        var notify = new NotificationEntity
+                        {
+                            Image = project.ProjectImagePath ?? "images/alpha-icon-green.svg",
+                            Message = $"{project.ProjectName} members modified",
+                            NotificationTypeId = 2,
+                        };
 
+                        await _notificationService.AddNotificationAsync(notify);
+                        var notifications = await _notificationService.GetNotificationsAsync(user.Id);
+                        var newNotification = notifications.OrderByDescending(x => x.Created).FirstOrDefault();
+
+                        if (newNotification != null)
+                        {
+                            await _notificationHub.Clients.All.SendAsync("RecieveNotification", newNotification);
+                        }
+                    }
+                    return RedirectToAction("Index");    
+                }
             }
             return View(model);
         }

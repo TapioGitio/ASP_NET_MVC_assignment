@@ -7,7 +7,7 @@
         button.addEventListener('click', () => {
             const modalTarget = button.getAttribute('data-target');
             const modal = document.querySelector(modalTarget);
-            const modalId = modal?.id;
+            const modalId = modal.id;
 
             if (modal)
                 modal.style.display = 'flex';
@@ -15,9 +15,8 @@
             const Id = button.getAttribute('data-id') || '';
             const hiddenField = modal.querySelector('[name="UpdateFormData.Id"]');
 
-            if (hiddenField) {
+            if (hiddenField)
                 hiddenField.value = Id;
-            }
 
             // Fetch project data and populate the form
             if (Id) {
@@ -25,7 +24,7 @@
                     fetchProjectData(Id, modal)
 
                 else if (modalId === 'addMemberModal')
-                    fetchMemberData(Id, modal)               
+                    fetchMemberData(Id)               
             }
         });
     });
@@ -114,8 +113,6 @@
             imagePreview.src = '';
         }
 
-        // WHY DOES THIS WORK AND NOT THE TAGS SCRIPT???????
-
         initTagSelector({
             containerId: 'edit-project-tags',
             inputId: 'edit-project-tag-search',
@@ -147,6 +144,7 @@
         });
     }
 });
+
 // Clear errors
 function clearErrorMessage(form) {
     form.querySelectorAll('[data-val="true"]').forEach(input => {

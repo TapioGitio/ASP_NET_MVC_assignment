@@ -11,12 +11,10 @@
         config.preselected.forEach(item => addTag(item))
     }
 
-
     input.addEventListener('focus', () => {
         tagContainer.classList.add('focused')
         results.classList.add('focused')
     })
-
 
     input.addEventListener('blur', () => {
         setTimeout(() => {
@@ -24,7 +22,6 @@
             results.classList.remove('focused')
         }, 100)
     })
-
 
     input.addEventListener('input', () => {
         const query = input.value.trim()
@@ -168,8 +165,6 @@
         input.value = ''
         results.innerHTML = ''
         results.style.display = 'none'
-
-  
     }
 
     function updateSelectedIdsInput() {
