@@ -10,7 +10,7 @@
             </button>
         </div>
 
-        <form asp-controller="Project" asp-action="Edit" enctype="multipart/form-data" method="post" novalidate>
+        <form asp-controller="Project" asp-action="EditMembers" enctype="multipart/form-data" method="post" novalidate>
 
             <input asp-for="UpdateFormData.Id" hidden />
             <input asp-for="UpdateFormData.SelectedMemberIdsRaw" id="Member_SelectedMemberIds" hidden />
@@ -31,20 +31,3 @@
         </form>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        initTagSelector({
-            containerId: 'add-member-tags',
-            inputId: 'add-member-tag-search',
-            selectedInputIds: 'Member_SelectedMemberIds',
-            resultsId: 'add-member-tag-search-results',
-            searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
-            displayProperty: 'tagName',
-            imageProperty: 'imageUrl',
-            tagClass: 'user-tag',
-            avatarFolder: '',
-            emptyMessage: 'No tags found.',
-            preselected: ''
-        });
-    });
-</script>

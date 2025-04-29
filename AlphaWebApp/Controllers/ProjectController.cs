@@ -107,6 +107,7 @@ namespace AlphaWebApp.Controllers
                 return RedirectToAction("Index");
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -153,23 +154,66 @@ namespace AlphaWebApp.Controllers
 
 
                 // Parse the new member IDs from the form
-                var newMembers = UpdateFormData.SelectedMemberIdsRaw?
+                var updatedMembers = UpdateFormData.SelectedMemberIdsRaw?
                     .Split(',', StringSplitOptions.RemoveEmptyEntries)
                     .Select(id => id.Trim())
                     .ToList() ?? [];
 
-                // Merge existing and new members
-                var oldMembers = project.Members.Select(m => m.Id).ToList();
-                var combinedMembers = oldMembers.Concat(newMembers).ToList();
 
                 UpdateFormData.ProjectImagePath = await UploadImageAsync(UpdateFormData.ProjectImage);
-                await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, combinedMembers);
+                await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, updatedMembers);
                 return RedirectToAction("Index");
 
             }
                 return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditMembers(int id)
+        {
+            var project = await _projectService.GetOneProjectIncludeAllAsync(id);
+            if (project == null)
+                return NotFound();
+
+            var model = new ProjectUpdForm
+            {
+                Id = project.Id,
+                MemberTags = project.Members.Select(m => new MemberTag
+                {
+                    Id = m.Id,
+                    tagName = m.FullName ?? "Guest",
+                    imageUrl = m.ProfileImagePath ?? "/images/avatar-green.svg",
+                }).ToList(),
+            };
+
+            return Json(new { memberFormData = model });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditMembers(ProjectUpdForm UpdateFormData)
+        {
+            var model = new ProjectViewModel
+            {
+                UpdateFormData = UpdateFormData
+            };
+
+            if (ModelState.IsValid)
+            {
+                var project = await _projectService.GetOneProjectIncludeAllAsync(UpdateFormData.Id);
+                if (project == null)
+                    return NotFound();
+
+                var updatedMembers = UpdateFormData.SelectedMemberIdsRaw?
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(id => id.Trim())
+                    .ToList() ?? [];
+
+                await _projectService.UpdateProjectAsync(UpdateFormData.Id, UpdateFormData, updatedMembers);
+                return RedirectToAction("Index");
+
+            }
+            return View(model);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Remove(ProjectUpdForm UpdateFormData)

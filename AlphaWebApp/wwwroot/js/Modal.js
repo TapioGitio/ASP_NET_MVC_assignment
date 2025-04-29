@@ -7,6 +7,7 @@
         button.addEventListener('click', () => {
             const modalTarget = button.getAttribute('data-target');
             const modal = document.querySelector(modalTarget);
+            const modalId = modal?.id;
 
             if (modal)
                 modal.style.display = 'flex';
@@ -20,7 +21,11 @@
 
             // Fetch project data and populate the form
             if (Id) {
-                fetchProjectData(Id, modal);
+                if (modalId === 'editProjectModal')
+                    fetchProjectData(Id, modal)
+
+                else if (modalId === 'addMemberModal')
+                    fetchMemberData(Id, modal)               
             }
         });
     });
@@ -69,10 +74,20 @@
         try {
             const res = await fetch(`/Project/Edit?id=${Id}`);
 
-            const populate = await res.json();
-            populateEditForm(modal, populate);
+            const data = await res.json();
+            populateEditForm(modal, data);
         } catch (error) {
             console.error('Error fetching project data:', error);
+        }
+    }
+    async function fetchMemberData(Id) {
+        try {
+            const res = await fetch(`/Project/EditMembers?id=${Id}`);
+
+            const data = await res.json();
+            populateMemberForm(data);
+        } catch (error) {
+            console.error('Error fetching member data:', error);
         }
     }
 
@@ -100,6 +115,7 @@
         }
 
         // WHY DOES THIS WORK AND NOT THE TAGS SCRIPT???????
+
         initTagSelector({
             containerId: 'edit-project-tags',
             inputId: 'edit-project-tag-search',
@@ -114,8 +130,23 @@
             preselected: data.updateFormData.memberTags || []
         });
     }
-});
 
+    function populateMemberForm(data) {
+        initTagSelector({
+            containerId: 'add-member-tags',
+            inputId: 'add-member-tag-search',
+            selectedInputIds: 'Member_SelectedMemberIds',
+            resultsId: 'add-member-tag-search-results',
+            searchUrl: (query) => '/Tags/SearchTags?term=' + encodeURIComponent(query),
+            displayProperty: 'tagName',
+            imageProperty: 'imageUrl',
+            tagClass: 'user-tag',
+            avatarFolder: '',
+            emptyMessage: 'No tags found.',
+            preselected: data.memberFormData.memberTags || []
+        });
+    }
+});
 // Clear errors
 function clearErrorMessage(form) {
     form.querySelectorAll('[data-val="true"]').forEach(input => {

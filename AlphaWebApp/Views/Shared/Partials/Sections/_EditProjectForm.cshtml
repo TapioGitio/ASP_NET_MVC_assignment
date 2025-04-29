@@ -1,14 +1,4 @@
 ﻿@model ProjectViewModel
-@{
-    /*
-    var json = JsonSerializer.Serialize(Model?.UpdateFormData?.MemberTags.Select(t => new
-    {
-		id = t.Id,
-		tagName = t.FullName,
-		imageUrl = t.ImagePath,
-    }));
-    */
-}
 
 <div id="editProjectModal" class="modal">
     <div class="modal-content">
@@ -111,25 +101,6 @@
         </form>
     </div>
 </div>
-
-
-<script>
-/*
-    initTagSelector({
-        containerId: 'edit-project-tags',
-        inputId: 'edit-project-tag-search',
-        selectedInputIds: 'UpdateFormData_SelectedMemberIds',
-        resultsId: 'edit-project-tag-search-results',
-        searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
-        displayProperty: 'tagName',
-        imageProperty: 'imageUrl',
-        tagClass: 'user-tag',
-        avatarFolder: '',
-        emptyMessage: 'No tags found.',
-        preselected: preSelected
-    });
-*/
-</script>
 
 @await Html.PartialAsync("_WysiwygEditScripts")
 @await Html.PartialAsync("_ValidationScripts")
