@@ -6,72 +6,78 @@
     const input = document.getElementById(config.inputId)
     const results = document.getElementById(config.resultsId)
     const selectedInputIds = document.getElementById(config.selectedInputIds)
+    resetTags()
 
     if (Array.isArray(config.preselected)) {
         config.preselected.forEach(item => addTag(item))
     }
 
-    input.addEventListener('focus', () => {
-        tagContainer.classList.add('focused')
-        results.classList.add('focused')
-    })
+    if (!input.dataset.listenersAttached) {
+        input.addEventListener('focus', () => {
+            tagContainer.classList.add('focused')
+            results.classList.add('focused')
+        })
 
-    input.addEventListener('blur', () => {
-        setTimeout(() => {
-            tagContainer.classList.remove('focused')
-            results.classList.remove('focused')
-        }, 100)
-    })
+        input.addEventListener('blur', () => {
+            setTimeout(() => {
+                tagContainer.classList.remove('focused')
+                results.classList.remove('focused')
+            }, 100)
+        })
 
-    input.addEventListener('input', () => {
-        const query = input.value.trim()
-        activeIndex = -1
+        input.addEventListener('input', () => {
+            const query = input.value.trim()
+            activeIndex = -1
 
-        if (query.length === 0) {
-            results.style.display = 'none'
-            results.innerHTML = ''
-            return;
-        }
+            if (query.length === 0) {
+                results.style.display = 'none'
+                results.innerHTML = ''
+                return;
+            }
 
-        fetch(config.searchUrl(query))
-            .then(r => r.json())
-            .then(data => renderSearchResults(data))
-    })
+            fetch(config.searchUrl(query))
+                .then(r => r.json())
+                .then(data => renderSearchResults(data))
+        })
 
-    input.addEventListener('keydown', (e) => {
-        const items = results.querySelectorAll('.search-item')
+        input.addEventListener('keydown', (e) => {
+            const items = results.querySelectorAll('.search-item')
 
-        switch (e.key) {
-            case 'ArrowDown':
-                e.preventDefault()
-                if (items.length > 0) {
-                    activeIndex = (activeIndex + 1) % items.length
-                    updateActiveItem(items)
-                }
-                break
+            switch (e.key) {
+                case 'ArrowDown':
+                    e.preventDefault()
+                    if (items.length > 0) {
+                        activeIndex = (activeIndex + 1) % items.length
+                        updateActiveItem(items)
+                    }
+                    break
 
-            case 'ArrowUp':
-                e.preventDefault()
-                if (items.length > 0) {
-                    activeIndex = (activeIndex - 1 + items.length) % items.length
-                    updateActiveItem(items)
-                }
-                break
+                case 'ArrowUp':
+                    e.preventDefault()
+                    if (items.length > 0) {
+                        activeIndex = (activeIndex - 1 + items.length) % items.length
+                        updateActiveItem(items)
+                    }
+                    break
 
-            case 'Enter':
-                e.preventDefault()
-                if (activeIndex >= 0 && items[activeIndex]) {
-                    items[activeIndex].click()
-                }
-                break
+                case 'Enter':
+                    e.preventDefault()
+                    if (activeIndex >= 0 && items[activeIndex]) {
+                        items[activeIndex].click()
+                    }
+                    break
 
-            case 'Backspace':
-                if (input.value === '') {
-                    removeLastTag()
-                }
-                break
-        }
-    })
+                case 'Backspace':
+                    if (input.value === '') {
+                        removeLastTag()
+                    }
+                    break
+            }
+        })
+
+        input.dataset.listenersAttached = true
+    }
+
  
     function updateActiveItem(items) {
         items.forEach(item => item.classList.remove('active'))
@@ -185,5 +191,14 @@
         selectedIds = selectedIds.filter(id => id !== lastId)
         lastTag.remove()
         updateSelectedIdsInput()
+    }
+    function resetTags() {
+        tagContainer.querySelectorAll(`.${config.tagClass || "tag"}`).forEach(tag => tag.remove())
+
+        if (selectedInputIds) selectedInputIds.value = ''
+        selectedIds = []
+        results.innerHTML = ''
+        results.style.display = 'none'
+        input.value = ''
     }
 }
