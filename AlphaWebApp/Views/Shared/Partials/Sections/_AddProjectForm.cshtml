@@ -97,6 +97,22 @@
         </form>
     </div>
 </div>
+<script>
+    const preSelectedTags = []
 
+    initTagSelector({
+        containerId: 'add-project-tags',
+        inputId: 'add-project-tag-search',
+        selectedInputIds: 'FormData_SelectedMemberIds',
+        resultsId: 'add-project-tag-search-results',
+        searchUrl: (query) => '@Url.Action("SearchTags", "Tags")' + '?term=' + encodeURIComponent(query),
+        displayProperty: 'tagName',
+        imageProperty: 'imageUrl',
+        tagClass: 'user-tag',
+        avatarFolder: '',
+        emptyMessage: 'No tags found.',
+        preselected: preSelectedTags
+    });
+</script>
 @await Html.PartialAsync("_WysiwygAddScripts")
 @await Html.PartialAsync("_ValidationScripts")
