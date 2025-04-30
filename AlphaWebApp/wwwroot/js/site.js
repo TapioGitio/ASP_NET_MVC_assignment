@@ -175,3 +175,27 @@ function disableDarkMode() {
     if (darkmodeSwitch) darkmodeSwitch.checked = false;
     document.documentElement.classList.remove('dark');
 }
+
+// Function for initializing WYSIWYG editor both for add and edit
+function initializeWysiwyg(wysiwygEditorId, wysiwygToolbarId, textareaId, content) {
+    const textarea = document.getElementById(textareaId);
+
+    const quill = new Quill(wysiwygEditorId, {
+        modules: {
+            syntax: true,
+            toolbar: wysiwygToolbarId
+        },
+        placeholder: 'Type Something',
+        theme: 'snow'
+    });
+
+    if (content) {
+        quill.root.innerHTML = content;
+    }
+
+    quill.on('text-change', () => {
+        textarea.value = quill.root.innerHTML;
+    });
+
+    return quill;
+}

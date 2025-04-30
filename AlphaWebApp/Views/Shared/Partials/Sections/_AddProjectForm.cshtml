@@ -36,9 +36,7 @@
 
             <div class="input-group description-field">
                 <label asp-for="FormData.ProjectDescription" class="form-label"></label>
-                <textarea asp-for="FormData.ProjectDescription" class="form-input">
-					@Model?.FormData?.ProjectDescription
-                </textarea>
+                <textarea asp-for="FormData.ProjectDescription" class="form-input" hidden></textarea>
                 <div id="p-add-wysiwyg-editor" class="wysiwyg-editor"></div>
                 <div id="p-add-wysiwyg-toolbar" class="wysiwyg-toolbar">
 					<span class="ql-formats">
@@ -97,9 +95,8 @@
         </form>
     </div>
 </div>
-<script>
-    const preSelectedTags = []
 
+<script>
     initTagSelector({
         containerId: 'add-project-tags',
         inputId: 'add-project-tag-search',
@@ -111,7 +108,7 @@
         tagClass: 'user-tag',
         avatarFolder: '',
         emptyMessage: 'No tags found.',
-        preselected: preSelectedTags
+        preselected: [],
     });
 </script>
 @await Html.PartialAsync("_WysiwygAddScripts")

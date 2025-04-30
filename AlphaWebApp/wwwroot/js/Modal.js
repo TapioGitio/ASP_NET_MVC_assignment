@@ -90,25 +90,23 @@
         }
     }
 
-    // Populate the form with project data
-    // got help with this to populate the form
-    // it fetches each value from the data object and assigns it to the corresponding input field.
+    // Populate the form with project data,
+    // got help with this to populate the form,
+    // it fetches each value from the data object and 
+    // assigns it to the corresponding input field.
     function populateEditForm(modal, data) {
         modal.querySelector('[name="UpdateFormData.ProjectName"]').value = data.updateFormData.projectName || '';
         modal.querySelector('[name="UpdateFormData.ClientName"]').value = data.updateFormData.clientName || '';
-        // Populate the WYSIWYG editor
-        const textarea = modal.querySelector('[name="UpdateFormData.ProjectDescription"]');
-        const description = data.updateFormData.projectDescription || '';
-        textarea.value = description;
-        if (quill) {
-            quill.root.innerHTML = description;
-        }
         modal.querySelector('[name="UpdateFormData.StartDate"]').value = data.updateFormData.startDate || '';
         modal.querySelector('[name="UpdateFormData.EndDate"]').value = data.updateFormData.endDate || '';
         modal.querySelector('[name="UpdateFormData.Budget"]').value = data.updateFormData.budget || '';
         modal.querySelector('[name="UpdateFormData.IsCompleted"]').checked = data.updateFormData.isCompleted || false;
 
-
+        // Populate the WYSIWYG editor
+        const textarea = modal.querySelector('[name="UpdateFormData.ProjectDescription"]');
+        const description = data.updateFormData.projectDescription || '';
+        textarea.value = description;
+        initializeEditWysiwyg(description);
 
         // Populate the image preview
         const imagePreview = modal.querySelector('.image-preview');
