@@ -7,7 +7,6 @@ using AlphaWebApp.Hubs;
 using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.SqlServer.Server;
 
 namespace AlphaWebApp.Controllers
 {
@@ -133,7 +132,25 @@ namespace AlphaWebApp.Controllers
                 }).ToList(),
             };
 
-            return Json(new { updateFormData = model }); 
+            return Json(new
+            {
+                // Got help with this from ChatGPT only for the date fields really,
+                // since I got error with the date format not being correct.
+                // And some research I figured out it was because of the json serialization.
+                updateFormData = new
+                {
+                    model.Id,
+                    model.ProjectName,
+                    model.ClientName,
+                    model.ProjectDescription,
+                    model.ProjectImagePath,
+                    StartDate = model.StartDate?.ToString("yyyy-MM-dd"),
+                    EndDate = model.EndDate?.ToString("yyyy-MM-dd"),
+                    model.Budget,
+                    model.IsCompleted,
+                    model.MemberTags
+                }
+            });
         }
 
         [HttpPost]
