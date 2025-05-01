@@ -23,6 +23,26 @@ public class MemberController(IMemberService memberService, IWebHostEnvironment 
         return View(model);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Edit(string id)
+    {
+        var member = await _memberService.GetOneMemberByIdAsync(id);
+        var model = new MemberUpdForm
+        {
+            Id = member.Id,
+            ProfileImagePath = member.ProfileImagePath,
+            FirstName = member.FirstName!,
+            LastName = member.LastName!,
+            PhoneNumber = member.PhoneNumber,
+            JobTitle = member.JobTitle,
+            Street = member.Address?.Street,
+            PostalCode = member.Address?.PostalCode,
+            City = member.Address?.City,
+        };
+    
+        return Json(new { memberData = model });
+    }
+
     [HttpPost]
     public async Task<IActionResult> Edit(MemberUpdForm UpdateFormData)
     {
@@ -31,15 +51,18 @@ public class MemberController(IMemberService memberService, IWebHostEnvironment 
             UpdateFormData = UpdateFormData,
         };
 
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
+        {
+            var member = await _memberService.GetOneMemberByIdAsync(UpdateFormData.Id);
+            if (member == null)
+                return NotFound();
+
+            UpdateFormData.ProfileImagePath = await UploadImageAsync(UpdateFormData.MemberImage);
+            await _memberService.UpdateMemberAsync(UpdateFormData.Id, UpdateFormData);
+            return RedirectToAction("Index");
+        }
             return View(model);
-
-
-        UpdateFormData.ProfileImagePath = await UploadImageAsync(UpdateFormData.MemberImage);
-        await _memberService.UpdateMemberAsync(UpdateFormData.Id, UpdateFormData);
-        return RedirectToAction("Index");
     }
-
 
 
     private async Task<string?> UploadImageAsync(IFormFile? image)

@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace Domain.Models;
+﻿namespace Domain.Models;
 
 public class Member
 {
     public string Id { get; set; } = null!;
-    public IFormFile? MemberImage { get; set; }
     public string? ProfileImagePath { get; set; }
     public string? JobTitle { get; set; }
     public string? FirstName { get; set; }

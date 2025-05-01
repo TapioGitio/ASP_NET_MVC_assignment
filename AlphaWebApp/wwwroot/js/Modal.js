@@ -24,7 +24,9 @@
                     fetchProjectData(Id, modal)
 
                 else if (modalId === 'addMemberModal')
-                    fetchMemberData(Id)    
+                    fetchAddMemberData(Id) 
+                else if (modalId === 'editMemberModal')
+                    fetchEditMemberData(Id, modal)
             }
         });
     });
@@ -79,12 +81,21 @@
             console.error('Error fetching project data:', error);
         }
     }
-    async function fetchMemberData(Id) {
+    async function fetchAddMemberData(Id) {
         try {
             const res = await fetch(`/Project/EditMembers?id=${Id}`);
 
             const data = await res.json();
-            populateMemberForm(data);
+            populateAddMemberForm(data);
+        } catch (error) {
+            console.error('Error fetching member data:', error);
+        }
+    }
+    async function fetchEditMemberData(Id, modal) {
+        try {
+            const res = await fetch(`/Member/Edit?id=${Id}`);
+            const data = await res.json();
+            populateEditMemberForm(modal, data);
         } catch (error) {
             console.error('Error fetching member data:', error);
         }
@@ -136,7 +147,7 @@
     }
 
     // Populate the tags for the AddMember
-    function populateMemberForm(data) {
+    function populateAddMemberForm(data) {
         initTagSelector({
             containerId: 'add-member-tags',
             inputId: 'add-member-tag-search',
@@ -150,6 +161,26 @@
             emptyMessage: 'No tags found.',
             preselected: data.memberFormData.memberTags || []
         });
+    }
+
+    // Populate the form with member data
+    function populateEditMemberForm(modal, data) {
+        modal.querySelector('[name="UpdateFormData.FirstName"]').value = data.memberData.firstName || '';
+        modal.querySelector('[name="UpdateFormData.LastName"]').value = data.memberData.lastName || '';
+        modal.querySelector('[name="UpdateFormData.PhoneNumber"]').value = data.memberData.phoneNumber || '';
+        modal.querySelector('[name="UpdateFormData.JobTitle"]').value = data.memberData.jobTitle || '';
+        modal.querySelector('[name="UpdateFormData.Street"]').value = data.memberData.street || '';
+        modal.querySelector('[name="UpdateFormData.PostalCode"]').value = data.memberData.PostalCode || '';
+        modal.querySelector('[name="UpdateFormData.City"]').value = data.memberData.city || '';
+
+        const imagePreview = modal.querySelector('.image-preview');
+        const imagePreviewer = modal.querySelector('.image-previewer')
+        if (data.memberData.profileImagePath) {
+            imagePreview.src = data.memberData.profileImagePath;
+            imagePreviewer.classList.add('selected')
+        } else {
+            imagePreview.src = '';
+        }
     }
 });
 

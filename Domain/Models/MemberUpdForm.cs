@@ -6,8 +6,8 @@ namespace Domain.Models;
 public class MemberUpdForm
 {
     public string Id { get; set; } = null!;
-    public IFormFile? MemberImage { get; set; }
     public string? ProfileImagePath { get; set; }
+    public IFormFile? MemberImage { get; set; }
 
     [Display(Name = "Job Title", Prompt = "Job title")]
     public string? JobTitle { get; set; }
@@ -33,7 +33,7 @@ public class MemberUpdForm
     public string? Street { get; set; }
 
     [Display(Name = "Zip Code", Prompt = "Zip Code")]
-    public string? ZipCode { get; set; }
+    public string? PostalCode { get; set; }
 
     [Display(Name = "City", Prompt = "City")]
     public string? City { get; set; }

@@ -51,7 +51,7 @@ public static class MemberFactory
         // and to be able to set the address to null if all fields are empty.
 
         if (!string.IsNullOrWhiteSpace(form.Street) ||
-            !string.IsNullOrWhiteSpace(form.ZipCode) ||
+            !string.IsNullOrWhiteSpace(form.PostalCode) ||
             !string.IsNullOrWhiteSpace(form.City))
         {
             if (entity.Address == null)
@@ -60,8 +60,8 @@ public static class MemberFactory
             if (!string.IsNullOrWhiteSpace(form.Street))
                 entity.Address.Street = form.Street;
 
-            if (!string.IsNullOrWhiteSpace(form.ZipCode))
-                entity.Address.PostalCode = form.ZipCode;
+            if (!string.IsNullOrWhiteSpace(form.PostalCode))
+                entity.Address.PostalCode = form.PostalCode;
 
             if (!string.IsNullOrWhiteSpace(form.City))
                 entity.Address.City = form.City;
