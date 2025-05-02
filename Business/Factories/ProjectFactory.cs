@@ -53,9 +53,9 @@ public static class ProjectFactory
     {
 
         entity.ProjectImagePath = string.IsNullOrEmpty(updForm.ProjectImagePath) ? entity.ProjectImagePath : updForm.ProjectImagePath;
-        entity.ProjectName = string.IsNullOrEmpty(updForm.ProjectName) ? entity.ProjectName : updForm.ProjectName;
-        entity.ClientName = string.IsNullOrEmpty(updForm.ClientName) ? entity.ClientName : updForm.ClientName;
-        entity.ProjectDescription = string.IsNullOrEmpty(updForm.ProjectDescription) ? entity.ProjectDescription : updForm.ProjectDescription;
+        entity.ProjectName = updForm.ProjectName ?? entity.ProjectName;
+        entity.ClientName = updForm.ClientName ?? entity.ClientName;
+        entity.ProjectDescription = updForm.ProjectDescription ?? entity.ProjectDescription;
         entity.StartDate = updForm.StartDate ?? entity.StartDate;
         entity.EndDate = updForm.EndDate ?? entity.EndDate;
         entity.Budget = updForm.Budget ?? entity.Budget;

@@ -41,7 +41,7 @@ public static class MemberFactory
     {
 
 
-        entity.ProfileImagePath = form.ProfileImagePath;
+        entity.ProfileImagePath = string.IsNullOrWhiteSpace(form.ProfileImagePath) ? entity.ProfileImagePath : form.ProfileImagePath;
         entity.JobTitle = form.JobTitle;
         entity.FirstName = form.FirstName;
         entity.LastName = form.LastName;

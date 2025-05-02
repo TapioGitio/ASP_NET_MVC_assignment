@@ -22,7 +22,6 @@
             if (Id) {
                 if (modalId === 'editProjectModal')
                     fetchProjectData(Id, modal)
-
                 else if (modalId === 'addMemberModal')
                     fetchAddMemberData(Id) 
                 else if (modalId === 'editMemberModal')
