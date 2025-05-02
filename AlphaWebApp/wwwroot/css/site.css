@@ -804,7 +804,7 @@ span.btn-remove:hover {
     }
 
 .image-preview {
-
+    height: 100%;
 }
 
  /* Form Validation */
@@ -1172,7 +1172,7 @@ span.btn-remove:hover {
 }
 .main-content-item-member {
     display: grid;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-rows: auto auto auto 1fr auto;
     padding: 1rem;
     width: 100%;
     min-height: 460px;
@@ -1208,7 +1208,11 @@ span.btn-remove:hover {
 }
 .main-member-image {
     margin: 0 auto;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;  
+    img {
+            width: 150px;
+            height: 150px;
+        }
 }
 .main-content-title p {
     color: var(--bodyLight);
