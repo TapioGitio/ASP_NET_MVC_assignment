@@ -1152,6 +1152,11 @@ span.btn-remove:hover {
     position: relative;
     display: grid;
     height: 75dvh;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+.dashboard-content-item {
+    display: grid;
 }
 .logo-container {
     position: absolute;
@@ -1166,6 +1171,17 @@ span.btn-remove:hover {
             opacity: 10%;
         }
 }
+@media(width < 1200px) {
+    .logo-container {
+        left: 8rem;
+    }
+}
+@media(width < 720px) {
+    .logo-container {
+        left: 0;
+    }
+}
+
 
 /* Dashboard End */
 .main-content {
@@ -1174,6 +1190,7 @@ span.btn-remove:hover {
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
 }
+
 .main-content-member {
     padding-top: 1rem;
     display: grid;
@@ -1189,13 +1206,14 @@ span.btn-remove:hover {
     min-height: 300px;
     overflow: hidden;
 }
+
 .main-content-item-member {
     display: grid;
     grid-template-rows: auto auto auto 1fr auto;
     padding: 1rem;
     width: 100%;
     min-height: 460px;
-    overflow: hidden;    
+    overflow: hidden;
 }
 
 /* Card Header */
@@ -1204,12 +1222,14 @@ span.btn-remove:hover {
     align-content: center;
     gap: 1rem;
 }
+
 .main-member-title {
-    display:flex;
+    display: flex;
     flex-direction: column;
     text-align: center;
 }
-.main-member-title p{
+
+.main-member-title p {
     margin: 0 auto;
     margin-bottom: 1rem;
     padding: .4rem .9rem;
@@ -1218,12 +1238,14 @@ span.btn-remove:hover {
     background-color: var(--btn-gray-bg);
     border-radius: .8rem;
 }
+
 .main-content-image {
     height: 56px;
     aspect-ratio: 1;
+
     img {
     max-width: 100%;
-}
+    }
 }
 .main-member-image {
     margin: 0 auto;
